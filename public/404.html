@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>الصفحة غير موجودة – كنيسة العذراء مريم والشهيد أبانوب</title>
     <meta name="description" content="الصفحة التي تبحث عنها غير موجودة في كنيسة السيدة العذراء مريم والشهيد أبانوب القبطية الأرثوذكسية – إمبابة" />
+    <link rel="canonical" href="https://stmary-abanoub-church.vercel.app/404" />
+    <meta property="og:title" content="الصفحة غير موجودة – كنيسة العذراء مريم والشهيد أبانوب" />
+    <meta property="og:description" content="الصفحة التي تبحث عنها غير موجودة في كنيسة السيدة العذراء مريم والشهيد أبانوب القبطية الأرثوذكسية – إمبابة" />
+    <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -667,7 +671,11 @@
                 });
             });
 
-            console.log('📄 404 page loaded');
+            // ============================================
+            // Try to get the actual URL that caused 404
+            // ============================================
+            const errorPath = window.location.pathname || '/unknown';
+            console.log('📄 404 page loaded for path:', errorPath);
             console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
         })();
