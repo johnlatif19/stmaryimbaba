@@ -785,7 +785,7 @@ app.get('*', (req, res) => {
     '/faq': 'faq.html',
     '/search': 'search.html',
     '/prayer-request': 'prayer-request.html',
-    '/contact': 'contact.html'
+    '/contact': 'contact.html',
     '/pay': 'pay.html'
   };
 
