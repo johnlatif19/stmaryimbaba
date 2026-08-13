@@ -1159,34 +1159,11 @@
             <p class="section-subtitle">جدول القداسات الإلهية في الكنيسة</p>
 
             <div class="masses-grid" id="massesContainer">
-                <!-- Data will be loaded dynamically from API -->
-                <!-- Static fallback content - will be replaced by JS -->
-                <div class="mass-card">
-                    <div class="day">الأحد</div>
-                    <div class="time">٨:٠٠ ص – ١٠:٣٠ ص</div>
-                    <div class="location">الكنيسة الرئيسية</div>
-                    <div class="priest">أبونا القس تيموثاؤس عزيز</div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل مواعيد القداسات...</p>
                 </div>
-                <div class="mass-card">
-                    <div class="day">الثلاثاء</div>
-                    <div class="time">٧:٠٠ ص – ٩:٠٠ ص</div>
-                    <div class="location">كنيسة السيدة العذراء</div>
-                    <div class="priest">أبونا القس أثناسيوس ونيس</div>
-                </div>
-                <div class="mass-card">
-                    <div class="day">الخميس</div>
-                    <div class="time">٧:٣٠ ص – ٩:٣٠ ص</div>
-                    <div class="location">الكنيسة الرئيسية</div>
-                    <div class="priest">أبونا القس أرساني عبد المسيح</div>
-                </div>
-                <div class="mass-card">
-                    <div class="day">السبت</div>
-                    <div class="time">٨:٠٠ ص – ١٠:٠٠ ص</div>
-                    <div class="location">كنيسة الشهيد أبانوب</div>
-                    <div class="priest">أبونا القس يونان نعيم</div>
-                </div>
-                <!-- Empty state example - hidden by default -->
-                <!-- <div class="mass-empty">لا توجد قداسات مضافة حالياً</div> -->
             </div>
         </div>
     </section>
@@ -1200,32 +1177,11 @@
             <p class="section-subtitle">خدمات روحية واجتماعية متنوعة</p>
 
             <div class="cards-grid" id="servicesContainer">
-                <!-- Dynamic content loaded from API -->
-                <div class="card">
-                    <img class="card-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="خدمة الشباب" />
-                    <div class="card-body">
-                        <span class="card-tag">خدمة أسبوعية</span>
-                        <h3>خدمة الشباب</h3>
-                        <p>لقاءات روحية واجتماعية للشباب كل يوم جمعة</p>
-                        <div class="card-meta">
-                            <span>🕐 الجمعة ٧:٠٠ م</span>
-                            <span>📍 قاعة الخدمة</span>
-                        </div>
-                    </div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل الخدمات...</p>
                 </div>
-                <div class="card">
-                    <img class="card-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="خدمة الأطفال" />
-                    <div class="card-body">
-                        <span class="card-tag">خدمة أسبوعية</span>
-                        <h3>خدمة الأطفال</h3>
-                        <p>تعليم مسيحي وأنشطة للأطفال من عمر ٤ إلى ١٢ سنة</p>
-                        <div class="card-meta">
-                            <span>🕐 السبت ١٠:٠٠ ص</span>
-                            <span>📍 قاعة الأطفال</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-empty">لا توجد خدمات مضافة حالياً</div>
             </div>
         </div>
     </section>
@@ -1239,7 +1195,11 @@
             <p class="section-subtitle">أنشطة وفعاليات الكنيسة</p>
 
             <div class="cards-grid" id="eventsContainer">
-                <div class="card-empty">لا توجد فعاليات قادمة حالياً</div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل الفعاليات...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1253,7 +1213,11 @@
             <p class="section-subtitle">أحدث أخبار وإعلانات الكنيسة</p>
 
             <div class="cards-grid" id="newsContainer">
-                <div class="card-empty">لا توجد أخبار حالياً</div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل الأخبار...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1267,7 +1231,11 @@
             <p class="section-subtitle">استمع إلى عظات آبائنا الكهنة</p>
 
             <div class="cards-grid" id="sermonsContainer">
-                <div class="card-empty">لا توجد عظات متاحة حالياً</div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل العظات...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1360,89 +1328,292 @@ FOOTER
 SCRIPTS
 ============================================ -->
 <script>
-    // ============================================
-    // Mobile Menu Toggle
-    // ============================================
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileNav = document.getElementById('mobileNav');
+    (function() {
+        'use strict';
 
-    menuToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileNav.classList.toggle('open');
-        document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
-    });
+        // ============================================
+        // Mobile Menu Toggle
+        // ============================================
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
 
-    // Close mobile menu on link click
-    mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            mobileNav.classList.remove('open');
-            document.body.style.overflow = '';
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
         });
-    });
 
-    // ============================================
-    // Header Scroll Effect
-    // ============================================
-    const header = document.getElementById('siteHeader');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        if (currentScroll > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        lastScroll = currentScroll;
-    });
-
-    // ============================================
-    // API - Fetch Masses
-    // ============================================
-    // This will be replaced with actual API calls when backend is ready
-    // For now, we keep static content as a fallback
-
-    // Example of how to fetch dynamic data:
-    // async function fetchMasses() {
-    //   try {
-    //     const response = await fetch('/api/masses');
-    //     const data = await response.json();
-    //     // Render masses...
-    //   } catch (error) {
-    //     console.error('Error fetching masses:', error);
-    //   }
-    // }
-    // fetchMasses();
-
-    // ============================================
-    // Keyboard Accessibility
-    // ============================================
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            if (mobileNav.classList.contains('open')) {
+        // Close mobile menu on link click
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
                 mobileNav.classList.remove('open');
                 document.body.style.overflow = '';
+            });
+        });
+
+        // ============================================
+        // Header Scroll Effect
+        // ============================================
+        const header = document.getElementById('siteHeader');
+
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================
+        // Keyboard Accessibility
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (mobileNav.classList.contains('open')) {
+                    menuToggle.classList.remove('active');
+                    mobileNav.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
+        // ============================================
+        // Language Switcher Placeholder
+        // ============================================
+        document.querySelectorAll('.footer-lang a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.footer-lang a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // ============================================
+        // LOAD DATA FROM API
+        // ============================================
+
+        // Spinner animation style
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ============================================
+        // Load Masses
+        // ============================================
+        async function loadMasses() {
+            const container = document.getElementById('massesContainer');
+            try {
+                const response = await fetch('/api/masses');
+                if (!response.ok) throw new Error('Failed to fetch masses');
+                const data = await response.json();
+                
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="mass-empty">لا توجد قداسات مضافة حالياً</div>
+                    `;
+                    return;
+                }
+
+                // Show first 4 masses (or all if less)
+                const displayMasses = data.slice(0, 4);
+                container.innerHTML = displayMasses.map(mass => `
+                    <div class="mass-card">
+                        <div class="day">${mass.day || ''}</div>
+                        <div class="time">${mass.time || ''}</div>
+                        <div class="location">${mass.location || 'الكنيسة الرئيسية'}</div>
+                        <div class="priest">${mass.priest || 'أبونا القس'}</div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading masses:', error);
+                container.innerHTML = `
+                    <div class="mass-empty">حدث خطأ في تحميل البيانات</div>
+                `;
             }
         }
-    });
 
-    // ============================================
-    // Language Switcher Placeholder
-    // ============================================
-    document.querySelectorAll('.footer-lang a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Remove active class from all
-            document.querySelectorAll('.footer-lang a').forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-            // Actual language switching will be implemented with full i18n
-        });
-    });
+        // ============================================
+        // Load Services
+        // ============================================
+        async function loadServices() {
+            const container = document.getElementById('servicesContainer');
+            try {
+                const response = await fetch('/api/services');
+                if (!response.ok) throw new Error('Failed to fetch services');
+                const data = await response.json();
+                
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="card-empty">لا توجد خدمات مضافة حالياً</div>
+                    `;
+                    return;
+                }
 
-    console.log('كنيسة السيدة العذراء مريم والشهيد أبانوب - إمبابة');
-    console.log('Powered by Coptic Orthodox Church - North Giza Diocese');
+                // Show first 3 services (or all if less)
+                const displayServices = data.slice(0, 3);
+                container.innerHTML = displayServices.map(service => `
+                    <div class="card">
+                        <img class="card-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="${service.name}" />
+                        <div class="card-body">
+                            <span class="card-tag">خدمة ${service.day || 'أسبوعية'}</span>
+                            <h3>${service.name}</h3>
+                            <p>${service.description || ''}</p>
+                            <div class="card-meta">
+                                <span>🕐 ${service.day || ''} ${service.time || ''}</span>
+                                <span>📍 ${service.location || 'الكنيسة'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading services:', error);
+                container.innerHTML = `
+                    <div class="card-empty">حدث خطأ في تحميل البيانات</div>
+                `;
+            }
+        }
+
+        // ============================================
+        // Load Events
+        // ============================================
+        async function loadEvents() {
+            const container = document.getElementById('eventsContainer');
+            try {
+                const response = await fetch('/api/events');
+                if (!response.ok) throw new Error('Failed to fetch events');
+                const data = await response.json();
+                
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="card-empty">لا توجد فعاليات قادمة حالياً</div>
+                    `;
+                    return;
+                }
+
+                // Show first 3 events (or all if less)
+                const displayEvents = data.slice(0, 3);
+                container.innerHTML = displayEvents.map(event => `
+                    <div class="card">
+                        <img class="card-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="${event.title}" />
+                        <div class="card-body">
+                            <span class="card-tag">${event.date || 'قادم'}</span>
+                            <h3>${event.title}</h3>
+                            <p>${event.description || ''}</p>
+                            <div class="card-meta">
+                                <span>📅 ${event.date || 'تاريخ غير محدد'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading events:', error);
+                container.innerHTML = `
+                    <div class="card-empty">حدث خطأ في تحميل البيانات</div>
+                `;
+            }
+        }
+
+        // ============================================
+        // Load News
+        // ============================================
+        async function loadNews() {
+            const container = document.getElementById('newsContainer');
+            try {
+                const response = await fetch('/api/news');
+                if (!response.ok) throw new Error('Failed to fetch news');
+                const data = await response.json();
+                
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="card-empty">لا توجد أخبار حالياً</div>
+                    `;
+                    return;
+                }
+
+                // Show first 3 news items (or all if less)
+                const displayNews = data.slice(0, 3);
+                container.innerHTML = displayNews.map(item => `
+                    <div class="card">
+                        <img class="card-image" src="${item.image || 'https://i.postimg.cc/BbDyR0CR/lwjw.jpg'}" alt="${item.title}" />
+                        <div class="card-body">
+                            <span class="card-tag">${item.tag || 'خبر'}</span>
+                            <h3>${item.title}</h3>
+                            <p>${item.content ? item.content.substring(0, 100) + '...' : item.excerpt || ''}</p>
+                            <div class="card-meta">
+                                <span>📅 ${typeof item.date === 'string' && item.date.includes('T') ? new Date(item.date).toLocaleDateString('ar-EG') : item.date || ''}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading news:', error);
+                container.innerHTML = `
+                    <div class="card-empty">حدث خطأ في تحميل البيانات</div>
+                `;
+            }
+        }
+
+        // ============================================
+        // Load Sermons
+        // ============================================
+        async function loadSermons() {
+            const container = document.getElementById('sermonsContainer');
+            try {
+                const response = await fetch('/api/sermons');
+                if (!response.ok) throw new Error('Failed to fetch sermons');
+                const data = await response.json();
+                
+                if (!data || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="card-empty">لا توجد عظات متاحة حالياً</div>
+                    `;
+                    return;
+                }
+
+                // Show first 3 sermons (or all if less)
+                const displaySermons = data.slice(0, 3);
+                container.innerHTML = displaySermons.map(item => `
+                    <div class="card">
+                        <img class="card-image" src="${item.image || 'https://i.postimg.cc/BbDyR0CR/lwjw.jpg'}" alt="${item.title}" />
+                        <div class="card-body">
+                            <span class="card-tag">${item.tag || 'عظة'}</span>
+                            <h3>${item.title}</h3>
+                            <p>${item.description || ''}</p>
+                            <div class="card-meta">
+                                <span>🕊️ ${item.speaker || 'أبونا القس'}</span>
+                                <span>📅 ${item.date || ''}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading sermons:', error);
+                container.innerHTML = `
+                    <div class="card-empty">حدث خطأ في تحميل البيانات</div>
+                `;
+            }
+        }
+
+        // ============================================
+        // INIT - Load all data on page load
+        // ============================================
+        loadMasses();
+        loadServices();
+        loadEvents();
+        loadNews();
+        loadSermons();
+
+        console.log('كنيسة السيدة العذراء مريم والشهيد أبانوب - إمبابة');
+        console.log('Powered by Coptic Orthodox Church - North Giza Diocese');
+        console.log('✅ Homepage loaded with API');
+
+    })();
 </script>
 
 </body>
