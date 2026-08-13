@@ -127,10 +127,53 @@ app.get('/api/auth/verify', (req, res) => {
 });
 
 // ==================================================
-// SEEDER - Upload initial data to Firebase
+// SEED DATA - البيانات الأولية
 // ==================================================
 
 const SEED_KEY = 'data_seeded_v1';
+
+const seedData = {
+  masses: [
+    { day: 'الأحد', time: '٨:٠٠ ص – ١٠:٣٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس تيموثاؤس عزيز' },
+    { day: 'الإثنين', time: '٧:٠٠ ص – ٨:٣٠ ص', location: 'كنيسة السيدة العذراء', priest: 'أبونا القس أثناسيوس ونيس' },
+    { day: 'الثلاثاء', time: '٧:٠٠ ص – ٩:٠٠ ص', location: 'كنيسة السيدة العذراء', priest: 'أبونا القس أثناسيوس ونيس' },
+    { day: 'الأربعاء', time: '٧:٣٠ ص – ٩:٠٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس أرساني عبد المسيح' },
+    { day: 'الخميس', time: '٧:٣٠ ص – ٩:٣٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس أرساني عبد المسيح' },
+    { day: 'الجمعة', time: '٦:٠٠ ص – ٨:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس بضابا سمير روفائيل' },
+    { day: 'السبت', time: '٨:٠٠ ص – ١٠:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس جوارجيوس عبد الملاك' }
+  ],
+  services: [
+    { name: 'خدمة الشباب', description: 'لقاءات روحية واجتماعية للشباب', day: 'الجمعة', time: '٧:٠٠ م' },
+    { name: 'خدمة الأطفال', description: 'تعليم مسيحي وأنشطة للأطفال', day: 'السبت', time: '١٠:٠٠ ص' },
+    { name: 'اجتماعات روحية', description: 'اجتماعات روحية أسبوعية', day: 'الأربعاء', time: '٧:٠٠ م' }
+  ],
+  events: [
+    { title: 'مؤتمر الشباب السنوي', description: 'مؤتمر شبابي روحي', date: '١٥-١٧ مايو ٢٠٢٦' },
+    { title: 'رحلة العائلة المقدسة', description: 'رحلة روحانية', date: '٢٤-٢٦ يونيو ٢٠٢٦' }
+  ],
+  priests: [
+    { name: 'أبونا القس تيموثاؤس عزيز', title: 'كاهن الكنيسة', english: 'Fr. Timotheos Aziz', status: 'current' },
+    { name: 'أبونا القس أثناسيوس ونيس', title: 'كاهن الكنيسة', english: 'Fr. Athanasius Wanees', status: 'current' },
+    { name: 'أبونا القس أرساني عبد المسيح', title: 'كاهن الكنيسة', english: 'Fr. Arsani Abdelmasih', status: 'current' },
+    { name: 'أبونا القس بضابا سمير روفائيل', title: 'كاهن الكنيسة', english: 'Fr. Badaba Sameer Raphael', status: 'current' },
+    { name: 'أبونا القس جوارجيوس عبد الملاك', title: 'كاهن الكنيسة', english: 'Fr. Georgios Abdelmalak', status: 'current' }
+  ],
+  prayerRequests: [
+    { fullName: 'مريم فوزي', prayerRequest: 'صلاة من أجل الشفاء', isConfidential: false, date: new Date().toISOString() },
+    { fullName: 'جورج واصف', prayerRequest: 'صلاة من أجل العائلة', isConfidential: true, date: new Date().toISOString() }
+  ],
+  faq: [
+    { question: 'ما هي مواعيد القداسات في الكنيسة؟', answer: 'تقام القداسات الإلهية يومياً في الكنيسة. يمكنك الاطلاع على جدول القداسات الكامل في صفحة القداسات.' },
+    { question: 'كيف يمكنني التواصل مع الكنيسة؟', answer: 'يمكنك التواصل من خلال صفحة اتصل بنا، أو من خلال زيارة الكنيسة في العنوان: المنيرة، إمبابة، محافظة الجيزة.' },
+    { question: 'هل توجد خدمات للشباب والأطفال؟', answer: 'نعم، توجد خدمات متنوعة للشباب والأطفال تشمل لقاءات روحية وأنشطة ودروس تعليمية.' },
+    { question: 'كيف يمكنني تقديم طلب صلاة؟', answer: 'يمكنك تقديم طلب صلاة من خلال صفحة طلب صلاة المتاحة على الموقع، وسيتم عرض الطلبات للآباء الكهنة.' },
+    { question: 'ما هو موقع الكنيسة؟', answer: 'المنيرة، إمبابة، محافظة الجيزة، Plus Code: 36P3+974' }
+  ]
+};
+
+// ==================================================
+// SEEDER FUNCTION - ترفع البيانات إلى Firebase
+// ==================================================
 
 async function seedFirestore() {
   // Check if Firebase is available
@@ -144,66 +187,24 @@ async function seedFirestore() {
     const seedDoc = await db.collection('_meta').doc(SEED_KEY).get();
     if (seedDoc.exists && seedDoc.data().seeded === true) {
       console.log('✅ Data already seeded in Firebase, skipping...');
+      console.log('   Seeded at:', seedDoc.data().seededAt?.toDate?.() || 'Unknown');
       return;
     }
 
-    console.log('🌱 Starting data seeding to Firebase...');
-
-    // Define initial data
-    const seedData = {
-      masses: [
-        { day: 'الأحد', time: '٨:٠٠ ص – ١٠:٣٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس تيموثاؤس عزيز' },
-        { day: 'الإثنين', time: '٧:٠٠ ص – ٨:٣٠ ص', location: 'كنيسة السيدة العذراء', priest: 'أبونا القس أثناسيوس ونيس' },
-        { day: 'الثلاثاء', time: '٧:٠٠ ص – ٩:٠٠ ص', location: 'كنيسة السيدة العذراء', priest: 'أبونا القس أثناسيوس ونيس' },
-        { day: 'الأربعاء', time: '٧:٣٠ ص – ٩:٠٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس أرساني عبد المسيح' },
-        { day: 'الخميس', time: '٧:٣٠ ص – ٩:٣٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس أرساني عبد المسيح' },
-        { day: 'الجمعة', time: '٦:٠٠ ص – ٨:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس بضابا سمير روفائيل' },
-        { day: 'السبت', time: '٨:٠٠ ص – ١٠:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس جوارجيوس عبد الملاك' }
-      ],
-      services: [
-        { name: 'خدمة الشباب', description: 'لقاءات روحية واجتماعية للشباب', day: 'الجمعة', time: '٧:٠٠ م' },
-        { name: 'خدمة الأطفال', description: 'تعليم مسيحي وأنشطة للأطفال', day: 'السبت', time: '١٠:٠٠ ص' },
-        { name: 'اجتماعات روحية', description: 'اجتماعات روحية أسبوعية', day: 'الأربعاء', time: '٧:٠٠ م' }
-      ],
-      events: [
-        { title: 'مؤتمر الشباب السنوي', description: 'مؤتمر شبابي روحي', date: '١٥-١٧ مايو ٢٠٢٦' },
-        { title: 'رحلة العائلة المقدسة', description: 'رحلة روحانية', date: '٢٤-٢٦ يونيو ٢٠٢٦' }
-      ],
-      priests: [
-        { name: 'أبونا القس تيموثاؤس عزيز', title: 'كاهن الكنيسة', english: 'Fr. Timotheos Aziz', status: 'current' },
-        { name: 'أبونا القس أثناسيوس ونيس', title: 'كاهن الكنيسة', english: 'Fr. Athanasius Wanees', status: 'current' },
-        { name: 'أبونا القس أرساني عبد المسيح', title: 'كاهن الكنيسة', english: 'Fr. Arsani Abdelmasih', status: 'current' },
-        { name: 'أبونا القس بضابا سمير روفائيل', title: 'كاهن الكنيسة', english: 'Fr. Badaba Sameer Raphael', status: 'current' },
-        { name: 'أبونا القس جوارجيوس عبد الملاك', title: 'كاهن الكنيسة', english: 'Fr. Georgios Abdelmalak', status: 'current' }
-      ],
-      prayerRequests: [
-        { fullName: 'مريم فوزي', prayerRequest: 'صلاة من أجل الشفاء', isConfidential: false, date: new Date().toISOString() },
-        { fullName: 'جورج واصف', prayerRequest: 'صلاة من أجل العائلة', isConfidential: true, date: new Date().toISOString() }
-      ],
-      faq: [
-        { question: 'ما هي مواعيد القداسات في الكنيسة؟', answer: 'تقام القداسات الإلهية يومياً في الكنيسة. يمكنك الاطلاع على جدول القداسات الكامل في صفحة القداسات.' },
-        { question: 'كيف يمكنني التواصل مع الكنيسة؟', answer: 'يمكنك التواصل من خلال صفحة اتصل بنا، أو من خلال زيارة الكنيسة في العنوان: المنيرة، إمبابة، محافظة الجيزة.' },
-        { question: 'هل توجد خدمات للشباب والأطفال؟', answer: 'نعم، توجد خدمات متنوعة للشباب والأطفال تشمل لقاءات روحية وأنشطة ودروس تعليمية.' },
-        { question: 'كيف يمكنني تقديم طلب صلاة؟', answer: 'يمكنك تقديم طلب صلاة من خلال صفحة طلب صلاة المتاحة على الموقع، وسيتم عرض الطلبات للآباء الكهنة.' },
-        { question: 'ما هو موقع الكنيسة؟', answer: 'المنيرة، إمبابة، محافظة الجيزة، Plus Code: 36P3+974' }
-      ]
-    };
+    console.log('🌱 Starting data seeding to Firebase...\n');
 
     // Upload each collection
     const collections = ['masses', 'services', 'events', 'priests', 'prayerRequests', 'faq'];
     
     for (const collectionName of collections) {
       const data = seedData[collectionName];
-      if (!data || data.length === 0) continue;
+      if (!data || data.length === 0) {
+        console.log(`   ⏭️  Skipping ${collectionName} (no data)`);
+        continue;
+      }
 
       console.log(`   📤 Seeding ${collectionName} (${data.length} items)...`);
       
-      // Clear existing data in this collection (optional - remove if you want to keep existing)
-      // const existingDocs = await db.collection(collectionName).get();
-      // for (const doc of existingDocs.docs) {
-      //   await doc.ref.delete();
-      // }
-
       // Add each item
       const batch = db.batch();
       for (const item of data) {
@@ -223,7 +224,9 @@ async function seedFirestore() {
       seededAt: admin.firestore.FieldValue.serverTimestamp()
     });
 
-    console.log('✅ Data seeding completed successfully!');
+    console.log('\n✅ Data seeding completed successfully! 🎉');
+    console.log(`📊 Total items seeded: ${Object.values(seedData).reduce((acc, arr) => acc + arr.length, 0)}`);
+
   } catch (error) {
     console.error('❌ Error during seeding:', error);
   }
@@ -916,19 +919,21 @@ app.get('*', (req, res) => {
 });
 
 // ==================================================
-// Start Server & Run Seeder
+// Start Server & Run Seeder تلقائياً
 // ==================================================
 
 app.listen(PORT, async () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`Firebase Status: ${isFirebaseAvailable() ? '✅ Connected' : '⚠️ Using in-memory fallback'}`);
+  console.log(`\n🚀 Server running on http://localhost:${PORT}`);
+  console.log(`📦 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔥 Firebase Status: ${isFirebaseAvailable() ? '✅ Connected' : '⚠️ Using in-memory fallback'}`);
   
-  // Run seeder if Firebase is available
+  // ✅ تشغيل الـ Seeder تلقائياً عند بدء السيرفر
   if (isFirebaseAvailable()) {
-    console.log('🌱 Checking if data needs to be seeded...');
+    console.log('🌱 Checking if data needs to be seeded...\n');
     await seedFirestore();
   }
+  
+  console.log('\n✨ Server is ready!');
 });
 
 module.exports = app;
