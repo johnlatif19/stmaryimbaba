@@ -1123,56 +1123,80 @@
             });
 
             // ============================================
-            // SEARCH DATA (Simulated)
+            // SEARCH DATA - FETCH FROM API
             // ============================================
-            // In production, this would be fetched from the server
-            const searchData = {
-                masses: [
-                    { title: 'قداس الأحد', category: 'القداسات', snippet: 'قداس الأحد في الكنيسة الرئيسية الساعة ٨:٠٠ ص.', url: '/masses', date: 'كل أحد' },
-                    { title: 'قداس الثلاثاء', category: 'القداسات', snippet: 'قداس الثلاثاء في كنيسة السيدة العذراء الساعة ٧:٠٠ ص.', url: '/masses', date: 'كل ثلاثاء' },
-                    { title: 'قداس الخميس', category: 'القداسات', snippet: 'قداس الخميس في الكنيسة الرئيسية الساعة ٧:٣٠ ص.', url: '/masses', date: 'كل خميس' },
-                    { title: 'قداس السبت', category: 'القداسات', snippet: 'قداس السبت في كنيسة الشهيد أبانوب الساعة ٨:٠٠ ص.', url: '/masses', date: 'كل سبت' },
-                ],
-                services: [
-                    { title: 'خدمة الشباب', category: 'الخدمات', snippet: 'لقاءات روحية واجتماعية للشباب كل يوم جمعة الساعة ٧:٠٠ م.', url: '/services', date: 'جمعة' },
-                    { title: 'خدمة الأطفال', category: 'الخدمات', snippet: 'تعليم مسيحي وأنشطة للأطفال كل يوم سبت الساعة ١٠:٠٠ ص.', url: '/services', date: 'سبت' },
-                    { title: 'اجتماعات روحية', category: 'الخدمات', snippet: 'اجتماعات روحية أسبوعية كل أربعاء الساعة ٧:٠٠ م.', url: '/services', date: 'أربعاء' },
-                ],
-                events: [
-                    { title: 'مؤتمر الشباب السنوي', category: 'الفعاليات', snippet: 'مؤتمر شبابي روحي يهدف إلى تقوية الإيمان وبناء العلاقات.', url: '/events', date: '١٥-١٧ مايو ٢٠٢٦' },
-                    { title: 'رحلة العائلة المقدسة', category: 'الفعاليات', snippet: 'رحلة روحانية تتبع مسار العائلة المقدسة في مصر.', url: '/events', date: '٢٤-٢٦ يونيو ٢٠٢٦' },
-                    { title: 'أيام روحية للأطفال', category: 'الفعاليات', snippet: 'أيام روحية للأطفال تشمل قصصاً كتابية وأنشطة.', url: '/events', date: '١٠-١٢ يوليو ٢٠٢٦' },
-                ],
-                news: [
-                    { title: 'احتفال عيد الميلاد المجيد', category: 'الأخبار', snippet: 'تقيم الكنيسة احتفالاً كبيراً بمناسبة عيد الميلاد المجيد.', url: '/news', date: '٧ يناير ٢٠٢٦' },
-                    { title: 'زيارة نيافة الأنبا ثيؤدورس', category: 'الأخبار', snippet: 'يستقبل الآباء الكهنة وشعب الكنيسة نيافة الأنبا ثيؤدورس.', url: '/news', date: '٢٢ فبراير ٢٠٢٦' },
-                    { title: 'مبادرة خدمة المجتمع', category: 'الأخبار', snippet: 'أطلقت الكنيسة مبادرة جديدة لخدمة المجتمع المحلي.', url: '/news', date: '١ مارس ٢٠٢٦' },
-                ],
-                sermons: [
-                    { title: 'عظة عن المحبة المسيحية', category: 'العظات', snippet: 'عظة روحية عن المحبة المسيحية الحقيقية وأهميتها.', url: '/sermons', date: '١٠ مارس ٢٠٢٦' },
-                    { title: 'ترنيمة والدة الإله', category: 'العظات', snippet: 'ترنيمة روحية للسيدة العذراء مريم والدة الإله.', url: '/sermons', date: '٢٥ فبراير ٢٠٢٦' },
-                    { title: 'قداس عيد الميلاد المجيد', category: 'العظات', snippet: 'تغطية كاملة لقداس عيد الميلاد المجيد من الكنيسة.', url: '/sermons', date: '٧ يناير ٢٠٢٦' },
-                ],
-                priests: [
-                    { title: 'أبونا القس تيموثاؤس عزيز', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ١٩٩٨' },
-                    { title: 'أبونا القس أثناسيوس ونيس', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠٠٢' },
-                    { title: 'أبونا القس أرساني عبد المسيح', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠٠٥' },
-                    { title: 'أبونا القس أنسطاسي ثابت', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠٠٨' },
-                    { title: 'أبونا القس بضابا سمير', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠١٠' },
-                    { title: 'أبونا القس جوارجيوس عبد الملاك', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠١٢' },
-                ],
-                saints: [
-                    { title: 'السيدة العذراء مريم', category: 'الشفيعان', snippet: 'والدة الإله، شفيعة الكنيسة الأولى، لها أعياد متعددة.', url: '/saints', date: 'عيدها: ٢١ طوبة' },
-                    { title: 'الشهيد أبانوب النهيسي', category: 'الشفيعان', snippet: 'أحد شهداء الكنيسة القبطية الأرثوذكسية.', url: '/saints', date: 'عيده: ٢٤ أبيب' },
-                ],
-                faq: [
-                    { title: 'مواعيد القداسات', category: 'الأسئلة الشائعة', snippet: 'تقام القداسات الإلهية يومياً في الكنيسة.', url: '/faq', date: '' },
-                    { title: 'التواصل مع الكنيسة', category: 'الأسئلة الشائعة', snippet: 'يمكنك التواصل من خلال صفحة اتصل بنا.', url: '/faq', date: '' },
-                    { title: 'خدمات الشباب والأطفال', category: 'الأسئلة الشائعة', snippet: 'توجد خدمات متنوعة للشباب والأطفال في الكنيسة.', url: '/faq', date: '' },
-                    { title: 'تقديم طلب صلاة', category: 'الأسئلة الشائعة', snippet: 'يمكنك تقديم طلب صلاة من خلال صفحة طلب صلاة.', url: '/faq', date: '' },
-                    { title: 'موقع الكنيسة', category: 'الأسئلة الشائعة', snippet: 'المنيرة، إمبابة، محافظة الجيزة، Plus Code: 36P3+974', url: '/faq', date: '' },
-                ]
-            };
+            let searchData = {};
+
+            async function fetchSearchData() {
+                try {
+                    const [masses, services, events, news, sermons, priests, faq] = await Promise.all([
+                        fetch('/api/masses').then(r => r.ok ? r.json() : []),
+                        fetch('/api/services').then(r => r.ok ? r.json() : []),
+                        fetch('/api/events').then(r => r.ok ? r.json() : []),
+                        fetch('/api/news').then(r => r.ok ? r.json() : []),
+                        fetch('/api/sermons').then(r => r.ok ? r.json() : []),
+                        fetch('/api/priests').then(r => r.ok ? r.json() : []),
+                        fetch('/api/faq').then(r => r.ok ? r.json() : [])
+                    ]);
+
+                    searchData = {
+                        masses: masses.map(item => ({
+                            title: item.day + ' - ' + (item.time || 'قداس'),
+                            category: 'القداسات',
+                            snippet: (item.priest ? 'الكاهن: ' + item.priest + ' | ' : '') + (item.location || 'الكنيسة'),
+                            url: '/masses',
+                            date: item.day || ''
+                        })),
+                        services: services.map(item => ({
+                            title: item.name || 'خدمة',
+                            category: 'الخدمات',
+                            snippet: item.description || '',
+                            url: '/services',
+                            date: (item.day || '') + ' ' + (item.time || '')
+                        })),
+                        events: events.map(item => ({
+                            title: item.title || 'فعالية',
+                            category: 'الفعاليات',
+                            snippet: item.description || '',
+                            url: '/events',
+                            date: item.date || ''
+                        })),
+                        news: news.map(item => ({
+                            title: item.title || 'خبر',
+                            category: 'الأخبار',
+                            snippet: (item.content || '').substring(0, 100) + '...',
+                            url: '/news',
+                            date: item.date ? new Date(item.date).toLocaleDateString('ar-EG') : ''
+                        })),
+                        sermons: sermons.map(item => ({
+                            title: item.title || 'عظة',
+                            category: 'العظات',
+                            snippet: item.description || '',
+                            url: '/sermons',
+                            date: item.date || ''
+                        })),
+                        priests: priests.map(item => ({
+                            title: item.name || 'كاهن',
+                            category: 'الآباء الكهنة',
+                            snippet: item.title || '',
+                            url: '/priests',
+                            date: item.status === 'current' ? 'كاهن حالي' : 'كاهن سابق'
+                        })),
+                        faq: faq.map(item => ({
+                            title: item.question || 'سؤال',
+                            category: 'الأسئلة الشائعة',
+                            snippet: (item.answer || '').substring(0, 100) + '...',
+                            url: '/faq',
+                            date: ''
+                        }))
+                    };
+
+                    console.log('✅ Search data loaded from API');
+                } catch (error) {
+                    console.error('Error fetching search data:', error);
+                    searchData = {};
+                }
+            }
 
             // ============================================
             // SEARCH ENGINE
@@ -1218,6 +1242,7 @@
 
                 // Search through all data
                 for (const [category, items] of Object.entries(searchData)) {
+                    if (!items || items.length === 0) continue;
                     items.forEach(function(item) {
                         const searchableText = normalizeText(item.title + ' ' + item.snippet + ' ' + item.category);
                         if (searchableText.includes(normalizedQuery)) {
@@ -1273,7 +1298,6 @@
                         const titleNormalized = normalizeText(item.title);
                         if (titleNormalized.includes(highlightQuery)) {
                             const index = titleNormalized.indexOf(highlightQuery);
-                            // Find original text position
                             let charCount = 0;
                             let foundIndex = -1;
                             for (let i = 0; i < item.title.length; i++) {
@@ -1403,7 +1427,6 @@
             // ============================================
             document.addEventListener('keydown', function(e) {
                 if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey)) {
-                    // Check if not in input/textarea
                     if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
                         e.preventDefault();
                         searchInput.focus();
@@ -1412,16 +1435,37 @@
                 }
             });
 
-            // Focus search on page load if query param exists
-            const urlParams = new URLSearchParams(window.location.search);
-            const queryParam = urlParams.get('q');
-            if (queryParam) {
-                searchInput.value = queryParam;
-                handleSearch();
+            // ============================================
+            // SPINNER ANIMATION
+            // ============================================
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // ============================================
+            // INIT - Load search data on page load
+            // ============================================
+            async function initSearch() {
+                await fetchSearchData();
+
+                // Focus search on page load if query param exists
+                const urlParams = new URLSearchParams(window.location.search);
+                const queryParam = urlParams.get('q');
+                if (queryParam) {
+                    searchInput.value = queryParam;
+                    // Wait a bit for data to be ready
+                    setTimeout(() => handleSearch(), 300);
+                }
+
+                console.log('🔍 Search page loaded with API');
+                console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
             }
 
-            console.log('🔍 Search page loaded');
-            console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
+            initSearch();
 
         })();
     </script>
