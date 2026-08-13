@@ -811,6 +811,7 @@
                         <line x1="21" y1="21" x2="16.65" y2="16.65" />
                     </svg>
                 </a>
+                <div class="menu-toggle" id="menuToggle" aria-label="القائمة">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -1036,14 +1037,6 @@
                     </span>
                 </div>
             </div>
-
-            <!-- Empty state alternative -->
-            <!--
-            <div class="empty-state">
-                <h4>لا توجد معلومات تاريخية متاحة حالياً</h4>
-                <p>سيتم إضافة تاريخ الكنيسة قريباً</p>
-            </div>
-            -->
         </div>
     </section>
 
@@ -1158,6 +1151,21 @@
                     this.classList.add('active');
                 });
             });
+
+            // ============================================
+            // Load Church Content from API (Optional)
+            // ============================================
+            // If you want to make church content dynamic, uncomment this:
+            // async function loadChurchContent() {
+            //   try {
+            //     const response = await fetch('/api/pages/church');
+            //     const data = await response.json();
+            //     // Update content...
+            //   } catch (error) {
+            //     console.error('Error loading church content:', error);
+            //   }
+            // }
+            // loadChurchContent();
 
             console.log('📖 Church page loaded');
             console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
