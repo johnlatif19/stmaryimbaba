@@ -786,6 +786,7 @@ app.get('*', (req, res) => {
     '/search': 'search.html',
     '/prayer-request': 'prayer-request.html',
     '/contact': 'contact.html'
+    '/pay': 'pay.html'
   };
 
   let cleanPath = req.path.replace(/\/+$/, '');
