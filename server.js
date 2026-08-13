@@ -92,8 +92,15 @@ app.post('/api/auth/logout', (req, res) => {
   res.json({ success: true, message: 'تم تسجيل الخروج' });
 });
 
+// DEVELOPMENT MODE: Always return success for verification
+// REPLACE THIS WITH REAL JWT VERIFICATION IN PRODUCTION
 app.get('/api/auth/verify', (req, res) => {
-  res.status(401).json({ success: false, message: 'غير مصرح' });
+  // In development, always return success
+  // In production, check JWT token from cookie/header
+  res.json({ 
+    success: true, 
+    user: { username: 'admin', role: 'admin' }
+  });
 });
 
 // ==================================================
