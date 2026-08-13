@@ -12,18 +12,14 @@ const rateLimit = require('express-rate-limit');
 const admin = require('firebase-admin');
 
 // Initialize Firebase Admin SDK
-// You need to set FIREBASE_CONFIG environment variable with your service account JSON
-// or use the default credential for Google Cloud environments
 if (!admin.apps.length) {
   try {
-    // Try to initialize with environment variable
     if (process.env.FIREBASE_CONFIG) {
       const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
       admin.initializeApp({
         credential: admin.credential.cert(firebaseConfig),
       });
     } else {
-      // Fallback for local development - use default credentials
       admin.initializeApp({
         credential: admin.credential.applicationDefault(),
       });
@@ -31,7 +27,6 @@ if (!admin.apps.length) {
     console.log('✅ Firebase Admin SDK initialized successfully');
   } catch (error) {
     console.error('❌ Failed to initialize Firebase Admin SDK:', error.message);
-    // For development, we can still run with in-memory fallback
     console.warn('⚠️ Running with in-memory fallback (development mode)');
   }
 }
@@ -132,6 +127,109 @@ app.get('/api/auth/verify', (req, res) => {
 });
 
 // ==================================================
+// SEEDER - Upload initial data to Firebase
+// ==================================================
+
+const SEED_KEY = 'data_seeded_v1';
+
+async function seedFirestore() {
+  // Check if Firebase is available
+  if (!isFirebaseAvailable()) {
+    console.log('⚠️ Firebase not available, skipping seed');
+    return;
+  }
+
+  try {
+    // Check if data has already been seeded
+    const seedDoc = await db.collection('_meta').doc(SEED_KEY).get();
+    if (seedDoc.exists && seedDoc.data().seeded === true) {
+      console.log('✅ Data already seeded in Firebase, skipping...');
+      return;
+    }
+
+    console.log('🌱 Starting data seeding to Firebase...');
+
+    // Define initial data
+    const seedData = {
+      masses: [
+        { day: 'الأحد', time: '٨:٠٠ ص – ١٠:٣٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس تيموثاؤس عزيز' },
+        { day: 'الإثنين', time: '٧:٠٠ ص – ٨:٣٠ ص', location: 'كنيسة السيدة العذراء', priest: 'أبونا القس أثناسيوس ونيس' },
+        { day: 'الثلاثاء', time: '٧:٠٠ ص – ٩:٠٠ ص', location: 'كنيسة السيدة العذراء', priest: 'أبونا القس أثناسيوس ونيس' },
+        { day: 'الأربعاء', time: '٧:٣٠ ص – ٩:٠٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس أرساني عبد المسيح' },
+        { day: 'الخميس', time: '٧:٣٠ ص – ٩:٣٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس أرساني عبد المسيح' },
+        { day: 'الجمعة', time: '٦:٠٠ ص – ٨:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس بضابا سمير روفائيل' },
+        { day: 'السبت', time: '٨:٠٠ ص – ١٠:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس جوارجيوس عبد الملاك' }
+      ],
+      services: [
+        { name: 'خدمة الشباب', description: 'لقاءات روحية واجتماعية للشباب', day: 'الجمعة', time: '٧:٠٠ م' },
+        { name: 'خدمة الأطفال', description: 'تعليم مسيحي وأنشطة للأطفال', day: 'السبت', time: '١٠:٠٠ ص' },
+        { name: 'اجتماعات روحية', description: 'اجتماعات روحية أسبوعية', day: 'الأربعاء', time: '٧:٠٠ م' }
+      ],
+      events: [
+        { title: 'مؤتمر الشباب السنوي', description: 'مؤتمر شبابي روحي', date: '١٥-١٧ مايو ٢٠٢٦' },
+        { title: 'رحلة العائلة المقدسة', description: 'رحلة روحانية', date: '٢٤-٢٦ يونيو ٢٠٢٦' }
+      ],
+      priests: [
+        { name: 'أبونا القس تيموثاؤس عزيز', title: 'كاهن الكنيسة', english: 'Fr. Timotheos Aziz', status: 'current' },
+        { name: 'أبونا القس أثناسيوس ونيس', title: 'كاهن الكنيسة', english: 'Fr. Athanasius Wanees', status: 'current' },
+        { name: 'أبونا القس أرساني عبد المسيح', title: 'كاهن الكنيسة', english: 'Fr. Arsani Abdelmasih', status: 'current' },
+        { name: 'أبونا القس بضابا سمير روفائيل', title: 'كاهن الكنيسة', english: 'Fr. Badaba Sameer Raphael', status: 'current' },
+        { name: 'أبونا القس جوارجيوس عبد الملاك', title: 'كاهن الكنيسة', english: 'Fr. Georgios Abdelmalak', status: 'current' }
+      ],
+      prayerRequests: [
+        { fullName: 'مريم فوزي', prayerRequest: 'صلاة من أجل الشفاء', isConfidential: false, date: new Date().toISOString() },
+        { fullName: 'جورج واصف', prayerRequest: 'صلاة من أجل العائلة', isConfidential: true, date: new Date().toISOString() }
+      ],
+      faq: [
+        { question: 'ما هي مواعيد القداسات في الكنيسة؟', answer: 'تقام القداسات الإلهية يومياً في الكنيسة. يمكنك الاطلاع على جدول القداسات الكامل في صفحة القداسات.' },
+        { question: 'كيف يمكنني التواصل مع الكنيسة؟', answer: 'يمكنك التواصل من خلال صفحة اتصل بنا، أو من خلال زيارة الكنيسة في العنوان: المنيرة، إمبابة، محافظة الجيزة.' },
+        { question: 'هل توجد خدمات للشباب والأطفال؟', answer: 'نعم، توجد خدمات متنوعة للشباب والأطفال تشمل لقاءات روحية وأنشطة ودروس تعليمية.' },
+        { question: 'كيف يمكنني تقديم طلب صلاة؟', answer: 'يمكنك تقديم طلب صلاة من خلال صفحة طلب صلاة المتاحة على الموقع، وسيتم عرض الطلبات للآباء الكهنة.' },
+        { question: 'ما هو موقع الكنيسة؟', answer: 'المنيرة، إمبابة، محافظة الجيزة، Plus Code: 36P3+974' }
+      ]
+    };
+
+    // Upload each collection
+    const collections = ['masses', 'services', 'events', 'priests', 'prayerRequests', 'faq'];
+    
+    for (const collectionName of collections) {
+      const data = seedData[collectionName];
+      if (!data || data.length === 0) continue;
+
+      console.log(`   📤 Seeding ${collectionName} (${data.length} items)...`);
+      
+      // Clear existing data in this collection (optional - remove if you want to keep existing)
+      // const existingDocs = await db.collection(collectionName).get();
+      // for (const doc of existingDocs.docs) {
+      //   await doc.ref.delete();
+      // }
+
+      // Add each item
+      const batch = db.batch();
+      for (const item of data) {
+        const docRef = db.collection(collectionName).doc();
+        batch.set(docRef, {
+          ...item,
+          createdAt: admin.firestore.FieldValue.serverTimestamp()
+        });
+      }
+      await batch.commit();
+      console.log(`   ✅ ${collectionName} seeded successfully`);
+    }
+
+    // Mark as seeded
+    await db.collection('_meta').doc(SEED_KEY).set({
+      seeded: true,
+      seededAt: admin.firestore.FieldValue.serverTimestamp()
+    });
+
+    console.log('✅ Data seeding completed successfully!');
+  } catch (error) {
+    console.error('❌ Error during seeding:', error);
+  }
+}
+
+// ==================================================
 // Firebase Helper Functions
 // ==================================================
 
@@ -144,14 +242,21 @@ const isFirebaseAvailable = () => {
 async function getCollection(collectionName) {
   try {
     if (!isFirebaseAvailable()) {
-      // Fallback to in-memory data
       return getInMemoryData(collectionName);
     }
     
     const snapshot = await db.collection(collectionName).orderBy('createdAt', 'desc').get();
     const data = [];
     snapshot.forEach(doc => {
-      data.push({ id: doc.id, ...doc.data() });
+      const docData = doc.data();
+      // Convert Firestore Timestamp to ISO string for compatibility
+      if (docData.createdAt && docData.createdAt.toDate) {
+        docData.createdAt = docData.createdAt.toDate().toISOString();
+      }
+      if (docData.updatedAt && docData.updatedAt.toDate) {
+        docData.updatedAt = docData.updatedAt.toDate().toISOString();
+      }
+      data.push({ id: doc.id, ...docData });
     });
     return data;
   } catch (error) {
@@ -164,7 +269,6 @@ async function getCollection(collectionName) {
 async function addToCollection(collectionName, data) {
   try {
     if (!isFirebaseAvailable()) {
-      // Fallback to in-memory
       return addToInMemory(collectionName, data);
     }
     
@@ -173,7 +277,11 @@ async function addToCollection(collectionName, data) {
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
     const doc = await docRef.get();
-    return { id: doc.id, ...doc.data() };
+    const docData = doc.data();
+    if (docData.createdAt && docData.createdAt.toDate) {
+      docData.createdAt = docData.createdAt.toDate().toISOString();
+    }
+    return { id: doc.id, ...docData };
   } catch (error) {
     console.error(`Error adding to ${collectionName}:`, error);
     return addToInMemory(collectionName, data);
@@ -192,7 +300,14 @@ async function updateInCollection(collectionName, id, data) {
       updatedAt: admin.firestore.FieldValue.serverTimestamp()
     });
     const doc = await db.collection(collectionName).doc(id).get();
-    return { id: doc.id, ...doc.data() };
+    const docData = doc.data();
+    if (docData.createdAt && docData.createdAt.toDate) {
+      docData.createdAt = docData.createdAt.toDate().toISOString();
+    }
+    if (docData.updatedAt && docData.updatedAt.toDate) {
+      docData.updatedAt = docData.updatedAt.toDate().toISOString();
+    }
+    return { id: doc.id, ...docData };
   } catch (error) {
     console.error(`Error updating ${collectionName}:`, error);
     return updateInMemory(collectionName, id, data);
@@ -800,10 +915,20 @@ app.get('*', (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+// ==================================================
+// Start Server & Run Seeder
+// ==================================================
+
+app.listen(PORT, async () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log(`Firebase Status: ${isFirebaseAvailable() ? '✅ Connected' : '⚠️ Using in-memory fallback'}`);
+  
+  // Run seeder if Firebase is available
+  if (isFirebaseAvailable()) {
+    console.log('🌱 Checking if data needs to be seeded...');
+    await seedFirestore();
+  }
 });
 
 module.exports = app;
