@@ -478,7 +478,7 @@
         }
 
         /* ============================================
-           NEWS FILTER (Optional)
+           NEWS FILTER
            ============================================ */
         .news-filter {
             display: flex;
@@ -762,137 +762,20 @@
             <p class="section-subtitle">أحدث أخبار وإعلانات الكنيسة</p>
 
             <!-- Filter -->
-            <div class="news-filter">
-                <button class="active">الكل</button>
-                <button>إعلانات</button>
-                <button>مناسبات</button>
-                <button>روحيات</button>
-                <button>اجتماعي</button>
+            <div class="news-filter" id="newsFilter">
+                <button class="active" data-filter="all">الكل</button>
+                <button data-filter="إعلانات">إعلانات</button>
+                <button data-filter="مناسبات">مناسبات</button>
+                <button data-filter="روحيات">روحيات</button>
+                <button data-filter="اجتماعي">اجتماعي</button>
             </div>
 
             <div class="news-grid" id="newsContainer">
-
-                <!-- News Card 1 -->
-                <div class="news-card">
-                    <img class="news-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="احتفال عيد الميلاد" />
-                    <div class="news-body">
-                        <span class="news-tag">مناسبات</span>
-                        <h3>احتفال عيد الميلاد المجيد</h3>
-                        <p class="news-excerpt">
-                            تقيم الكنيسة احتفالاً كبيراً بمناسبة عيد الميلاد المجيد،
-                            يتضمن قداساً احتفالياً، تسابيح، وفقرات روحية وترفيهية للأطفال والعائلات.
-                        </p>
-                        <div class="news-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ٧ يناير ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                الأب تيموثاؤس عزيز
-                            </span>
-                        </div>
-                        <a href="#" class="read-more">
-                            قراءة المزيد
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14" />
-                                <path d="M12 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل الأخبار...</p>
                 </div>
-
-                <!-- News Card 2 -->
-                <div class="news-card">
-                    <img class="news-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="زيارة نيافة الأنبا ثيؤدورس" />
-                    <div class="news-body">
-                        <span class="news-tag">إعلانات</span>
-                        <h3>زيارة نيافة الأنبا ثيؤدورس للكنيسة</h3>
-                        <p class="news-excerpt">
-                            يستقبل الآباء الكهنة وشعب الكنيسة نيافة الأنبا ثيؤدورس
-                            في زيارة رعوية للكنيسة، تتضمن قداساً إلهياً وكلمة روحية.
-                        </p>
-                        <div class="news-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ٢٢ فبراير ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                إدارة الكنيسة
-                            </span>
-                        </div>
-                        <a href="#" class="read-more">
-                            قراءة المزيد
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14" />
-                                <path d="M12 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- News Card 3 -->
-                <div class="news-card">
-                    <img class="news-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="مبادرة خدمة المجتمع" />
-                    <div class="news-body">
-                        <span class="news-tag">اجتماعي</span>
-                        <h3>مبادرة خدمة المجتمع</h3>
-                        <p class="news-excerpt">
-                            أطلقت الكنيسة مبادرة جديدة لخدمة المجتمع المحلي،
-                            تشمل توزيع طرود غذائية، مساعدات طبية، ودعم الأسر المحتاجة في منطقة إمبابة.
-                        </p>
-                        <div class="news-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ١ مارس ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                لجنة الخدمة
-                            </span>
-                        </div>
-                        <a href="#" class="read-more">
-                            قراءة المزيد
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 12h14" />
-                                <path d="M12 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- News Empty State (Hidden by default) -->
-                <!--
-                <div class="news-empty">
-                    <h4>لا توجد أخبار حالياً</h4>
-                    <p>سيتم إضافة الأخبار والإعلانات قريباً</p>
-                </div>
-                -->
             </div>
         </div>
     </section>
@@ -950,6 +833,14 @@
     <script>
         (function() {
             'use strict';
+
+            // ============================================
+            // DOM Elements
+            // ============================================
+            const container = document.getElementById('newsContainer');
+            const filterButtons = document.querySelectorAll('#newsFilter button');
+            let allNews = [];
+            let currentFilter = 'all';
 
             // ============================================
             // Mobile Menu Toggle
@@ -1010,68 +901,139 @@
             });
 
             // ============================================
-            // News Filter
+            // LOAD NEWS FROM API
             // ============================================
-            const filterButtons = document.querySelectorAll('.news-filter button');
-            const newsCards = document.querySelectorAll('.news-card');
+            async function loadNews() {
+                try {
+                    const response = await fetch('/api/news');
+                    if (!response.ok) throw new Error('Failed to fetch news');
+                    allNews = await response.json();
+                    renderNews(allNews);
+                } catch (error) {
+                    console.error('Error loading news:', error);
+                    container.innerHTML = `
+                        <div class="news-empty">
+                            <h4>حدث خطأ في تحميل البيانات</h4>
+                            <p>يرجى تحديث الصفحة والمحاولة مرة أخرى</p>
+                            <button onclick="loadNews()" style="margin-top:12px;padding:8px 24px;background:var(--navy);color:#fff;border-radius:var(--radius-sm);font-size:14px;font-weight:500;">
+                                إعادة المحاولة
+                            </button>
+                        </div>
+                    `;
+                }
+            }
 
-            if (filterButtons.length > 0 && newsCards.length > 0) {
-                filterButtons.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        filterButtons.forEach(b => b.classList.remove('active'));
-                        this.classList.add('active');
+            // ============================================
+            // RENDER NEWS
+            // ============================================
+            function renderNews(news) {
+                // Apply filter
+                let filtered = news;
+                if (currentFilter !== 'all') {
+                    filtered = news.filter(item => {
+                        const tags = [item.tag || '', item.category || '', item.title || ''];
+                        return tags.some(tag => tag.includes(currentFilter));
+                    });
+                }
 
-                        const filter = this.textContent.trim();
+                if (!filtered || filtered.length === 0) {
+                    container.innerHTML = `
+                        <div class="news-empty">
+                            <h4>${news.length === 0 ? 'لا توجد أخبار حالياً' : 'لا توجد أخبار تطابق الفلتر'}</h4>
+                            <p>${news.length === 0 ? 'سيتم إضافة الأخبار والإعلانات قريباً' : 'جرب اختيار فلتر آخر'}</p>
+                        </div>
+                    `;
+                    return;
+                }
 
-                        newsCards.forEach(card => {
-                            const tag = card.querySelector('.news-tag');
-                            let match = true;
+                container.innerHTML = filtered.map(item => `
+                    <div class="news-card">
+                        <img class="news-image" src="${item.image || 'https://i.postimg.cc/BbDyR0CR/lwjw.jpg'}" alt="${item.title}" />
+                        <div class="news-body">
+                            <span class="news-tag">${item.tag || 'خبر'}</span>
+                            <h3>${item.title}</h3>
+                            <p class="news-excerpt">${item.content || item.excerpt || ''}</p>
+                            <div class="news-meta">
+                                ${item.date ? `
+                                    <span class="meta-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                            <line x1="16" y1="2" x2="16" y2="6" />
+                                            <line x1="8" y1="2" x2="8" y2="6" />
+                                            <line x1="3" y1="10" x2="21" y2="10" />
+                                        </svg>
+                                        ${typeof item.date === 'string' && item.date.includes('T') ? new Date(item.date).toLocaleDateString('ar-EG') : item.date}
+                                    </span>
+                                ` : ''}
+                                ${item.author ? `
+                                    <span class="meta-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                                            <circle cx="12" cy="7" r="4" />
+                                        </svg>
+                                        ${item.author}
+                                    </span>
+                                ` : ''}
+                            </div>
+                            ${item.link ? `
+                                <a href="${item.link}" class="read-more">
+                                    قراءة المزيد
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12h14" />
+                                        <path d="M12 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
 
-                            if (filter !== 'الكل') {
-                                match = false;
-                                if (tag && tag.textContent.includes(filter)) match = true;
-                            }
+                // Attach read more events
+                attachReadMoreEvents();
+            }
 
-                            card.style.display = match ? '' : 'none';
-                        });
-
-                        const visibleCards = document.querySelectorAll('.news-card[style*="display: none"]');
-                        const emptyState = document.querySelector('.news-empty');
-                        if (visibleCards.length === newsCards.length) {
-                            if (emptyState) emptyState.style.display = '';
-                        } else {
-                            if (emptyState) emptyState.style.display = 'none';
-                        }
+            // ============================================
+            // READ MORE EVENTS
+            // ============================================
+            function attachReadMoreEvents() {
+                document.querySelectorAll('.read-more').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const title = this.closest('.news-body').querySelector('h3')?.textContent || 'الخبر';
+                        alert('📰 جاري تحميل خبر: "' + title + '"\n\nسيتم توجيهك إلى صفحة الخبر الكامل قريباً.');
                     });
                 });
             }
 
             // ============================================
-            // Read More - Prevent default for demo
+            // FILTER BUTTONS
             // ============================================
-            document.querySelectorAll('.read-more').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const title = this.closest('.news-body').querySelector('h3').textContent;
-                    alert('جاري تحميل مقال: "' + title + '"\n\nهذه صفحة تجريبية. سيتم توجيهك إلى صفحة الخبر الكامل قريباً.');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter || 'all';
+                    renderNews(allNews);
                 });
             });
 
             // ============================================
-            // API - Fetch News (placeholder)
+            // SPINNER ANIMATION
             // ============================================
-            // async function fetchNews() {
-            //   try {
-            //     const response = await fetch('/api/news');
-            //     const data = await response.json();
-            //     // Render news...
-            //   } catch (error) {
-            //     console.error('Error fetching news:', error);
-            //   }
-            // }
-            // fetchNews();
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
 
-            console.log('📰 News page loaded');
+            // ============================================
+            // INIT - Load news on page load
+            // ============================================
+            loadNews();
+
+            console.log('📰 News page loaded with API');
             console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
         })();
