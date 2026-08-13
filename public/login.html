@@ -214,6 +214,36 @@
             color: var(--neutral-400);
         }
 
+        /* Password toggle wrapper */
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper input {
+            flex: 1;
+            padding-left: 48px;
+        }
+
+        .password-wrapper .toggle-btn {
+            position: absolute;
+            left: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--neutral-400);
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color var(--transition);
+        }
+
+        .password-wrapper .toggle-btn:hover {
+            color: var(--navy);
+        }
+
         /* ============================================
            OPTIONS (Remember & Forgot)
            ============================================ */
@@ -393,6 +423,10 @@
                 padding: 12px;
                 font-size: 15px;
             }
+
+            .password-wrapper input {
+                padding-left: 40px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -471,13 +505,13 @@
                     <span class="required">*</span>
                 </label>
                 <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="أدخل اسم المستخدم"
-                required
-                autocomplete="username"
-                dir="ltr"
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="أدخل اسم المستخدم"
+                    required
+                    autocomplete="username"
+                    dir="ltr"
                 />
             </div>
 
@@ -486,15 +520,28 @@
                     كلمة المرور
                     <span class="required">*</span>
                 </label>
-                <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="أدخل كلمة المرور"
-                required
-                autocomplete="current-password"
-                dir="ltr"
-                />
+                <div class="password-wrapper">
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="أدخل كلمة المرور"
+                        required
+                        autocomplete="current-password"
+                        dir="ltr"
+                    />
+                    <button
+                        type="button"
+                        class="toggle-btn"
+                        id="togglePassword"
+                        aria-label="إظهار كلمة المرور"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="eyeIcon">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <div class="login-options">
@@ -545,6 +592,31 @@
             const alertMessage = document.getElementById('alertMessage');
             const alertText = document.getElementById('alertText');
 
+            // Toggle password elements
+            const togglePassword = document.getElementById('togglePassword');
+            const eyeIcon = document.getElementById('eyeIcon');
+
+            // ============================================
+            // Toggle Password Visibility
+            // ============================================
+            togglePassword.addEventListener('click', function() {
+                const isPassword = passwordInput.type === 'password';
+                passwordInput.type = isPassword ? 'text' : 'password';
+
+                // Update icon
+                if (isPassword) {
+                    eyeIcon.innerHTML = `
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                        <line x1="1" y1="1" x2="23" y2="23" />
+                    `;
+                } else {
+                    eyeIcon.innerHTML = `
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                    `;
+                }
+            });
+
             // ============================================
             // Helpers
             // ============================================
@@ -574,11 +646,6 @@
                     loginButtonText.textContent = 'تسجيل الدخول';
                     loginSpinner.classList.add('hidden');
                 }
-            }
-
-            function getBaseUrl() {
-                // Use relative URLs for Vercel compatibility
-                return '';
             }
 
             // ============================================
@@ -675,10 +742,8 @@
             // ============================================
             // Demo / Development helper (remove in production)
             // ============================================
-            // For development convenience, pre-fill admin credentials
-            // Comment out or remove in production
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                // Optionally pre-fill for testing
+                // Optionally pre-fill for testing - uncomment to use
                 // usernameInput.value = 'admin';
                 // passwordInput.value = 'ChangeMe123!';
             }
