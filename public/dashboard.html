@@ -104,7 +104,7 @@
             padding: 0;
             overflow-y: auto;
             z-index: 1000;
-            transition: transform var(--transition);
+            transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
         }
@@ -175,6 +175,7 @@
             color: rgba(255, 255, 255, 0.6);
             transition: background var(--transition), color var(--transition);
             margin-bottom: 2px;
+            cursor: pointer;
         }
 
         .sidebar-nav a:hover {
@@ -187,15 +188,15 @@
             color: var(--gold-light);
         }
 
+        .sidebar-nav a.active .icon {
+            opacity: 1;
+        }
+
         .sidebar-nav a .icon {
             width: 20px;
             height: 20px;
             flex-shrink: 0;
             opacity: 0.6;
-        }
-
-        .sidebar-nav a.active .icon {
-            opacity: 1;
         }
 
         .sidebar-nav a .badge {
@@ -362,7 +363,7 @@
         /* Stats */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 16px;
             margin-bottom: 32px;
         }
@@ -373,6 +374,7 @@
             border-radius: var(--radius-md);
             border: 1px solid var(--neutral-200);
             transition: border-color var(--transition), box-shadow var(--transition);
+            cursor: pointer;
         }
 
         .stat-card:hover {
@@ -435,7 +437,7 @@
             opacity: 0.5;
         }
 
-        /* Recent Activity */
+        /* Section Card */
         .section-card {
             background: #fff;
             border: 1px solid var(--neutral-200);
@@ -450,6 +452,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .section-card .card-header h3 {
@@ -463,6 +467,7 @@
             color: var(--gold-dark);
             font-weight: 500;
             transition: color var(--transition);
+            cursor: pointer;
         }
 
         .section-card .card-header a:hover {
@@ -540,6 +545,76 @@
             font-size: 14px;
         }
 
+        /* Data Table */
+        .data-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .data-table th {
+            text-align: right;
+            padding: 10px 12px;
+            background: var(--neutral-100);
+            font-weight: 600;
+            color: var(--neutral-600);
+            border-bottom: 2px solid var(--neutral-200);
+        }
+
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--neutral-100);
+            color: var(--neutral-700);
+        }
+
+        .data-table tr:hover td {
+            background: var(--ivory-light);
+        }
+
+        .data-table .actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .data-table .actions button {
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            font-size: 12px;
+            font-weight: 500;
+            transition: all var(--transition);
+        }
+
+        .data-table .actions .btn-edit {
+            background: rgba(184, 148, 60, 0.1);
+            color: var(--gold-dark);
+        }
+
+        .data-table .actions .btn-edit:hover {
+            background: rgba(184, 148, 60, 0.2);
+        }
+
+        .data-table .actions .btn-delete {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+
+        .data-table .actions .btn-delete:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         /* ============================================
            MODAL
            ============================================ */
@@ -566,7 +641,7 @@
         .modal {
             background: #fff;
             border-radius: var(--radius-lg);
-            max-width: 520px;
+            max-width: 540px;
             width: 100%;
             padding: 28px 28px 32px;
             box-shadow: var(--shadow-xl);
@@ -797,6 +872,8 @@
 
             .section-card .card-header {
                 padding: 12px 16px;
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .section-card .card-body {
@@ -816,6 +893,18 @@
             .modal {
                 padding: 20px 16px 24px;
                 border-radius: var(--radius-md);
+                margin: 10px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+
+            .data-table .actions button {
+                padding: 2px 8px;
+                font-size: 11px;
             }
         }
 
@@ -847,6 +936,19 @@
         .hidden {
             display: none !important;
         }
+        .flex {
+            display: flex;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
     </style>
 </head>
 <body>
@@ -868,9 +970,9 @@
             </div>
         </div>
 
-        <nav class="sidebar-nav">
+        <nav class="sidebar-nav" id="sidebarNav">
             <div class="nav-label">الرئيسية</div>
-            <a href="/dashboard" class="active">
+            <a class="active" data-tab="overview">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
@@ -878,7 +980,7 @@
             </a>
 
             <div class="nav-label">المحتوى</div>
-            <a href="#">
+            <a data-tab="pages">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
                     <polyline points="17 21 17 13 7 13 7 21" />
@@ -886,7 +988,7 @@
                 </svg>
                 الصفحات
             </a>
-            <a href="#">
+            <a data-tab="masses">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M8 14s1.5 2 4 2 4-2 4-2" />
@@ -894,17 +996,18 @@
                     <line x1="15" y1="9" x2="15.01" y2="9" />
                 </svg>
                 القداسات
-                <span class="badge">4</span>
+                <span class="badge" id="massesBadge">4</span>
             </a>
-            <a href="#">
+            <a data-tab="services">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 2L2 7l10 5 10-5-10-5z" />
                     <path d="M2 17l10 5 10-5" />
                     <path d="M2 12l10 5 10-5" />
                 </svg>
                 الخدمات
+                <span class="badge" id="servicesBadge">3</span>
             </a>
-            <a href="#">
+            <a data-tab="events">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                     <line x1="16" y1="2" x2="16" y2="6" />
@@ -912,69 +1015,75 @@
                     <line x1="3" y1="10" x2="21" y2="10" />
                 </svg>
                 الفعاليات
+                <span class="badge" id="eventsBadge">2</span>
             </a>
-            <a href="#">
+            <a data-tab="news">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                 </svg>
                 الأخبار
+                <span class="badge" id="newsBadge">0</span>
             </a>
-            <a href="#">
+            <a data-tab="sermons">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polygon points="23 7 16 12 23 17 23 7" />
                     <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
                 </svg>
                 العظات والفيديوهات
+                <span class="badge" id="sermonsBadge">0</span>
             </a>
-            <a href="#">
+            <a data-tab="gallery">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                     <circle cx="8.5" cy="8.5" r="1.5" />
                     <polyline points="21 15 16 10 5 21" />
                 </svg>
                 المعرض
+                <span class="badge" id="galleryBadge">0</span>
             </a>
 
             <div class="nav-label">الإدارة</div>
-            <a href="#">
+            <a data-tab="priests">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                 </svg>
                 الآباء الكهنة
+                <span class="badge" id="priestsBadge">6</span>
             </a>
-            <a href="#">
+            <a data-tab="saints">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
                 الشفيعان
             </a>
-            <a href="#">
+            <a data-tab="faq">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10" />
                     <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
                     <line x1="12" y1="17" x2="12.01" y2="17" />
                 </svg>
                 الأسئلة الشائعة
+                <span class="badge" id="faqBadge">5</span>
             </a>
-            <a href="#">
+            <a data-tab="prayer-requests">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
                 </svg>
                 طلبات الصلاة
-                <span class="badge">2</span>
+                <span class="badge" id="prayerBadge">2</span>
             </a>
 
             <div class="nav-label">الإعدادات</div>
-            <a href="#">
+            <a data-tab="settings">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.38a2 2 0 00-.73-2.73l-.15-.1a2 2 0 01-1-1.72v-.51a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z" />
                     <circle cx="12" cy="12" r="3" />
                 </svg>
                 إعدادات الموقع
             </a>
-            <a href="#">
+            <a data-tab="users">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
@@ -1010,8 +1119,8 @@
         <!-- Top Bar -->
         <header class="topbar">
             <div class="page-title">
-                <h1>نظرة عامة</h1>
-                <p>مرحباً بك في لوحة تحكم الكنيسة</p>
+                <h1 id="pageTitle">نظرة عامة</h1>
+                <p id="pageSubtitle">مرحباً بك في لوحة تحكم الكنيسة</p>
             </div>
             <div class="topbar-actions">
                 <button class="btn-icon" aria-label="الإشعارات">
@@ -1029,158 +1138,540 @@
             </div>
         </header>
 
-        <!-- Content -->
+        <!-- Dashboard Content -->
         <div class="dashboard-content">
 
-            <!-- Stats -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-label">القداسات</div>
-                    <div class="stat-value">4</div>
-                    <div class="stat-change">هذا الأسبوع</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">الخدمات</div>
-                    <div class="stat-value">6</div>
-                    <div class="stat-change">نشطة</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">الفعاليات</div>
-                    <div class="stat-value">2</div>
-                    <div class="stat-change">قادمة</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">طلبات الصلاة</div>
-                    <div class="stat-value">5</div>
-                    <div class="stat-change">غير مقروءة</div>
-                </div>
-            </div>
+            <!-- ============================================
+            TAB: Overview
+            ============================================ -->
+            <div class="tab-content active" id="tab-overview">
 
-            <!-- Quick Actions -->
-            <div class="quick-actions">
-                <button class="quick-action-btn" data-action="add-mass">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="8" x2="12" y2="16" />
-                        <line x1="8" y1="12" x2="16" y2="12" />
-                    </svg>
-                    إضافة قداس
-                </button>
-                <button class="quick-action-btn" data-action="add-service">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                        <path d="M2 17l10 5 10-5" />
-                        <path d="M2 12l10 5 10-5" />
-                    </svg>
-                    إضافة خدمة
-                </button>
-                <button class="quick-action-btn" data-action="add-event">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                        <line x1="16" y1="2" x2="16" y2="6" />
-                        <line x1="8" y1="2" x2="8" y2="6" />
-                        <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg>
-                    إضافة فعالية
-                </button>
-                <button class="quick-action-btn" data-action="add-news">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                    </svg>
-                    إضافة خبر
-                </button>
-                <button class="quick-action-btn" data-action="add-sermon">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="23 7 16 12 23 17 23 7" />
-                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
-                    </svg>
-                    إضافة عظة
-                </button>
-                <button class="quick-action-btn" data-action="upload-images">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                    رفع صور
-                </button>
-            </div>
-
-            <!-- Recent Activity -->
-            <div class="section-card">
-                <div class="card-header">
-                    <h3>آخر النشاطات</h3>
-                    <a href="#">عرض الكل</a>
+                <!-- Stats -->
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card" data-tab="masses">
+                        <div class="stat-label">القداسات</div>
+                        <div class="stat-value" id="statMasses">4</div>
+                        <div class="stat-change">هذا الأسبوع</div>
+                    </div>
+                    <div class="stat-card" data-tab="services">
+                        <div class="stat-label">الخدمات</div>
+                        <div class="stat-value" id="statServices">3</div>
+                        <div class="stat-change">نشطة</div>
+                    </div>
+                    <div class="stat-card" data-tab="events">
+                        <div class="stat-label">الفعاليات</div>
+                        <div class="stat-value" id="statEvents">2</div>
+                        <div class="stat-change">قادمة</div>
+                    </div>
+                    <div class="stat-card" data-tab="prayer-requests">
+                        <div class="stat-label">طلبات الصلاة</div>
+                        <div class="stat-value" id="statPrayer">2</div>
+                        <div class="stat-change">غير مقروءة</div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10" />
-                                <line x1="12" y1="8" x2="12" y2="16" />
-                                <line x1="8" y1="12" x2="16" y2="12" />
-                            </svg>
-                        </div>
-                        <div class="activity-content">
-                            <div class="title">تمت إضافة قداس جديد</div>
-                            <div class="desc">الأحد ٨:٠٠ ص – الكنيسة الرئيسية</div>
-                        </div>
-                        <span class="activity-time">منذ ساعة</span>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="quick-action-btn" data-action="add-mass">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة قداس
+                    </button>
+                    <button class="quick-action-btn" data-action="add-service">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5" />
+                            <path d="M2 12l10 5 10-5" />
+                        </svg>
+                        إضافة خدمة
+                    </button>
+                    <button class="quick-action-btn" data-action="add-event">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        إضافة فعالية
+                    </button>
+                    <button class="quick-action-btn" data-action="add-news">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        إضافة خبر
+                    </button>
+                    <button class="quick-action-btn" data-action="add-sermon">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="23 7 16 12 23 17 23 7" />
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                        </svg>
+                        إضافة عظة
+                    </button>
+                    <button class="quick-action-btn" data-action="upload-images">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <circle cx="8.5" cy="8.5" r="1.5" />
+                            <polyline points="21 15 16 10 5 21" />
+                        </svg>
+                        رفع صور
+                    </button>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="section-card">
+                    <div class="card-header">
+                        <h3>آخر النشاطات</h3>
+                        <a>عرض الكل</a>
                     </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                <circle cx="12" cy="7" r="4" />
-                            </svg>
+                    <div class="card-body" id="recentActivity">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="8" x2="12" y2="16" />
+                                    <line x1="8" y1="12" x2="16" y2="12" />
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <div class="title">تمت إضافة قداس جديد</div>
+                                <div class="desc">الأحد ٨:٠٠ ص – الكنيسة الرئيسية</div>
+                            </div>
+                            <span class="activity-time">منذ ساعة</span>
                         </div>
-                        <div class="activity-content">
-                            <div class="title">تم تحديث معلومات الكنيسة</div>
-                            <div class="desc">تم تعديل بيانات الموقع والاتصال</div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <div class="title">تم تحديث معلومات الكنيسة</div>
+                                <div class="desc">تم تعديل بيانات الموقع والاتصال</div>
+                            </div>
+                            <span class="activity-time">منذ ٣ ساعات</span>
                         </div>
-                        <span class="activity-time">منذ ٣ ساعات</span>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-                            </svg>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                                </svg>
+                            </div>
+                            <div class="activity-content">
+                                <div class="title">طلب صلاة جديد</div>
+                                <div class="desc">طلب صلاة من زائر الكنيسة</div>
+                            </div>
+                            <span class="activity-time">منذ ٥ ساعات</span>
                         </div>
-                        <div class="activity-content">
-                            <div class="title">طلب صلاة جديد</div>
-                            <div class="desc">طلب صلاة من زائر الكنيسة</div>
-                        </div>
-                        <span class="activity-time">منذ ٥ ساعات</span>
-                    </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                                <circle cx="8.5" cy="8.5" r="1.5" />
-                                <polyline points="21 15 16 10 5 21" />
-                            </svg>
-                        </div>
-                        <div class="activity-content">
-                            <div class="title">تم رفع صور جديدة للمعرض</div>
-                            <div class="desc">ألبوم: قداس عيد الميلاد</div>
-                        </div>
-                        <span class="activity-time">منذ يوم</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Empty State Example (for sections with no data) -->
-            <div class="section-card">
-                <div class="card-header">
-                    <h3>طلبات الصلاة الأخيرة</h3>
-                    <a href="#">عرض الكل</a>
+            <!-- ============================================
+            TAB: Masses
+            ============================================ -->
+            <div class="tab-content" id="tab-masses">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة القداسات</h2>
+                    <button class="quick-action-btn" data-action="add-mass" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة قداس
+                    </button>
                 </div>
-                <div class="card-body">
-                    <div class="empty-state-dashboard">
-                        <div class="empty-icon">📋</div>
-                        <h4>لا توجد طلبات صلاة جديدة</h4>
-                        <p>سيظهر هنا طلبات الصلاة عند استلامها</p>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="data-table-wrapper">
+                            <table class="data-table" id="massesTable">
+                                <thead>
+                                    <tr>
+                                        <th>اليوم</th>
+                                        <th>الوقت</th>
+                                        <th>المكان</th>
+                                        <th>الكاهن</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="massesTableBody">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Services
+            ============================================ -->
+            <div class="tab-content" id="tab-services">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة الخدمات</h2>
+                    <button class="quick-action-btn" data-action="add-service" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة خدمة
+                    </button>
+                </div>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="data-table-wrapper">
+                            <table class="data-table" id="servicesTable">
+                                <thead>
+                                    <tr>
+                                        <th>الاسم</th>
+                                        <th>الوصف</th>
+                                        <th>اليوم</th>
+                                        <th>الوقت</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="servicesTableBody">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Events
+            ============================================ -->
+            <div class="tab-content" id="tab-events">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة الفعاليات</h2>
+                    <button class="quick-action-btn" data-action="add-event" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة فعالية
+                    </button>
+                </div>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="data-table-wrapper">
+                            <table class="data-table" id="eventsTable">
+                                <thead>
+                                    <tr>
+                                        <th>العنوان</th>
+                                        <th>الوصف</th>
+                                        <th>التاريخ</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="eventsTableBody">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: News
+            ============================================ -->
+            <div class="tab-content" id="tab-news">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة الأخبار</h2>
+                    <button class="quick-action-btn" data-action="add-news" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة خبر
+                    </button>
+                </div>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="empty-state-dashboard" id="newsEmpty">
+                            <div class="empty-icon">📰</div>
+                            <h4>لا توجد أخبار</h4>
+                            <p>أضف خبراً جديداً باستخدام الزر أعلاه</p>
+                        </div>
+                        <div class="data-table-wrapper" id="newsTableWrapper" style="display:none;">
+                            <table class="data-table" id="newsTable">
+                                <thead>
+                                    <tr>
+                                        <th>العنوان</th>
+                                        <th>المحتوى</th>
+                                        <th>التاريخ</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="newsTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Sermons
+            ============================================ -->
+            <div class="tab-content" id="tab-sermons">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة العظات والفيديوهات</h2>
+                    <button class="quick-action-btn" data-action="add-sermon" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة عظة
+                    </button>
+                </div>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="empty-state-dashboard" id="sermonsEmpty">
+                            <div class="empty-icon">🎬</div>
+                            <h4>لا توجد عظات</h4>
+                            <p>أضف عظة جديدة باستخدام الزر أعلاه</p>
+                        </div>
+                        <div class="data-table-wrapper" id="sermonsTableWrapper" style="display:none;">
+                            <table class="data-table" id="sermonsTable">
+                                <thead>
+                                    <tr>
+                                        <th>العنوان</th>
+                                        <th>الوصف</th>
+                                        <th>الرابط</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sermonsTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Gallery
+            ============================================ -->
+            <div class="tab-content" id="tab-gallery">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة المعرض</h2>
+                    <button class="quick-action-btn" data-action="upload-images" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة ألبوم
+                    </button>
+                </div>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="empty-state-dashboard" id="galleryEmpty">
+                            <div class="empty-icon">🖼️</div>
+                            <h4>لا توجد ألبومات</h4>
+                            <p>أضف ألبوم صور جديد باستخدام الزر أعلاه</p>
+                        </div>
+                        <div class="data-table-wrapper" id="galleryTableWrapper" style="display:none;">
+                            <table class="data-table" id="galleryTable">
+                                <thead>
+                                    <tr>
+                                        <th>عنوان الألبوم</th>
+                                        <th>عدد الصور</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="galleryTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Priests
+            ============================================ -->
+            <div class="tab-content" id="tab-priests">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة الآباء الكهنة</h2>
+                    <button class="quick-action-btn" data-action="add-priest" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة كاهن
+                    </button>
+                </div>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="data-table-wrapper">
+                            <table class="data-table" id="priestsTable">
+                                <thead>
+                                    <tr>
+                                        <th>الاسم</th>
+                                        <th>اللقب</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="priestsTableBody">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Saints
+            ============================================ -->
+            <div class="tab-content" id="tab-saints">
+                <h2 class="section-title">الشفيعان</h2>
+                <p class="text-muted">السيدة العذراء مريم والشهيد أبانوب النهيسي</p>
+                <div class="section-card mt-16">
+                    <div class="card-body">
+                        <div class="empty-state-dashboard">
+                            <div class="empty-icon">⛪</div>
+                            <h4>معلومات الشفيعان</h4>
+                            <p>سيتم إضافة صفحة لإدارة الشفيعان قريباً</p>
+                            <p style="font-size:13px; color:var(--neutral-400); margin-top:8px;">
+                                حالياً يمكنك تعديل المعلومات من ملف saints.html
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: FAQ
+            ============================================ -->
+            <div class="tab-content" id="tab-faq">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة الأسئلة الشائعة</h2>
+                    <button class="quick-action-btn" data-action="add-faq" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة سؤال
+                    </button>
+                </div>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="data-table-wrapper">
+                            <table class="data-table" id="faqTable">
+                                <thead>
+                                    <tr>
+                                        <th>السؤال</th>
+                                        <th>الإجابة</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="faqTableBody">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Prayer Requests
+            ============================================ -->
+            <div class="tab-content" id="tab-prayer-requests">
+                <h2 class="section-title">طلبات الصلاة</h2>
+                <p class="text-muted">طلبات الصلاة المقدمة من زوار الموقع</p>
+                <div class="section-card mt-16">
+                    <div class="card-body">
+                        <div class="data-table-wrapper">
+                            <table class="data-table" id="prayerTable">
+                                <thead>
+                                    <tr>
+                                        <th>الاسم</th>
+                                        <th>الطلب</th>
+                                        <th>سري</th>
+                                        <th>التاريخ</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="prayerTableBody">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Settings
+            ============================================ -->
+            <div class="tab-content" id="tab-settings">
+                <h2 class="section-title">إعدادات الموقع</h2>
+                <p class="text-muted">إدارة إعدادات الكنيسة والمعلومات العامة</p>
+                <div class="section-card mt-16">
+                    <div class="card-body">
+                        <div class="empty-state-dashboard">
+                            <div class="empty-icon">⚙️</div>
+                            <h4>إعدادات الموقع</h4>
+                            <p>سيتم إضافة لوحة إعدادات كاملة قريباً</p>
+                            <p style="font-size:13px; color:var(--neutral-400); margin-top:8px;">
+                                يمكنك تعديل الإعدادات من خلال متغيرات البيئة في .env
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Users
+            ============================================ -->
+            <div class="tab-content" id="tab-users">
+                <h2 class="section-title">إدارة المستخدمين</h2>
+                <p class="text-muted">إدارة حسابات المستخدمين والصلاحيات</p>
+                <div class="section-card mt-16">
+                    <div class="card-body">
+                        <div class="empty-state-dashboard">
+                            <div class="empty-icon">👤</div>
+                            <h4>إدارة المستخدمين</h4>
+                            <p>سيتم إضافة نظام إدارة المستخدمين قريباً</p>
+                            <p style="font-size:13px; color:var(--neutral-400); margin-top:8px;">
+                                حالياً يوجد حساب Admin واحد فقط
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+            TAB: Pages
+            ============================================ -->
+            <div class="tab-content" id="tab-pages">
+                <h2 class="section-title">إدارة الصفحات</h2>
+                <p class="text-muted">إدارة الصفحات الديناميكية للموقع</p>
+                <div class="section-card mt-16">
+                    <div class="card-body">
+                        <div class="empty-state-dashboard">
+                            <div class="empty-icon">📄</div>
+                            <h4>الصفحات الديناميكية</h4>
+                            <p>سيتم إضافة نظام إدارة الصفحات قريباً</p>
+                            <p style="font-size:13px; color:var(--neutral-400); margin-top:8px;">
+                                حالياً يمكنك تعديل الصفحات من ملفات HTML
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1221,6 +1712,7 @@
             const sidebarOverlay = document.getElementById('sidebarOverlay');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const logoutBtn = document.getElementById('logoutBtn');
+            const sidebarNav = document.getElementById('sidebarNav');
 
             const modal = document.getElementById('actionModal');
             const modalClose = document.getElementById('modalClose');
@@ -1272,6 +1764,421 @@
             });
 
             // ============================================
+            // Tab Navigation
+            // ============================================
+            const tabs = {
+                overview: { title: 'نظرة عامة', subtitle: 'مرحباً بك في لوحة تحكم الكنيسة' },
+                masses: { title: 'القداسات', subtitle: 'إدارة مواعيد القداسات' },
+                services: { title: 'الخدمات', subtitle: 'إدارة خدمات الكنيسة' },
+                events: { title: 'الفعاليات', subtitle: 'إدارة الفعاليات والأنشطة' },
+                news: { title: 'الأخبار', subtitle: 'إدارة الأخبار والإعلانات' },
+                sermons: { title: 'العظات والفيديوهات', subtitle: 'إدارة العظات والفيديوهات' },
+                gallery: { title: 'المعرض', subtitle: 'إدارة ألبومات الصور' },
+                priests: { title: 'الآباء الكهنة', subtitle: 'إدارة الآباء الكهنة' },
+                saints: { title: 'الشفيعان', subtitle: 'السيدة العذراء مريم والشهيد أبانوب' },
+                faq: { title: 'الأسئلة الشائعة', subtitle: 'إدارة الأسئلة والأجوبة' },
+                'prayer-requests': { title: 'طلبات الصلاة', subtitle: 'إدارة طلبات الصلاة' },
+                settings: { title: 'إعدادات الموقع', subtitle: 'إدارة إعدادات الكنيسة' },
+                users: { title: 'المستخدمون', subtitle: 'إدارة حسابات المستخدمين' },
+                pages: { title: 'الصفحات', subtitle: 'إدارة الصفحات الديناميكية' }
+            };
+
+            function switchTab(tabId) {
+                // Update sidebar
+                sidebarNav.querySelectorAll('a').forEach(function(a) {
+                    a.classList.toggle('active', a.dataset.tab === tabId);
+                });
+
+                // Update content
+                document.querySelectorAll('.tab-content').forEach(function(el) {
+                    el.classList.toggle('active', el.id === 'tab-' + tabId);
+                });
+
+                // Update title
+                const tabInfo = tabs[tabId];
+                if (tabInfo) {
+                    document.getElementById('pageTitle').textContent = tabInfo.title;
+                    document.getElementById('pageSubtitle').textContent = tabInfo.subtitle;
+                }
+
+                // Close mobile sidebar
+                if (window.innerWidth <= 820) {
+                    closeSidebar();
+                }
+
+                // Load data for tab
+                loadTabData(tabId);
+            }
+
+            // Sidebar click
+            sidebarNav.querySelectorAll('a[data-tab]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.dataset.tab;
+                    switchTab(tabId);
+                });
+            });
+
+            // Stats cards click
+            document.querySelectorAll('.stat-card[data-tab]').forEach(function(card) {
+                card.addEventListener('click', function() {
+                    const tabId = this.dataset.tab;
+                    switchTab(tabId);
+                });
+            });
+
+            // ============================================
+            // Load Data for Tabs
+            // ============================================
+            function loadTabData(tabId) {
+                switch(tabId) {
+                    case 'masses': loadMasses(); break;
+                    case 'services': loadServices(); break;
+                    case 'events': loadEvents(); break;
+                    case 'news': loadNews(); break;
+                    case 'sermons': loadSermons(); break;
+                    case 'gallery': loadGallery(); break;
+                    case 'priests': loadPriests(); break;
+                    case 'faq': loadFAQ(); break;
+                    case 'prayer-requests': loadPrayerRequests(); break;
+                }
+            }
+
+            // ============================================
+            // Load Masses
+            // ============================================
+            function loadMasses() {
+                fetch('/api/masses')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('massesTableBody');
+                        tbody.innerHTML = data.map(m => `
+                            <tr>
+                                <td>${m.day}</td>
+                                <td>${m.time}</td>
+                                <td>${m.location || '-'}</td>
+                                <td>${m.priest || '-'}</td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="btn-edit" onclick="editMass(${m.id})">تعديل</button>
+                                        <button class="btn-delete" onclick="deleteMass(${m.id})">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('');
+                        document.getElementById('massesBadge').textContent = data.length;
+                        document.getElementById('statMasses').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Load Services
+            // ============================================
+            function loadServices() {
+                fetch('/api/services')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('servicesTableBody');
+                        tbody.innerHTML = data.map(s => `
+                            <tr>
+                                <td>${s.name}</td>
+                                <td>${s.description || '-'}</td>
+                                <td>${s.day || '-'}</td>
+                                <td>${s.time || '-'}</td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="btn-edit" onclick="editService(${s.id})">تعديل</button>
+                                        <button class="btn-delete" onclick="deleteService(${s.id})">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('');
+                        document.getElementById('servicesBadge').textContent = data.length;
+                        document.getElementById('statServices').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Load Events
+            // ============================================
+            function loadEvents() {
+                fetch('/api/events')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('eventsTableBody');
+                        tbody.innerHTML = data.map(e => `
+                            <tr>
+                                <td>${e.title}</td>
+                                <td>${e.description || '-'}</td>
+                                <td>${e.date || '-'}</td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="btn-edit" onclick="editEvent(${e.id})">تعديل</button>
+                                        <button class="btn-delete" onclick="deleteEvent(${e.id})">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('');
+                        document.getElementById('eventsBadge').textContent = data.length;
+                        document.getElementById('statEvents').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Load News
+            // ============================================
+            function loadNews() {
+                fetch('/api/news')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('newsTableBody');
+                        const wrapper = document.getElementById('newsTableWrapper');
+                        const empty = document.getElementById('newsEmpty');
+                        if (data.length === 0) {
+                            wrapper.style.display = 'none';
+                            empty.style.display = 'block';
+                        } else {
+                            wrapper.style.display = 'block';
+                            empty.style.display = 'none';
+                            tbody.innerHTML = data.map(n => `
+                                <tr>
+                                    <td>${n.title}</td>
+                                    <td>${(n.content || '').substring(0, 50)}${(n.content || '').length > 50 ? '...' : ''}</td>
+                                    <td>${new Date(n.date).toLocaleDateString('ar-EG')}</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="btn-edit" onclick="editNews(${n.id})">تعديل</button>
+                                            <button class="btn-delete" onclick="deleteNews(${n.id})">حذف</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('');
+                        }
+                        document.getElementById('newsBadge').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Load Sermons
+            // ============================================
+            function loadSermons() {
+                fetch('/api/sermons')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('sermonsTableBody');
+                        const wrapper = document.getElementById('sermonsTableWrapper');
+                        const empty = document.getElementById('sermonsEmpty');
+                        if (data.length === 0) {
+                            wrapper.style.display = 'none';
+                            empty.style.display = 'block';
+                        } else {
+                            wrapper.style.display = 'block';
+                            empty.style.display = 'none';
+                            tbody.innerHTML = data.map(s => `
+                                <tr>
+                                    <td>${s.title}</td>
+                                    <td>${s.description || '-'}</td>
+                                    <td>${s.video ? '🔗 موجود' : '-'}</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="btn-edit" onclick="editSermon(${s.id})">تعديل</button>
+                                            <button class="btn-delete" onclick="deleteSermon(${s.id})">حذف</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('');
+                        }
+                        document.getElementById('sermonsBadge').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Load Gallery
+            // ============================================
+            function loadGallery() {
+                fetch('/api/gallery')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('galleryTableBody');
+                        const wrapper = document.getElementById('galleryTableWrapper');
+                        const empty = document.getElementById('galleryEmpty');
+                        if (data.length === 0) {
+                            wrapper.style.display = 'none';
+                            empty.style.display = 'block';
+                        } else {
+                            wrapper.style.display = 'block';
+                            empty.style.display = 'none';
+                            tbody.innerHTML = data.map(a => `
+                                <tr>
+                                    <td>${a.title}</td>
+                                    <td>${(a.images || []).length} صورة</td>
+                                    <td>
+                                        <div class="actions">
+                                            <button class="btn-edit" onclick="editAlbum(${a.id})">تعديل</button>
+                                            <button class="btn-delete" onclick="deleteAlbum(${a.id})">حذف</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            `).join('');
+                        }
+                        document.getElementById('galleryBadge').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Load Priests
+            // ============================================
+            function loadPriests() {
+                fetch('/api/priests')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('priestsTableBody');
+                        tbody.innerHTML = data.map(p => `
+                            <tr>
+                                <td>${p.name}</td>
+                                <td>${p.title || '-'}</td>
+                                <td>${p.status === 'current' ? '🟢 حالي' : '🔴 سابق'}</td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="btn-edit" onclick="editPriest(${p.id})">تعديل</button>
+                                        <button class="btn-delete" onclick="deletePriest(${p.id})">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('');
+                        document.getElementById('priestsBadge').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Load FAQ
+            // ============================================
+            function loadFAQ() {
+                fetch('/api/faq')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('faqTableBody');
+                        tbody.innerHTML = data.map(f => `
+                            <tr>
+                                <td>${f.question}</td>
+                                <td>${(f.answer || '').substring(0, 40)}${(f.answer || '').length > 40 ? '...' : ''}</td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="btn-edit" onclick="editFAQ(${f.id})">تعديل</button>
+                                        <button class="btn-delete" onclick="deleteFAQ(${f.id})">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('');
+                        document.getElementById('faqBadge').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Load Prayer Requests
+            // ============================================
+            function loadPrayerRequests() {
+                fetch('/api/prayer-requests')
+                    .then(r => r.json())
+                    .then(data => {
+                        const tbody = document.getElementById('prayerTableBody');
+                        tbody.innerHTML = data.map(p => `
+                            <tr>
+                                <td>${p.fullName}</td>
+                                <td>${(p.prayerRequest || '').substring(0, 40)}${(p.prayerRequest || '').length > 40 ? '...' : ''}</td>
+                                <td>${p.isConfidential ? '🔒 نعم' : '👁️ لا'}</td>
+                                <td>${new Date(p.date).toLocaleDateString('ar-EG')}</td>
+                                <td>
+                                    <div class="actions">
+                                        <button class="btn-edit" onclick="editPrayer(${p.id})">تعديل</button>
+                                        <button class="btn-delete" onclick="deletePrayer(${p.id})">حذف</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('');
+                        document.getElementById('prayerBadge').textContent = data.length;
+                        document.getElementById('statPrayer').textContent = data.length;
+                    })
+                    .catch(() => {});
+            }
+
+            // ============================================
+            // Delete Functions (API)
+            // ============================================
+            window.deleteMass = function(id) {
+                if (!confirm('هل أنت متأكد من حذف هذا القداس؟')) return;
+                fetch('/api/masses/' + id, { method: 'DELETE' })
+                    .then(() => loadMasses());
+            };
+
+            window.deleteService = function(id) {
+                if (!confirm('هل أنت متأكد من حذف هذه الخدمة؟')) return;
+                fetch('/api/services/' + id, { method: 'DELETE' })
+                    .then(() => loadServices());
+            };
+
+            window.deleteEvent = function(id) {
+                if (!confirm('هل أنت متأكد من حذف هذه الفعالية؟')) return;
+                fetch('/api/events/' + id, { method: 'DELETE' })
+                    .then(() => loadEvents());
+            };
+
+            window.deleteNews = function(id) {
+                if (!confirm('هل أنت متأكد من حذف هذا الخبر؟')) return;
+                fetch('/api/news/' + id, { method: 'DELETE' })
+                    .then(() => loadNews());
+            };
+
+            window.deleteSermon = function(id) {
+                if (!confirm('هل أنت متأكد من حذف هذه العظة؟')) return;
+                fetch('/api/sermons/' + id, { method: 'DELETE' })
+                    .then(() => loadSermons());
+            };
+
+            window.deleteAlbum = function(id) {
+                if (!confirm('هل أنت متأكد من حذف هذا الألبوم؟')) return;
+                fetch('/api/gallery/' + id, { method: 'DELETE' })
+                    .then(() => loadGallery());
+            };
+
+            window.deletePriest = function(id) {
+                if (!confirm('هل أنت متأكد من حذف هذا الكاهن؟')) return;
+                fetch('/api/priests/' + id, { method: 'DELETE' })
+                    .then(() => loadPriests());
+            };
+
+            window.deleteFAQ = function(id) {
+                if (!confirm('هل أنت متأكد من حذف هذا السؤال؟')) return;
+                fetch('/api/faq/' + id, { method: 'DELETE' })
+                    .then(() => loadFAQ());
+            };
+
+            window.deletePrayer = function(id) {
+                if (!confirm('هل أنت متأكد من حذف طلب الصلاة هذا؟')) return;
+                fetch('/api/prayer-requests/' + id, { method: 'DELETE' })
+                    .then(() => loadPrayerRequests());
+            };
+
+            // Edit functions (placeholder - will open modal with data)
+            ['Mass', 'Service', 'Event', 'News', 'Sermon', 'Priest', 'FAQ', 'Prayer'].forEach(function(type) {
+                window['edit' + type] = function(id) {
+                    alert('تعديل ' + type + ' (ID: ' + id + ')\nسيتم فتح نافذة تعديل قريباً');
+                };
+            });
+
+            window.editAlbum = function(id) {
+                alert('تعديل ألبوم (ID: ' + id + ')\nسيتم فتح نافذة تعديل قريباً');
+            };
+
+            // ============================================
             // Logout
             // ============================================
             logoutBtn.addEventListener('click', async function() {
@@ -1285,13 +2192,13 @@
             });
 
             // ============================================
-            // Check Authentication (Development Mode)
+            // Check Authentication
             // ============================================
             async function checkAuth() {
                 try {
                     const response = await fetch('/api/auth/verify', { credentials: 'same-origin' });
                     if (!response.ok) {
-                        console.log('⚠️ Auth verification failed, but continuing in development mode');
+                        console.log('⚠️ Auth verification failed');
                         return;
                     }
                     const data = await response.json();
@@ -1299,7 +2206,7 @@
                         console.log('✅ Authenticated as:', data.user?.username || 'admin');
                     }
                 } catch (error) {
-                    console.error('Auth verification error:', error);
+                    console.error('Auth error:', error);
                 }
             }
             checkAuth();
@@ -1310,6 +2217,7 @@
             const actionMap = {
                 'add-mass': {
                     title: 'إضافة قداس جديد',
+                    endpoint: '/api/masses',
                     fields: `
                         <div class="form-group">
                             <label>اليوم <span class="required">*</span></label>
@@ -1336,10 +2244,17 @@
                             <label>الكاهن</label>
                             <input type="text" id="massPriest" placeholder="اسم الكاهن" />
                         </div>
-                    `
+                    `,
+                    getData: () => ({
+                        day: document.getElementById('massDay').value,
+                        time: document.getElementById('massTime').value,
+                        location: document.getElementById('massLocation').value,
+                        priest: document.getElementById('massPriest').value
+                    })
                 },
                 'add-service': {
                     title: 'إضافة خدمة جديدة',
+                    endpoint: '/api/services',
                     fields: `
                         <div class="form-group">
                             <label>اسم الخدمة <span class="required">*</span></label>
@@ -1357,10 +2272,17 @@
                             <label>الوقت</label>
                             <input type="text" id="serviceTime" placeholder="مثال: ٧:٠٠ م" />
                         </div>
-                    `
+                    `,
+                    getData: () => ({
+                        name: document.getElementById('serviceName').value,
+                        description: document.getElementById('serviceDesc').value,
+                        day: document.getElementById('serviceDay').value,
+                        time: document.getElementById('serviceTime').value
+                    })
                 },
                 'add-event': {
                     title: 'إضافة فعالية جديدة',
+                    endpoint: '/api/events',
                     fields: `
                         <div class="form-group">
                             <label>عنوان الفعالية <span class="required">*</span></label>
@@ -1374,10 +2296,16 @@
                             <label>التاريخ</label>
                             <input type="text" id="eventDate" placeholder="مثال: ١٥ مايو ٢٠٢٦" />
                         </div>
-                    `
+                    `,
+                    getData: () => ({
+                        title: document.getElementById('eventTitle').value,
+                        description: document.getElementById('eventDesc').value,
+                        date: document.getElementById('eventDate').value
+                    })
                 },
                 'add-news': {
                     title: 'إضافة خبر جديد',
+                    endpoint: '/api/news',
                     fields: `
                         <div class="form-group">
                             <label>عنوان الخبر <span class="required">*</span></label>
@@ -1387,10 +2315,15 @@
                             <label>المحتوى</label>
                             <textarea id="newsContent" placeholder="محتوى الخبر"></textarea>
                         </div>
-                    `
+                    `,
+                    getData: () => ({
+                        title: document.getElementById('newsTitle').value,
+                        content: document.getElementById('newsContent').value
+                    })
                 },
                 'add-sermon': {
                     title: 'إضافة عظة جديدة',
+                    endpoint: '/api/sermons',
                     fields: `
                         <div class="form-group">
                             <label>عنوان العظة <span class="required">*</span></label>
@@ -1404,26 +2337,92 @@
                             <label>رابط الفيديو (YouTube)</label>
                             <input type="text" id="sermonVideo" placeholder="https://www.youtube.com/embed/..." />
                         </div>
-                    `
+                    `,
+                    getData: () => ({
+                        title: document.getElementById('sermonTitle').value,
+                        description: document.getElementById('sermonDesc').value,
+                        video: document.getElementById('sermonVideo').value
+                    })
                 },
                 'upload-images': {
-                    title: 'رفع صور إلى المعرض',
+                    title: 'إضافة ألبوم صور',
+                    endpoint: '/api/gallery',
                     fields: `
                         <div class="form-group">
                             <label>عنوان الألبوم <span class="required">*</span></label>
                             <input type="text" id="albumTitle" placeholder="عنوان الألبوم" required />
                         </div>
                         <div class="form-group">
+                            <label>وصف الألبوم</label>
+                            <textarea id="albumDesc" placeholder="وصف الألبوم"></textarea>
+                        </div>
+                        <div class="form-group">
                             <label>رفع الصور</label>
                             <input type="file" id="albumImages" accept="image/*" multiple />
                         </div>
-                    `
+                    `,
+                    getData: () => ({
+                        title: document.getElementById('albumTitle').value,
+                        description: document.getElementById('albumDesc').value
+                    })
+                },
+                'add-priest': {
+                    title: 'إضافة كاهن جديد',
+                    endpoint: '/api/priests',
+                    fields: `
+                        <div class="form-group">
+                            <label>الاسم <span class="required">*</span></label>
+                            <input type="text" id="priestName" placeholder="مثال: أبونا القس تيموثاؤس عزيز" required />
+                        </div>
+                        <div class="form-group">
+                            <label>اللقب</label>
+                            <input type="text" id="priestTitle" placeholder="مثال: كاهن الكنيسة" />
+                        </div>
+                        <div class="form-group">
+                            <label>الاسم بالإنجليزية</label>
+                            <input type="text" id="priestEnglish" placeholder="مثال: Fr. Timotheos Aziz" />
+                        </div>
+                        <div class="form-group">
+                            <label>الحالة</label>
+                            <select id="priestStatus">
+                                <option value="current">كاهن حالي</option>
+                                <option value="former">كاهن سابق</option>
+                            </select>
+                        </div>
+                    `,
+                    getData: () => ({
+                        name: document.getElementById('priestName').value,
+                        title: document.getElementById('priestTitle').value,
+                        english: document.getElementById('priestEnglish').value,
+                        status: document.getElementById('priestStatus').value
+                    })
+                },
+                'add-faq': {
+                    title: 'إضافة سؤال جديد',
+                    endpoint: '/api/faq',
+                    fields: `
+                        <div class="form-group">
+                            <label>السؤال <span class="required">*</span></label>
+                            <input type="text" id="faqQuestion" placeholder="أدخل السؤال" required />
+                        </div>
+                        <div class="form-group">
+                            <label>الإجابة <span class="required">*</span></label>
+                            <textarea id="faqAnswer" placeholder="أدخل الإجابة" required></textarea>
+                        </div>
+                    `,
+                    getData: () => ({
+                        question: document.getElementById('faqQuestion').value,
+                        answer: document.getElementById('faqAnswer').value
+                    })
                 }
             };
 
             function openModal(action) {
                 const config = actionMap[action];
-                if (!config) return;
+                if (!config) {
+                    alert('هذه الميزة قيد التطوير وسيتم إضافتها قريباً.');
+                    return;
+                }
 
                 modalTitle.textContent = config.title;
                 modalFields.innerHTML = config.fields;
@@ -1431,6 +2430,12 @@
                 modalAlert.textContent = '';
                 modalSubmit.textContent = 'حفظ';
                 modalSubmit.disabled = false;
+
+                // Store action for submission
+                modal.dataset.action = action;
+                modal.dataset.endpoint = config.endpoint;
+                modal.dataset.getData = config.getData;
+
                 modal.classList.add('open');
                 document.body.style.overflow = 'hidden';
             }
@@ -1448,15 +2453,10 @@
             });
 
             // Quick action buttons
-            document.querySelectorAll('.quick-action-btn').forEach(function(btn) {
+            document.querySelectorAll('.quick-action-btn[data-action]').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     const action = this.dataset.action;
-                    if (action && actionMap[action]) {
-                        openModal(action);
-                    } else {
-                        // Fallback: show coming soon message
-                        alert('هذه الميزة قيد التطوير وسيتم إضافتها قريباً.');
-                    }
+                    openModal(action);
                 });
             });
 
@@ -1466,47 +2466,60 @@
             actionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                // Gather form data
-                const formData = new FormData(this);
-                const data = {};
-                formData.forEach((value, key) => {
-                    data[key] = value;
-                });
+                const endpoint = this.closest('.modal').dataset.endpoint;
+                const getData = window[this.closest('.modal').dataset.getData] || function() { return {}; };
+                const data = getData();
 
-                // Check for required fields (simple validation)
+                // Check required fields
                 let hasError = false;
-                let errorMessage = '';
-                const requiredInputs = this.querySelectorAll('[required]');
-                requiredInputs.forEach(function(input) {
+                this.querySelectorAll('[required]').forEach(function(input) {
                     if (!input.value.trim()) {
                         hasError = true;
-                        const label = input.closest('.form-group')?.querySelector('label')?.textContent?.trim() || 'حقل';
-                        errorMessage = 'يرجى ملء جميع الحقول المطلوبة';
                     }
                 });
 
                 if (hasError) {
                     modalAlert.className = 'alert-modal error';
-                    modalAlert.textContent = errorMessage;
+                    modalAlert.textContent = 'يرجى ملء جميع الحقول المطلوبة';
                     return;
                 }
 
-                // Show loading
                 modalSubmit.disabled = true;
                 modalSubmit.textContent = 'جاري الحفظ...';
 
-                // Simulate save
-                setTimeout(function() {
-                    modalAlert.className = 'alert-modal success';
-                    modalAlert.textContent = 'تم الحفظ بنجاح!';
-
-                    // Show success for 1.5 seconds then close
-                    setTimeout(function() {
-                        closeModal();
-                        // Refresh page to show new data (in production, we'd update the UI dynamically)
-                        location.reload();
-                    }, 1500);
-                }, 1000);
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then(r => r.json())
+                .then(result => {
+                    if (result.success) {
+                        modalAlert.className = 'alert-modal success';
+                        modalAlert.textContent = 'تم الحفظ بنجاح!';
+                        setTimeout(function() {
+                            closeModal();
+                            // Reload current tab
+                            const activeTab = document.querySelector('.tab-content.active');
+                            if (activeTab) {
+                                const tabId = activeTab.id.replace('tab-', '');
+                                loadTabData(tabId);
+                            }
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        modalAlert.className = 'alert-modal error';
+                        modalAlert.textContent = 'حدث خطأ أثناء الحفظ';
+                        modalSubmit.disabled = false;
+                        modalSubmit.textContent = 'حفظ';
+                    }
+                })
+                .catch(function() {
+                    modalAlert.className = 'alert-modal error';
+                    modalAlert.textContent = 'حدث خطأ في الاتصال بالخادم';
+                    modalSubmit.disabled = false;
+                    modalSubmit.textContent = 'حفظ';
+                });
             });
 
             // ============================================
@@ -1525,8 +2538,22 @@
                 }
             });
 
-            console.log('📊 Dashboard loaded with interactive actions');
-            console.log('📍 Church: Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
+            // ============================================
+            // Initial Load
+            // ============================================
+            // Load overview tab data
+            loadMasses();
+            loadServices();
+            loadEvents();
+            loadNews();
+            loadSermons();
+            loadGallery();
+            loadPriests();
+            loadFAQ();
+            loadPrayerRequests();
+
+            console.log('📊 Dashboard loaded successfully');
+            console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
         })();
     </script>
