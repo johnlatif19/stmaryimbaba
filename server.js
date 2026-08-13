@@ -106,15 +106,15 @@ app.get('/api/auth/verify', (req, res) => {
 // Get all content counts
 app.get('/api/stats', (req, res) => {
   res.json({
-    masses: 4,
-    services: 6,
+    masses: 7,
+    services: 3,
     events: 2,
     news: 0,
     sermons: 0,
     gallery: 0,
-    priests: 6,
-    prayerRequests: 5,
-    faq: 8
+    priests: 5,
+    prayerRequests: 2,
+    faq: 5
   });
 });
 
@@ -125,8 +125,8 @@ let masses = [
   { id: 3, day: 'الثلاثاء', time: '٧:٠٠ ص – ٩:٠٠ ص', location: 'كنيسة السيدة العذراء', priest: 'أبونا القس أثناسيوس ونيس' },
   { id: 4, day: 'الأربعاء', time: '٧:٣٠ ص – ٩:٠٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس أرساني عبد المسيح' },
   { id: 5, day: 'الخميس', time: '٧:٣٠ ص – ٩:٣٠ ص', location: 'الكنيسة الرئيسية', priest: 'أبونا القس أرساني عبد المسيح' },
-  { id: 6, day: 'الجمعة', time: '٦:٠٠ ص – ٨:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس أنسطاسي ثابت' },
-  { id: 7, day: 'السبت', time: '٨:٠٠ ص – ١٠:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس أنسطاسي ثابت' }
+  { id: 6, day: 'الجمعة', time: '٦:٠٠ ص – ٨:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس بضابا سمير روفائيل' },
+  { id: 7, day: 'السبت', time: '٨:٠٠ ص – ١٠:٠٠ ص', location: 'كنيسة الشهيد أبانوب', priest: 'أبونا القس جوارجيوس عبد الملاك' }
 ];
 
 app.get('/api/masses', (req, res) => {
@@ -287,14 +287,13 @@ app.delete('/api/gallery/:id', (req, res) => {
   res.json({ success: true });
 });
 
-// Priests
+// Priests (5 priests - removed Anstasi Thabet)
 let priests = [
   { id: 1, name: 'أبونا القس تيموثاؤس عزيز', title: 'كاهن الكنيسة', english: 'Fr. Timotheos Aziz', status: 'current' },
   { id: 2, name: 'أبونا القس أثناسيوس ونيس', title: 'كاهن الكنيسة', english: 'Fr. Athanasius Wanees', status: 'current' },
   { id: 3, name: 'أبونا القس أرساني عبد المسيح', title: 'كاهن الكنيسة', english: 'Fr. Arsani Abdelmasih', status: 'current' },
-  { id: 4, name: 'أبونا القس أنسطاسي ثابت شحاته', title: 'كاهن الكنيسة', english: 'Fr. Anastasi Thabet', status: 'current' },
-  { id: 5, name: 'أبونا القس بضابا سمير روفائيل', title: 'كاهن الكنيسة', english: 'Fr. Badaba Sameer', status: 'current' },
-  { id: 6, name: 'أبونا القس جوارجيوس عبد الملاك', title: 'كاهن الكنيسة', english: 'Fr. Georgios Abdelmalak', status: 'current' }
+  { id: 4, name: 'أبونا القس بضابا سمير روفائيل', title: 'كاهن الكنيسة', english: 'Fr. Badaba Sameer Raphael', status: 'current' },
+  { id: 5, name: 'أبونا القس جوارجيوس عبد الملاك', title: 'كاهن الكنيسة', english: 'Fr. Georgios Abdelmalak', status: 'current' }
 ];
 
 app.get('/api/priests', (req, res) => {
@@ -353,10 +352,10 @@ app.delete('/api/prayer-requests/:id', (req, res) => {
 
 // FAQ
 let faqs = [
-  { id: 1, question: 'ما هي مواعيد القداسات في الكنيسة؟', answer: 'تقام القداسات الإلهية يومياً في الكنيسة.' },
-  { id: 2, question: 'كيف يمكنني التواصل مع الكنيسة؟', answer: 'يمكنك التواصل من خلال صفحة اتصل بنا.' },
-  { id: 3, question: 'هل توجد خدمات للشباب والأطفال؟', answer: 'نعم، توجد خدمات متنوعة للشباب والأطفال.' },
-  { id: 4, question: 'كيف يمكنني تقديم طلب صلاة؟', answer: 'يمكنك تقديم طلب صلاة من خلال صفحة طلب صلاة.' },
+  { id: 1, question: 'ما هي مواعيد القداسات في الكنيسة؟', answer: 'تقام القداسات الإلهية يومياً في الكنيسة. يمكنك الاطلاع على جدول القداسات الكامل في صفحة القداسات.' },
+  { id: 2, question: 'كيف يمكنني التواصل مع الكنيسة؟', answer: 'يمكنك التواصل من خلال صفحة اتصل بنا، أو من خلال زيارة الكنيسة في العنوان: المنيرة، إمبابة، محافظة الجيزة.' },
+  { id: 3, question: 'هل توجد خدمات للشباب والأطفال؟', answer: 'نعم، توجد خدمات متنوعة للشباب والأطفال تشمل لقاءات روحية وأنشطة ودروس تعليمية.' },
+  { id: 4, question: 'كيف يمكنني تقديم طلب صلاة؟', answer: 'يمكنك تقديم طلب صلاة من خلال صفحة طلب صلاة المتاحة على الموقع، وسيتم عرض الطلبات للآباء الكهنة.' },
   { id: 5, question: 'ما هو موقع الكنيسة؟', answer: 'المنيرة، إمبابة، محافظة الجيزة، Plus Code: 36P3+974' }
 ];
 
