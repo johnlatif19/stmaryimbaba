@@ -9,9 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style>
-        /* ============================================
-           RESET & BASE
-           ============================================ */
         *,
         *::before,
         *::after {
@@ -72,27 +69,21 @@
             text-decoration: none;
             color: inherit;
         }
-
         img {
             max-width: 100%;
             display: block;
         }
-
         button {
             cursor: pointer;
             font-family: inherit;
             border: none;
             background: none;
         }
-
         ul,
         ol {
             list-style: none;
         }
 
-        /* ============================================
-           SIDEBAR
-           ============================================ */
         .sidebar {
             position: fixed;
             top: 0;
@@ -108,7 +99,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .sidebar::-webkit-scrollbar {
             width: 4px;
         }
@@ -119,7 +109,6 @@
             background: rgba(255, 255, 255, 0.15);
             border-radius: 4px;
         }
-
         .sidebar-brand {
             padding: 20px 20px 16px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -128,33 +117,28 @@
             gap: 12px;
             flex-shrink: 0;
         }
-
         .sidebar-brand img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
         }
-
         .sidebar-brand-text {
             font-size: 14px;
             font-weight: 600;
             color: #fff;
             line-height: 1.3;
         }
-
         .sidebar-brand-text span {
             font-weight: 400;
             font-size: 11px;
             color: rgba(255, 255, 255, 0.5);
             display: block;
         }
-
         .sidebar-nav {
             padding: 12px 12px;
             flex: 1;
         }
-
         .sidebar-nav .nav-label {
             font-size: 11px;
             font-weight: 600;
@@ -163,7 +147,6 @@
             letter-spacing: 0.5px;
             padding: 12px 12px 6px;
         }
-
         .sidebar-nav a {
             display: flex;
             align-items: center;
@@ -177,28 +160,23 @@
             margin-bottom: 2px;
             cursor: pointer;
         }
-
         .sidebar-nav a:hover {
             background: rgba(255, 255, 255, 0.06);
             color: #fff;
         }
-
         .sidebar-nav a.active {
             background: rgba(255, 255, 255, 0.08);
             color: var(--gold-light);
         }
-
         .sidebar-nav a.active .icon {
             opacity: 1;
         }
-
         .sidebar-nav a .icon {
             width: 20px;
             height: 20px;
             flex-shrink: 0;
             opacity: 0.6;
         }
-
         .sidebar-nav a .badge {
             margin-right: auto;
             background: rgba(255, 255, 255, 0.08);
@@ -208,20 +186,17 @@
             font-weight: 600;
             color: rgba(255, 255, 255, 0.5);
         }
-
         .sidebar-footer {
             padding: 16px 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             flex-shrink: 0;
         }
-
         .sidebar-footer .user-info {
             display: flex;
             align-items: center;
             gap: 10px;
             padding: 8px 0;
         }
-
         .sidebar-footer .user-info .avatar {
             width: 32px;
             height: 32px;
@@ -234,18 +209,15 @@
             font-size: 14px;
             color: #fff;
         }
-
         .sidebar-footer .user-info .name {
             font-size: 13px;
             font-weight: 500;
             color: #fff;
         }
-
         .sidebar-footer .user-info .role {
             font-size: 11px;
             color: rgba(255, 255, 255, 0.4);
         }
-
         .sidebar-footer .logout-btn {
             display: flex;
             align-items: center;
@@ -257,14 +229,10 @@
             width: 100%;
             margin-top: 4px;
         }
-
         .sidebar-footer .logout-btn:hover {
             color: #ef4444;
         }
 
-        /* ============================================
-           MAIN CONTENT
-           ============================================ */
         .main-content {
             margin-right: var(--sidebar-width);
             flex: 1;
@@ -273,9 +241,6 @@
             flex-direction: column;
         }
 
-        /* ============================================
-           HEADER (Top Bar)
-           ============================================ */
         .topbar {
             position: sticky;
             top: 0;
@@ -290,24 +255,20 @@
             align-items: center;
             justify-content: space-between;
         }
-
         .topbar .page-title h1 {
             font-size: 18px;
             font-weight: 600;
             color: var(--navy);
         }
-
         .topbar .page-title p {
             font-size: 13px;
             color: var(--neutral-500);
         }
-
         .topbar-actions {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
         .topbar-actions .btn-icon {
             width: 38px;
             height: 38px;
@@ -319,12 +280,10 @@
             transition: background var(--transition), color var(--transition);
             position: relative;
         }
-
         .topbar-actions .btn-icon:hover {
             background: var(--neutral-200);
             color: var(--navy);
         }
-
         .topbar-actions .btn-icon .dot {
             position: absolute;
             top: 8px;
@@ -335,14 +294,12 @@
             background: #ef4444;
             border: 2px solid #fff;
         }
-
         .topbar-actions .btn-mobile-menu {
             display: none;
             flex-direction: column;
             gap: 4px;
             padding: 4px;
         }
-
         .topbar-actions .btn-mobile-menu span {
             display: block;
             width: 22px;
@@ -352,22 +309,17 @@
             transition: var(--transition);
         }
 
-        /* ============================================
-           DASHBOARD CONTENT
-           ============================================ */
         .dashboard-content {
             padding: 32px;
             flex: 1;
         }
 
-        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 16px;
             margin-bottom: 32px;
         }
-
         .stat-card {
             background: #fff;
             padding: 20px 24px;
@@ -376,39 +328,33 @@
             transition: border-color var(--transition), box-shadow var(--transition);
             cursor: pointer;
         }
-
         .stat-card:hover {
             border-color: var(--neutral-300);
             box-shadow: var(--shadow-sm);
         }
-
         .stat-card .stat-label {
             font-size: 13px;
             color: var(--neutral-500);
             font-weight: 500;
         }
-
         .stat-card .stat-value {
             font-size: 28px;
             font-weight: 700;
             color: var(--navy);
             margin-top: 2px;
         }
-
         .stat-card .stat-change {
             font-size: 12px;
             color: var(--neutral-400);
             margin-top: 4px;
         }
 
-        /* Quick Actions */
         .quick-actions {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 12px;
             margin-bottom: 32px;
         }
-
         .quick-action-btn {
             padding: 16px;
             background: #fff;
@@ -425,19 +371,16 @@
             gap: 6px;
             width: 100%;
         }
-
         .quick-action-btn:hover {
             border-color: var(--gold);
             box-shadow: var(--shadow-sm);
         }
-
         .quick-action-btn .icon {
             width: 24px;
             height: 24px;
             opacity: 0.5;
         }
 
-        /* Section Card */
         .section-card {
             background: #fff;
             border: 1px solid var(--neutral-200);
@@ -445,7 +388,6 @@
             overflow: hidden;
             margin-bottom: 24px;
         }
-
         .section-card .card-header {
             padding: 16px 24px;
             border-bottom: 1px solid var(--neutral-200);
@@ -455,13 +397,11 @@
             flex-wrap: wrap;
             gap: 8px;
         }
-
         .section-card .card-header h3 {
             font-size: 16px;
             font-weight: 600;
             color: var(--navy);
         }
-
         .section-card .card-header a {
             font-size: 13px;
             color: var(--gold-dark);
@@ -469,11 +409,9 @@
             transition: color var(--transition);
             cursor: pointer;
         }
-
         .section-card .card-header a:hover {
             color: var(--gold);
         }
-
         .section-card .card-body {
             padding: 16px 24px;
         }
@@ -485,11 +423,9 @@
             padding: 10px 0;
             border-bottom: 1px solid var(--neutral-100);
         }
-
         .activity-item:last-child {
             border-bottom: none;
         }
-
         .activity-item .activity-icon {
             width: 36px;
             height: 36px;
@@ -501,22 +437,18 @@
             flex-shrink: 0;
             color: var(--neutral-500);
         }
-
         .activity-item .activity-content {
             flex: 1;
         }
-
         .activity-item .activity-content .title {
             font-size: 14px;
             font-weight: 500;
             color: var(--neutral-700);
         }
-
         .activity-item .activity-content .desc {
             font-size: 13px;
             color: var(--neutral-400);
         }
-
         .activity-item .activity-time {
             font-size: 12px;
             color: var(--neutral-400);
@@ -528,34 +460,28 @@
             padding: 40px 20px;
             color: var(--neutral-400);
         }
-
         .empty-state-dashboard .empty-icon {
             font-size: 40px;
             margin-bottom: 12px;
             opacity: 0.3;
         }
-
         .empty-state-dashboard h4 {
             font-size: 16px;
             color: var(--neutral-500);
             margin-bottom: 4px;
         }
-
         .empty-state-dashboard p {
             font-size: 14px;
         }
 
-        /* Data Table */
         .data-table-wrapper {
             overflow-x: auto;
         }
-
         .data-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
         }
-
         .data-table th {
             text-align: right;
             padding: 10px 12px;
@@ -564,22 +490,18 @@
             color: var(--neutral-600);
             border-bottom: 2px solid var(--neutral-200);
         }
-
         .data-table td {
             padding: 10px 12px;
             border-bottom: 1px solid var(--neutral-100);
             color: var(--neutral-700);
         }
-
         .data-table tr:hover td {
             background: var(--ivory-light);
         }
-
         .data-table .actions {
             display: flex;
             gap: 6px;
         }
-
         .data-table .actions button {
             padding: 4px 10px;
             border-radius: var(--radius-sm);
@@ -587,37 +509,28 @@
             font-weight: 500;
             transition: all var(--transition);
         }
-
         .data-table .actions .btn-edit {
             background: rgba(184, 148, 60, 0.1);
             color: var(--gold-dark);
         }
-
         .data-table .actions .btn-edit:hover {
             background: rgba(184, 148, 60, 0.2);
         }
-
         .data-table .actions .btn-delete {
             background: rgba(239, 68, 68, 0.1);
             color: #dc2626;
         }
-
         .data-table .actions .btn-delete:hover {
             background: rgba(239, 68, 68, 0.2);
         }
 
-        /* Tab Content */
         .tab-content {
             display: none;
         }
-
         .tab-content.active {
             display: block;
         }
 
-        /* ============================================
-           MODAL
-           ============================================ */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -633,11 +546,9 @@
             justify-content: center;
             padding: 20px;
         }
-
         .modal-overlay.open {
             display: flex;
         }
-
         .modal {
             background: #fff;
             border-radius: var(--radius-lg);
@@ -649,7 +560,6 @@
             overflow-y: auto;
             animation: modalFadeIn 0.25s ease;
         }
-
         @keyframes modalFadeIn {
             from {
                 opacity: 0;
@@ -660,7 +570,6 @@
                 transform: scale(1) translateY(0);
             }
         }
-
         .modal-header {
             display: flex;
             align-items: center;
@@ -669,13 +578,11 @@
             padding-bottom: 12px;
             border-bottom: 1px solid var(--neutral-200);
         }
-
         .modal-header h2 {
             font-size: 20px;
             font-weight: 700;
             color: var(--navy);
         }
-
         .modal-header .modal-close {
             width: 36px;
             height: 36px;
@@ -687,16 +594,13 @@
             font-size: 22px;
             transition: background var(--transition), color var(--transition);
         }
-
         .modal-header .modal-close:hover {
             background: var(--neutral-100);
             color: var(--neutral-700);
         }
-
         .modal .form-group {
             margin-bottom: 14px;
         }
-
         .modal .form-group label {
             display: block;
             font-size: 14px;
@@ -704,12 +608,10 @@
             color: var(--neutral-700);
             margin-bottom: 4px;
         }
-
         .modal .form-group label .required {
             color: #c0392b;
             margin-right: 2px;
         }
-
         .modal .form-group input,
         .modal .form-group textarea,
         .modal .form-group select {
@@ -724,19 +626,16 @@
             transition: border-color var(--transition), box-shadow var(--transition);
             outline: none;
         }
-
         .modal .form-group input:focus,
         .modal .form-group textarea:focus,
         .modal .form-group select:focus {
             border-color: var(--gold);
             box-shadow: 0 0 0 3px rgba(184, 148, 60, 0.10);
         }
-
         .modal .form-group textarea {
             min-height: 80px;
             resize: vertical;
         }
-
         .modal .btn-submit {
             width: 100%;
             padding: 12px;
@@ -748,16 +647,13 @@
             transition: background var(--transition);
             margin-top: 4px;
         }
-
         .modal .btn-submit:hover {
             background: var(--navy-light);
         }
-
         .modal .btn-submit:disabled {
             opacity: 0.6;
             cursor: not-allowed;
         }
-
         .modal .alert-modal {
             padding: 10px 14px;
             border-radius: var(--radius-sm);
@@ -765,14 +661,12 @@
             display: none;
             margin-bottom: 12px;
         }
-
         .modal .alert-modal.error {
             display: block;
             background: #fde8e8;
             color: #c0392b;
             border: 1px solid #f5c6c6;
         }
-
         .modal .alert-modal.success {
             display: block;
             background: #e8f5e9;
@@ -780,9 +674,6 @@
             border: 1px solid #c8e6c9;
         }
 
-        /* ============================================
-           MOBILE OVERLAY
-           ============================================ */
         .sidebar-overlay {
             display: none;
             position: fixed;
@@ -795,132 +686,102 @@
             opacity: 0;
             transition: opacity var(--transition);
         }
-
         .sidebar-overlay.open {
             display: block;
             opacity: 1;
         }
 
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
         @media (max-width: 1024px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-
         @media (max-width: 820px) {
             .sidebar {
                 transform: translateX(100%);
             }
-
             .sidebar.open {
                 transform: translateX(0);
             }
-
             .sidebar-overlay.open {
                 display: block;
             }
-
             .main-content {
                 margin-right: 0;
             }
-
             .topbar .page-title p {
                 display: none;
             }
-
             .topbar-actions .btn-mobile-menu {
                 display: flex;
             }
-
             .dashboard-content {
                 padding: 20px;
             }
-
             .quick-actions {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-
         @media (max-width: 600px) {
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
             }
-
             .stat-card {
                 padding: 14px 16px;
             }
-
             .stat-card .stat-value {
                 font-size: 22px;
             }
-
             .topbar {
                 padding: 0 16px;
             }
-
             .topbar .page-title h1 {
                 font-size: 16px;
             }
-
             .dashboard-content {
                 padding: 16px;
             }
-
             .section-card .card-header {
                 padding: 12px 16px;
                 flex-direction: column;
                 align-items: flex-start;
             }
-
             .section-card .card-body {
                 padding: 12px 16px;
             }
-
             .quick-actions {
                 grid-template-columns: 1fr 1fr;
                 gap: 8px;
             }
-
             .quick-action-btn {
                 padding: 12px;
                 font-size: 12px;
             }
-
             .modal {
                 padding: 20px 16px 24px;
                 border-radius: var(--radius-md);
                 margin: 10px;
             }
-
             .data-table th,
             .data-table td {
                 padding: 8px 10px;
                 font-size: 13px;
             }
-
             .data-table .actions button {
                 padding: 2px 8px;
                 font-size: 11px;
             }
         }
-
         @media (max-width: 400px) {
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-
             .quick-actions {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* ============================================
-           UTILITY
-           ============================================ */
         .text-gold {
             color: var(--gold);
         }
@@ -996,7 +857,7 @@
                     <line x1="15" y1="9" x2="15.01" y2="9" />
                 </svg>
                 القداسات
-                <span class="badge" id="massesBadge">4</span>
+                <span class="badge" id="massesBadge">7</span>
             </a>
             <a data-tab="services">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1050,7 +911,7 @@
                     <circle cx="12" cy="7" r="4" />
                 </svg>
                 الآباء الكهنة
-                <span class="badge" id="priestsBadge">6</span>
+                <span class="badge" id="priestsBadge">5</span>
             </a>
             <a data-tab="saints">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1146,11 +1007,10 @@
             ============================================ -->
             <div class="tab-content active" id="tab-overview">
 
-                <!-- Stats -->
                 <div class="stats-grid" id="statsGrid">
                     <div class="stat-card" data-tab="masses">
                         <div class="stat-label">القداسات</div>
-                        <div class="stat-value" id="statMasses">4</div>
+                        <div class="stat-value" id="statMasses">7</div>
                         <div class="stat-change">هذا الأسبوع</div>
                     </div>
                     <div class="stat-card" data-tab="services">
@@ -1170,7 +1030,6 @@
                     </div>
                 </div>
 
-                <!-- Quick Actions -->
                 <div class="quick-actions">
                     <button class="quick-action-btn" data-action="add-mass">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1221,7 +1080,6 @@
                     </button>
                 </div>
 
-                <!-- Recent Activity -->
                 <div class="section-card">
                     <div class="card-header">
                         <h3>آخر النشاطات</h3>
@@ -1270,6 +1128,142 @@
                     </div>
                 </div>
             </div>
+                        <!-- ============================================
+            TAB: Pages
+            ============================================ -->
+            <div class="tab-content" id="tab-pages">
+                <div class="flex-between mb-16">
+                    <h2 class="section-title">إدارة الصفحات</h2>
+                    <button class="quick-action-btn" data-action="add-page" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة صفحة
+                    </button>
+                </div>
+                <div class="section-card">
+                    <div class="card-body">
+                        <div class="data-table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>الصفحة</th>
+                                        <th>الرابط</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>الرئيسية</td>
+                                        <td>/</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>عن الكنيسة</td>
+                                        <td>/church</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>القداسات</td>
+                                        <td>/masses</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>الخدمات</td>
+                                        <td>/services</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>الفعاليات</td>
+                                        <td>/events</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>الأخبار</td>
+                                        <td>/news</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>العظات</td>
+                                        <td>/sermons</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>المعرض</td>
+                                        <td>/gallery</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>الآباء الكهنة</td>
+                                        <td>/priests</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>الشفيعان</td>
+                                        <td>/saints</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>الأسئلة الشائعة</td>
+                                        <td>/faq</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>البحث</td>
+                                        <td>/search</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>طلب صلاة</td>
+                                        <td>/prayer-request</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>اتصل بنا</td>
+                                        <td>/contact</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>سياسة الخصوصية</td>
+                                        <td>/privacy</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>شروط الاستخدام</td>
+                                        <td>/terms</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>خريطة الموقع</td>
+                                        <td>/sitemap</td>
+                                        <td>🟢 منشورة</td>
+                                        <td><button class="btn-edit">تعديل</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- ============================================
             TAB: Masses
@@ -1299,9 +1293,7 @@
                                         <th>الإجراءات</th>
                                     </tr>
                                 </thead>
-                                <tbody id="massesTableBody">
-                                    <!-- Dynamic content -->
-                                </tbody>
+                                <tbody id="massesTableBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -1336,9 +1328,7 @@
                                         <th>الإجراءات</th>
                                     </tr>
                                 </thead>
-                                <tbody id="servicesTableBody">
-                                    <!-- Dynamic content -->
-                                </tbody>
+                                <tbody id="servicesTableBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -1372,9 +1362,7 @@
                                         <th>الإجراءات</th>
                                     </tr>
                                 </thead>
-                                <tbody id="eventsTableBody">
-                                    <!-- Dynamic content -->
-                                </tbody>
+                                <tbody id="eventsTableBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -1524,9 +1512,7 @@
                                         <th>الإجراءات</th>
                                     </tr>
                                 </thead>
-                                <tbody id="priestsTableBody">
-                                    <!-- Dynamic content -->
-                                </tbody>
+                                <tbody id="priestsTableBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -1539,15 +1525,46 @@
             <div class="tab-content" id="tab-saints">
                 <h2 class="section-title">الشفيعان</h2>
                 <p class="text-muted">السيدة العذراء مريم والشهيد أبانوب النهيسي</p>
+
                 <div class="section-card mt-16">
+                    <div class="card-header">
+                        <h3>السيدة العذراء مريم</h3>
+                        <button class="quick-action-btn" style="width:auto; padding:4px 16px; flex-direction:row; gap:6px; font-size:13px;" onclick="alert('تعديل معلومات السيدة العذراء مريم')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                            </svg>
+                            تعديل
+                        </button>
+                    </div>
                     <div class="card-body">
-                        <div class="empty-state-dashboard">
-                            <div class="empty-icon">⛪</div>
-                            <h4>معلومات الشفيعان</h4>
-                            <p>سيتم إضافة صفحة لإدارة الشفيعان قريباً</p>
-                            <p style="font-size:13px; color:var(--neutral-400); margin-top:8px;">
-                                حالياً يمكنك تعديل المعلومات من ملف saints.html
-                            </p>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                            <div><strong>اللقب:</strong> والدة الإله</div>
+                            <div><strong>الإنجليزية:</strong> Saint Mary the Theotokos</div>
+                            <div><strong>عيدها الرئيسي:</strong> ٢١ طوبة</div>
+                            <div><strong>العيد الشهري:</strong> ٢١ من كل شهر قبطي</div>
+                            <div><strong>أعياد أخرى:</strong> ٧ مسرى، ١ بشنس، ٣ كيهك، ٢٤ بشنس، ١٦ مسرى، ٢١ بؤونة، ٢٤ برمهات</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="card-header">
+                        <h3>الشهيد أبانوب النهيسي</h3>
+                        <button class="quick-action-btn" style="width:auto; padding:4px 16px; flex-direction:row; gap:6px; font-size:13px;" onclick="alert('تعديل معلومات الشهيد أبانوب')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                            </svg>
+                            تعديل
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                            <div><strong>اللقب:</strong> القديس الشهيد</div>
+                            <div><strong>الإنجليزية:</strong> Saint Abanoub El-Nehisy</div>
+                            <div><strong>عيد استشهاده:</strong> ٢٤ أبيب</div>
+                            <div><strong>الشفيع:</strong> كنيسة إمبابة</div>
                         </div>
                     </div>
                 </div>
@@ -1579,9 +1596,7 @@
                                         <th>الإجراءات</th>
                                     </tr>
                                 </thead>
-                                <tbody id="faqTableBody">
-                                    <!-- Dynamic content -->
-                                </tbody>
+                                <tbody id="faqTableBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -1607,9 +1622,7 @@
                                         <th>الإجراءات</th>
                                     </tr>
                                 </thead>
-                                <tbody id="prayerTableBody">
-                                    <!-- Dynamic content -->
-                                </tbody>
+                                <tbody id="prayerTableBody"></tbody>
                             </table>
                         </div>
                     </div>
@@ -1622,16 +1635,34 @@
             <div class="tab-content" id="tab-settings">
                 <h2 class="section-title">إعدادات الموقع</h2>
                 <p class="text-muted">إدارة إعدادات الكنيسة والمعلومات العامة</p>
+
                 <div class="section-card mt-16">
                     <div class="card-body">
-                        <div class="empty-state-dashboard">
-                            <div class="empty-icon">⚙️</div>
-                            <h4>إعدادات الموقع</h4>
-                            <p>سيتم إضافة لوحة إعدادات كاملة قريباً</p>
-                            <p style="font-size:13px; color:var(--neutral-400); margin-top:8px;">
-                                يمكنك تعديل الإعدادات من خلال متغيرات البيئة في .env
-                            </p>
-                        </div>
+                        <form id="settingsForm" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                            <div class="form-group">
+                                <label>اسم الكنيسة (عربي)</label>
+                                <input type="text" value="كنيسة السيدة العذراء مريم والشهيد أبانوب" class="form-control" style="width:100%; padding:10px 14px; border:1.5px solid var(--neutral-200); border-radius:var(--radius-sm); font-size:15px;" />
+                            </div>
+                            <div class="form-group">
+                                <label>اسم الكنيسة (إنجليزي)</label>
+                                <input type="text" value="Saint Mary and St. Abanoub Coptic Orthodox Church" class="form-control" style="width:100%; padding:10px 14px; border:1.5px solid var(--neutral-200); border-radius:var(--radius-sm); font-size:15px;" />
+                            </div>
+                            <div class="form-group">
+                                <label>العنوان</label>
+                                <input type="text" value="المنيرة، إمبابة، محافظة الجيزة، مصر" class="form-control" style="width:100%; padding:10px 14px; border:1.5px solid var(--neutral-200); border-radius:var(--radius-sm); font-size:15px;" />
+                            </div>
+                            <div class="form-group">
+                                <label>Plus Code</label>
+                                <input type="text" value="36P3+974" class="form-control" style="width:100%; padding:10px 14px; border:1.5px solid var(--neutral-200); border-radius:var(--radius-sm); font-size:15px;" />
+                            </div>
+                            <div class="form-group">
+                                <label>الإيبارشية</label>
+                                <input type="text" value="إيبارشية شمال الجيزة وتوابعها" class="form-control" style="width:100%; padding:10px 14px; border:1.5px solid var(--neutral-200); border-radius:var(--radius-sm); font-size:15px;" />
+                            </div>
+                            <div class="form-group" style="display:flex; align-items:flex-end;">
+                                <button type="button" class="btn-submit" style="width:100%;" onclick="alert('تم حفظ الإعدادات بنجاح')">حفظ الإعدادات</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1642,35 +1673,51 @@
             <div class="tab-content" id="tab-users">
                 <h2 class="section-title">إدارة المستخدمين</h2>
                 <p class="text-muted">إدارة حسابات المستخدمين والصلاحيات</p>
-                <div class="section-card mt-16">
-                    <div class="card-body">
-                        <div class="empty-state-dashboard">
-                            <div class="empty-icon">👤</div>
-                            <h4>إدارة المستخدمين</h4>
-                            <p>سيتم إضافة نظام إدارة المستخدمين قريباً</p>
-                            <p style="font-size:13px; color:var(--neutral-400); margin-top:8px;">
-                                حالياً يوجد حساب Admin واحد فقط
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- ============================================
-            TAB: Pages
-            ============================================ -->
-            <div class="tab-content" id="tab-pages">
-                <h2 class="section-title">إدارة الصفحات</h2>
-                <p class="text-muted">إدارة الصفحات الديناميكية للموقع</p>
-                <div class="section-card mt-16">
+                <div class="flex-between mt-16 mb-16">
+                    <div></div>
+                    <button class="quick-action-btn" style="width:auto; padding:8px 20px; flex-direction:row; gap:8px;" onclick="alert('سيتم فتح نموذج إضافة مستخدم جديد')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        إضافة مستخدم
+                    </button>
+                </div>
+
+                <div class="section-card">
                     <div class="card-body">
-                        <div class="empty-state-dashboard">
-                            <div class="empty-icon">📄</div>
-                            <h4>الصفحات الديناميكية</h4>
-                            <p>سيتم إضافة نظام إدارة الصفحات قريباً</p>
-                            <p style="font-size:13px; color:var(--neutral-400); margin-top:8px;">
-                                حالياً يمكنك تعديل الصفحات من ملفات HTML
-                            </p>
+                        <div class="data-table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>اسم المستخدم</th>
+                                        <th>الدور</th>
+                                        <th>الحالة</th>
+                                        <th>الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>admin</td>
+                                        <td>🛡️ مدير النظام</td>
+                                        <td>🟢 نشط</td>
+                                        <td>
+                                            <div class="actions">
+                                                <button class="btn-edit" onclick="alert('تعديل حساب admin')">تعديل</button>
+                                                <button class="btn-delete" onclick="alert('لا يمكن تعطيل حساب المدير الرئيسي')">تعطيل</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color:var(--neutral-400);">لا يوجد مستخدمين إضافيين</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -1768,6 +1815,7 @@
             // ============================================
             const tabs = {
                 overview: { title: 'نظرة عامة', subtitle: 'مرحباً بك في لوحة تحكم الكنيسة' },
+                pages: { title: 'الصفحات', subtitle: 'إدارة الصفحات الديناميكية للموقع' },
                 masses: { title: 'القداسات', subtitle: 'إدارة مواعيد القداسات' },
                 services: { title: 'الخدمات', subtitle: 'إدارة خدمات الكنيسة' },
                 events: { title: 'الفعاليات', subtitle: 'إدارة الفعاليات والأنشطة' },
@@ -1779,38 +1827,31 @@
                 faq: { title: 'الأسئلة الشائعة', subtitle: 'إدارة الأسئلة والأجوبة' },
                 'prayer-requests': { title: 'طلبات الصلاة', subtitle: 'إدارة طلبات الصلاة' },
                 settings: { title: 'إعدادات الموقع', subtitle: 'إدارة إعدادات الكنيسة' },
-                users: { title: 'المستخدمون', subtitle: 'إدارة حسابات المستخدمين' },
-                pages: { title: 'الصفحات', subtitle: 'إدارة الصفحات الديناميكية' }
+                users: { title: 'المستخدمون', subtitle: 'إدارة حسابات المستخدمين' }
             };
 
             function switchTab(tabId) {
-                // Update sidebar
                 sidebarNav.querySelectorAll('a').forEach(function(a) {
                     a.classList.toggle('active', a.dataset.tab === tabId);
                 });
 
-                // Update content
                 document.querySelectorAll('.tab-content').forEach(function(el) {
                     el.classList.toggle('active', el.id === 'tab-' + tabId);
                 });
 
-                // Update title
                 const tabInfo = tabs[tabId];
                 if (tabInfo) {
                     document.getElementById('pageTitle').textContent = tabInfo.title;
                     document.getElementById('pageSubtitle').textContent = tabInfo.subtitle;
                 }
 
-                // Close mobile sidebar
                 if (window.innerWidth <= 820) {
                     closeSidebar();
                 }
 
-                // Load data for tab
                 loadTabData(tabId);
             }
 
-            // Sidebar click
             sidebarNav.querySelectorAll('a[data-tab]').forEach(function(link) {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1819,7 +1860,6 @@
                 });
             });
 
-            // Stats cards click
             document.querySelectorAll('.stat-card[data-tab]').forEach(function(card) {
                 card.addEventListener('click', function() {
                     const tabId = this.dataset.tab;
@@ -1831,16 +1871,34 @@
             // Load Data for Tabs
             // ============================================
             function loadTabData(tabId) {
-                switch(tabId) {
-                    case 'masses': loadMasses(); break;
-                    case 'services': loadServices(); break;
-                    case 'events': loadEvents(); break;
-                    case 'news': loadNews(); break;
-                    case 'sermons': loadSermons(); break;
-                    case 'gallery': loadGallery(); break;
-                    case 'priests': loadPriests(); break;
-                    case 'faq': loadFAQ(); break;
-                    case 'prayer-requests': loadPrayerRequests(); break;
+                switch (tabId) {
+                    case 'masses':
+                        loadMasses();
+                        break;
+                    case 'services':
+                        loadServices();
+                        break;
+                    case 'events':
+                        loadEvents();
+                        break;
+                    case 'news':
+                        loadNews();
+                        break;
+                    case 'sermons':
+                        loadSermons();
+                        break;
+                    case 'gallery':
+                        loadGallery();
+                        break;
+                    case 'priests':
+                        loadPriests();
+                        break;
+                    case 'faq':
+                        loadFAQ();
+                        break;
+                    case 'prayer-requests':
+                        loadPrayerRequests();
+                        break;
                 }
             }
 
@@ -2167,16 +2225,16 @@
                     .then(() => loadPrayerRequests());
             };
 
-            // Edit functions (placeholder - will open modal with data)
-            ['Mass', 'Service', 'Event', 'News', 'Sermon', 'Priest', 'FAQ', 'Prayer'].forEach(function(type) {
-                window['edit' + type] = function(id) {
-                    alert('تعديل ' + type + ' (ID: ' + id + ')\nسيتم فتح نافذة تعديل قريباً');
-                };
-            });
-
-            window.editAlbum = function(id) {
-                alert('تعديل ألبوم (ID: ' + id + ')\nسيتم فتح نافذة تعديل قريباً');
-            };
+            // Edit functions
+            window.editMass = function(id) { alert('تعديل قداس (ID: ' + id + ')'); };
+            window.editService = function(id) { alert('تعديل خدمة (ID: ' + id + ')'); };
+            window.editEvent = function(id) { alert('تعديل فعالية (ID: ' + id + ')'); };
+            window.editNews = function(id) { alert('تعديل خبر (ID: ' + id + ')'); };
+            window.editSermon = function(id) { alert('تعديل عظة (ID: ' + id + ')'); };
+            window.editPriest = function(id) { alert('تعديل كاهن (ID: ' + id + ')'); };
+            window.editFAQ = function(id) { alert('تعديل سؤال (ID: ' + id + ')'); };
+            window.editPrayer = function(id) { alert('تعديل طلب صلاة (ID: ' + id + ')'); };
+            window.editAlbum = function(id) { alert('تعديل ألبوم (ID: ' + id + ')'); };
 
             // ============================================
             // Logout
@@ -2245,12 +2303,14 @@
                             <input type="text" id="massPriest" placeholder="اسم الكاهن" />
                         </div>
                     `,
-                    getData: () => ({
-                        day: document.getElementById('massDay').value,
-                        time: document.getElementById('massTime').value,
-                        location: document.getElementById('massLocation').value,
-                        priest: document.getElementById('massPriest').value
-                    })
+                    getData: function() {
+                        return {
+                            day: document.getElementById('massDay').value,
+                            time: document.getElementById('massTime').value,
+                            location: document.getElementById('massLocation').value,
+                            priest: document.getElementById('massPriest').value
+                        };
+                    }
                 },
                 'add-service': {
                     title: 'إضافة خدمة جديدة',
@@ -2273,12 +2333,14 @@
                             <input type="text" id="serviceTime" placeholder="مثال: ٧:٠٠ م" />
                         </div>
                     `,
-                    getData: () => ({
-                        name: document.getElementById('serviceName').value,
-                        description: document.getElementById('serviceDesc').value,
-                        day: document.getElementById('serviceDay').value,
-                        time: document.getElementById('serviceTime').value
-                    })
+                    getData: function() {
+                        return {
+                            name: document.getElementById('serviceName').value,
+                            description: document.getElementById('serviceDesc').value,
+                            day: document.getElementById('serviceDay').value,
+                            time: document.getElementById('serviceTime').value
+                        };
+                    }
                 },
                 'add-event': {
                     title: 'إضافة فعالية جديدة',
@@ -2297,11 +2359,13 @@
                             <input type="text" id="eventDate" placeholder="مثال: ١٥ مايو ٢٠٢٦" />
                         </div>
                     `,
-                    getData: () => ({
-                        title: document.getElementById('eventTitle').value,
-                        description: document.getElementById('eventDesc').value,
-                        date: document.getElementById('eventDate').value
-                    })
+                    getData: function() {
+                        return {
+                            title: document.getElementById('eventTitle').value,
+                            description: document.getElementById('eventDesc').value,
+                            date: document.getElementById('eventDate').value
+                        };
+                    }
                 },
                 'add-news': {
                     title: 'إضافة خبر جديد',
@@ -2316,10 +2380,12 @@
                             <textarea id="newsContent" placeholder="محتوى الخبر"></textarea>
                         </div>
                     `,
-                    getData: () => ({
-                        title: document.getElementById('newsTitle').value,
-                        content: document.getElementById('newsContent').value
-                    })
+                    getData: function() {
+                        return {
+                            title: document.getElementById('newsTitle').value,
+                            content: document.getElementById('newsContent').value
+                        };
+                    }
                 },
                 'add-sermon': {
                     title: 'إضافة عظة جديدة',
@@ -2338,11 +2404,13 @@
                             <input type="text" id="sermonVideo" placeholder="https://www.youtube.com/embed/..." />
                         </div>
                     `,
-                    getData: () => ({
-                        title: document.getElementById('sermonTitle').value,
-                        description: document.getElementById('sermonDesc').value,
-                        video: document.getElementById('sermonVideo').value
-                    })
+                    getData: function() {
+                        return {
+                            title: document.getElementById('sermonTitle').value,
+                            description: document.getElementById('sermonDesc').value,
+                            video: document.getElementById('sermonVideo').value
+                        };
+                    }
                 },
                 'upload-images': {
                     title: 'إضافة ألبوم صور',
@@ -2361,10 +2429,12 @@
                             <input type="file" id="albumImages" accept="image/*" multiple />
                         </div>
                     `,
-                    getData: () => ({
-                        title: document.getElementById('albumTitle').value,
-                        description: document.getElementById('albumDesc').value
-                    })
+                    getData: function() {
+                        return {
+                            title: document.getElementById('albumTitle').value,
+                            description: document.getElementById('albumDesc').value
+                        };
+                    }
                 },
                 'add-priest': {
                     title: 'إضافة كاهن جديد',
@@ -2390,12 +2460,14 @@
                             </select>
                         </div>
                     `,
-                    getData: () => ({
-                        name: document.getElementById('priestName').value,
-                        title: document.getElementById('priestTitle').value,
-                        english: document.getElementById('priestEnglish').value,
-                        status: document.getElementById('priestStatus').value
-                    })
+                    getData: function() {
+                        return {
+                            name: document.getElementById('priestName').value,
+                            title: document.getElementById('priestTitle').value,
+                            english: document.getElementById('priestEnglish').value,
+                            status: document.getElementById('priestStatus').value
+                        };
+                    }
                 },
                 'add-faq': {
                     title: 'إضافة سؤال جديد',
@@ -2410,10 +2482,42 @@
                             <textarea id="faqAnswer" placeholder="أدخل الإجابة" required></textarea>
                         </div>
                     `,
-                    getData: () => ({
-                        question: document.getElementById('faqQuestion').value,
-                        answer: document.getElementById('faqAnswer').value
-                    })
+                    getData: function() {
+                        return {
+                            question: document.getElementById('faqQuestion').value,
+                            answer: document.getElementById('faqAnswer').value
+                        };
+                    }
+                },
+                'add-page': {
+                    title: 'إضافة صفحة جديدة',
+                    endpoint: '/api/pages',
+                    fields: `
+                        <div class="form-group">
+                            <label>عنوان الصفحة (عربي) <span class="required">*</span></label>
+                            <input type="text" id="pageTitleAr" placeholder="عنوان الصفحة بالعربية" required />
+                        </div>
+                        <div class="form-group">
+                            <label>عنوان الصفحة (إنجليزي)</label>
+                            <input type="text" id="pageTitleEn" placeholder="Page title in English" />
+                        </div>
+                        <div class="form-group">
+                            <label>المحتوى</label>
+                            <textarea id="pageContent" placeholder="محتوى الصفحة" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>الرابط (Slug)</label>
+                            <input type="text" id="pageSlug" placeholder="مثال: church-history" />
+                        </div>
+                    `,
+                    getData: function() {
+                        return {
+                            titleAr: document.getElementById('pageTitleAr').value,
+                            titleEn: document.getElementById('pageTitleEn').value,
+                            content: document.getElementById('pageContent').value,
+                            slug: document.getElementById('pageSlug').value
+                        };
+                    }
                 }
             };
 
@@ -2431,7 +2535,6 @@
                 modalSubmit.textContent = 'حفظ';
                 modalSubmit.disabled = false;
 
-                // Store action for submission
                 modal.dataset.action = action;
                 modal.dataset.endpoint = config.endpoint;
                 modal.dataset.getData = config.getData;
@@ -2452,7 +2555,6 @@
                 if (e.target === this) closeModal();
             });
 
-            // Quick action buttons
             document.querySelectorAll('.quick-action-btn[data-action]').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     const action = this.dataset.action;
@@ -2467,10 +2569,9 @@
                 e.preventDefault();
 
                 const endpoint = this.closest('.modal').dataset.endpoint;
-                const getData = window[this.closest('.modal').dataset.getData] || function() { return {}; };
-                const data = getData();
+                const getDataFunc = this.closest('.modal').dataset.getData;
+                const data = window[getDataFunc] ? window[getDataFunc]() : {};
 
-                // Check required fields
                 let hasError = false;
                 this.querySelectorAll('[required]').forEach(function(input) {
                     if (!input.value.trim()) {
@@ -2499,7 +2600,6 @@
                         modalAlert.textContent = 'تم الحفظ بنجاح!';
                         setTimeout(function() {
                             closeModal();
-                            // Reload current tab
                             const activeTab = document.querySelector('.tab-content.active');
                             if (activeTab) {
                                 const tabId = activeTab.id.replace('tab-', '');
@@ -2541,7 +2641,6 @@
             // ============================================
             // Initial Load
             // ============================================
-            // Load overview tab data
             loadMasses();
             loadServices();
             loadEvents();
