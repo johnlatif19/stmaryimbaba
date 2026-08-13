@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل الدخول – كنيسة العذراء مريم والشهيد أبانوب</title>
+    <meta name="description" content="تسجيل الدخول إلى لوحة تحكم كنيسة السيدة العذراء مريم والشهيد أبانوب القبطية الأرثوذكسية – إمبابة" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1a2332;
+            --navy-light: #2a3a4a;
+            --navy-dark: #0f1621;
+            --gold: #b8943c;
+            --gold-light: #d4af4a;
+            --gold-dark: #9a7a2e;
+            --ivory: #f5f0e8;
+            --ivory-dark: #e8e0d4;
+            --ivory-light: #faf8f5;
+            --neutral-100: #f8f6f3;
+            --neutral-200: #e8e4de;
+            --neutral-300: #d0cac2;
+            --neutral-400: #a89f94;
+            --neutral-500: #7a7268;
+            --neutral-600: #5a5248;
+            --neutral-700: #3a3430;
+            --neutral-800: #25201c;
+            --shadow-sm: 0 1px 3px rgba(26, 35, 50, 0.06);
+            --shadow-md: 0 4px 16px rgba(26, 35, 50, 0.08);
+            --shadow-lg: 0 8px 32px rgba(26, 35, 50, 0.12);
+            --shadow-xl: 0 16px 48px rgba(26, 35, 50, 0.16);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: 0.25s ease;
+            --font-arabic: 'Noto Naskh Arabic', serif;
+            --font-english: 'Inter', sans-serif;
+            --max-width: 420px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-arabic);
+            background: var(--ivory-light);
+            color: var(--neutral-800);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+
+        input {
+            font-family: inherit;
+            font-size: 16px;
+        }
+
+        /* ============================================
+           LOGIN CONTAINER
+           ============================================ */
+        .login-container {
+            width: 100%;
+            max-width: var(--max-width);
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 40px 36px 44px;
+            border: 1px solid var(--neutral-200);
+            transition: box-shadow var(--transition);
+        }
+
+        .login-container:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ============================================
+           LOGO & HEADER
+           ============================================ */
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .login-logo img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--ivory-dark);
+        }
+
+        .login-logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.3;
+            text-align: right;
+        }
+
+        .login-logo-text span {
+            font-weight: 400;
+            font-size: 13px;
+            color: var(--neutral-500);
+            display: block;
+        }
+
+        .login-header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .login-header p {
+            font-size: 14px;
+            color: var(--neutral-500);
+        }
+
+        /* ============================================
+           FORM
+           ============================================ */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--neutral-700);
+        }
+
+        .form-group label .required {
+            color: #c0392b;
+            margin-right: 2px;
+        }
+
+        .form-group input {
+            padding: 12px 16px;
+            border: 1.5px solid var(--neutral-200);
+            border-radius: var(--radius-sm);
+            background: var(--ivory-light);
+            font-size: 16px;
+            color: var(--neutral-800);
+            transition: border-color var(--transition), box-shadow var(--transition);
+            outline: none;
+            width: 100%;
+        }
+
+        .form-group input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(184, 148, 60, 0.12);
+        }
+
+        .form-group input::placeholder {
+            color: var(--neutral-400);
+            font-size: 14px;
+        }
+
+        .form-group .input-hint {
+            font-size: 12px;
+            color: var(--neutral-400);
+        }
+
+        /* ============================================
+           OPTIONS (Remember & Forgot)
+           ============================================ */
+        .login-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            margin-top: -4px;
+        }
+
+        .login-options .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--neutral-600);
+            cursor: pointer;
+        }
+
+        .login-options .remember input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--gold);
+            cursor: pointer;
+        }
+
+        .login-options .forgot {
+            color: var(--gold-dark);
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .login-options .forgot:hover {
+            color: var(--gold);
+        }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        .btn-login-submit {
+            padding: 14px;
+            background: var(--navy);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition);
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .btn-login-submit:hover {
+            background: var(--navy-light);
+        }
+
+        .btn-login-submit:active {
+            transform: scale(0.98);
+        }
+
+        .btn-login-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ============================================
+           BACK TO HOME
+           ============================================ */
+        .login-footer {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--neutral-200);
+        }
+
+        .login-footer a {
+            font-size: 14px;
+            color: var(--neutral-500);
+            transition: color var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .login-footer a:hover {
+            color: var(--navy);
+        }
+
+        /* ============================================
+           ERROR / ALERT MESSAGES
+           ============================================ */
+        .alert {
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-error {
+            background: #fde8e8;
+            color: #c0392b;
+            border: 1px solid #f5c6c6;
+            display: flex;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+            display: flex;
+        }
+
+        .alert .alert-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ============================================
+           LOADING SPINNER
+           ============================================ */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 28px 20px 32px;
+                border-radius: var(--radius-md);
+            }
+
+            .login-logo img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .login-logo-text {
+                font-size: 15px;
+            }
+
+            .login-header h1 {
+                font-size: 20px;
+            }
+
+            .login-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .form-group input {
+                padding: 10px 14px;
+                font-size: 15px;
+            }
+
+            .btn-login-submit {
+                padding: 12px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .login-container {
+                padding: 20px 16px 24px;
+            }
+
+            .login-logo-text {
+                font-size: 13px;
+            }
+
+            .login-header h1 {
+                font-size: 18px;
+            }
+        }
+
+        /* ============================================
+           UTILITY
+           ============================================ */
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .w-full {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- ============================================
+        HEADER
+        ============================================ -->
+        <div class="login-header">
+            <div class="login-logo">
+                <img src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="شعار كنيسة العذراء مريم وأبانوب" />
+                <div class="login-logo-text">
+                    كنيسة العذراء مريم<br />والشهيد أبانوب
+                    <span>إمبابة – الجيزة</span>
+                </div>
+            </div>
+            <h1>تسجيل الدخول</h1>
+            <p>لوحة تحكم الكنيسة</p>
+        </div>
+
+        <!-- ============================================
+        ALERT MESSAGES
+        ============================================ -->
+        <div id="alertMessage" class="alert" role="alert">
+            <span class="alert-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+            </span>
+            <span id="alertText">خطأ في بيانات الدخول</span>
+        </div>
+
+        <!-- ============================================
+        LOGIN FORM
+        ============================================ -->
+        <form class="login-form" id="loginForm" autocomplete="on" novalidate>
+            <div class="form-group">
+                <label for="username">
+                    اسم المستخدم
+                    <span class="required">*</span>
+                </label>
+                <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="أدخل اسم المستخدم"
+                required
+                autocomplete="username"
+                dir="ltr"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    كلمة المرور
+                    <span class="required">*</span>
+                </label>
+                <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="أدخل كلمة المرور"
+                required
+                autocomplete="current-password"
+                dir="ltr"
+                />
+            </div>
+
+            <div class="login-options">
+                <label class="remember">
+                    <input type="checkbox" id="rememberMe" />
+                    تذكرني
+                </label>
+                <a href="/forgot-password" class="forgot">نسيت كلمة المرور؟</a>
+            </div>
+
+            <button type="submit" class="btn-login-submit" id="loginButton">
+                <span id="loginButtonText">تسجيل الدخول</span>
+                <span class="spinner hidden" id="loginSpinner"></span>
+            </button>
+        </form>
+
+        <!-- ============================================
+        FOOTER
+        ============================================ -->
+        <div class="login-footer">
+            <a href="/">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5" />
+                    <path d="M12 19l-7-7 7-7" />
+                </svg>
+                العودة إلى الصفحة الرئيسية
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================================
+    SCRIPTS
+    ============================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================
+            // DOM Elements
+            // ============================================
+            const form = document.getElementById('loginForm');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const rememberMe = document.getElementById('rememberMe');
+            const loginButton = document.getElementById('loginButton');
+            const loginButtonText = document.getElementById('loginButtonText');
+            const loginSpinner = document.getElementById('loginSpinner');
+            const alertMessage = document.getElementById('alertMessage');
+            const alertText = document.getElementById('alertText');
+
+            // ============================================
+            // Helpers
+            // ============================================
+            function showAlert(message, type) {
+                alertMessage.className = 'alert';
+                if (type === 'error') {
+                    alertMessage.classList.add('alert-error');
+                } else if (type === 'success') {
+                    alertMessage.classList.add('alert-success');
+                }
+                alertText.textContent = message;
+                alertMessage.style.display = 'flex';
+            }
+
+            function hideAlert() {
+                alertMessage.style.display = 'none';
+                alertMessage.className = 'alert';
+            }
+
+            function setLoading(isLoading) {
+                if (isLoading) {
+                    loginButton.disabled = true;
+                    loginButtonText.textContent = 'جاري تسجيل الدخول';
+                    loginSpinner.classList.remove('hidden');
+                } else {
+                    loginButton.disabled = false;
+                    loginButtonText.textContent = 'تسجيل الدخول';
+                    loginSpinner.classList.add('hidden');
+                }
+            }
+
+            function getBaseUrl() {
+                // Use relative URLs for Vercel compatibility
+                return '';
+            }
+
+            // ============================================
+            // Restore saved username
+            // ============================================
+            function restoreSavedUsername() {
+                try {
+                    const saved = localStorage.getItem('churchLoginUsername');
+                    if (saved) {
+                        usernameInput.value = saved;
+                        rememberMe.checked = true;
+                    }
+                } catch (e) {
+                    // localStorage not available
+                }
+            }
+            restoreSavedUsername();
+
+            // ============================================
+            // Handle Form Submission
+            // ============================================
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                hideAlert();
+
+                // Get values
+                const username = usernameInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                // Validate
+                if (!username || !password) {
+                    showAlert('يرجى إدخال اسم المستخدم وكلمة المرور', 'error');
+                    return;
+                }
+
+                // Save username if remember me is checked
+                try {
+                    if (rememberMe.checked) {
+                        localStorage.setItem('churchLoginUsername', username);
+                    } else {
+                        localStorage.removeItem('churchLoginUsername');
+                    }
+                } catch (e) {
+                    // localStorage not available
+                }
+
+                // Show loading state
+                setLoading(true);
+
+                try {
+                    // Attempt login
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password }),
+                        credentials: 'same-origin',
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        // Store token in cookie (handled by server)
+                        // Redirect to dashboard
+                        window.location.href = '/dashboard';
+                    } else {
+                        // Show error
+                        showAlert(data.message || 'فشل تسجيل الدخول. تحقق من بياناتك.', 'error');
+                        setLoading(false);
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    showAlert('حدث خطأ في الاتصال. حاول مرة أخرى.', 'error');
+                    setLoading(false);
+                }
+            });
+
+            // ============================================
+            // Clear alert on input
+            // ============================================
+            usernameInput.addEventListener('input', hideAlert);
+            passwordInput.addEventListener('input', hideAlert);
+
+            // ============================================
+            // Keyboard shortcut: Enter to submit
+            // ============================================
+            passwordInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    form.dispatchEvent(new Event('submit'));
+                }
+            });
+
+            // ============================================
+            // Demo / Development helper (remove in production)
+            // ============================================
+            // For development convenience, pre-fill admin credentials
+            // Comment out or remove in production
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                // Optionally pre-fill for testing
+                // usernameInput.value = 'admin';
+                // passwordInput.value = 'ChangeMe123!';
+            }
+
+            console.log('🔐 Login page loaded');
+            console.log('📍 Church: Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
+
+        })();
+    </script>
+
+</body>
+</html>

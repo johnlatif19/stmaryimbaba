@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>البحث – كنيسة العذراء مريم والشهيد أبانوب</title>
+    <meta name="description" content="البحث في محتوى كنيسة السيدة العذراء مريم والشهيد أبانوب القبطية الأرثوذكسية – إمبابة، الجيزة" />
+    <link rel="canonical" href="https://stmary-abanoub-church.vercel.app/search" />
+    <meta property="og:title" content="البحث – كنيسة العذراء مريم والشهيد أبانوب" />
+    <meta property="og:description" content="البحث في محتوى كنيسة السيدة العذراء مريم والشهيد أبانوب القبطية الأرثوذكسية – إمبابة" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1a2332;
+            --navy-light: #2a3a4a;
+            --navy-dark: #0f1621;
+            --gold: #b8943c;
+            --gold-light: #d4af4a;
+            --gold-dark: #9a7a2e;
+            --ivory: #f5f0e8;
+            --ivory-dark: #e8e0d4;
+            --ivory-light: #faf8f5;
+            --neutral-100: #f8f6f3;
+            --neutral-200: #e8e4de;
+            --neutral-300: #d0cac2;
+            --neutral-400: #a89f94;
+            --neutral-500: #7a7268;
+            --neutral-600: #5a5248;
+            --neutral-700: #3a3430;
+            --neutral-800: #25201c;
+            --shadow-sm: 0 1px 3px rgba(26, 35, 50, 0.06);
+            --shadow-md: 0 4px 16px rgba(26, 35, 50, 0.08);
+            --shadow-lg: 0 8px 32px rgba(26, 35, 50, 0.12);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --transition: 0.25s ease;
+            --font-arabic: 'Noto Naskh Arabic', serif;
+            --font-english: 'Inter', sans-serif;
+            --max-width: 900px;
+            --header-height: 72px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-arabic);
+            background: var(--ivory-light);
+            color: var(--neutral-800);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--neutral-500);
+            margin-bottom: 32px;
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+
+        /* ============================================
+           HEADER / NAVIGATION
+           ============================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(26, 35, 50, 0.06);
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        .site-header.scrolled {
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-height);
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .header-logo img {
+            height: 44px;
+            width: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .header-logo-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.3;
+            max-width: 200px;
+        }
+
+        .header-logo-text span {
+            font-weight: 400;
+            font-size: 12px;
+            color: var(--neutral-500);
+            display: block;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-nav a {
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-600);
+            border-radius: var(--radius-sm);
+            transition: color var(--transition), background var(--transition);
+            position: relative;
+        }
+
+        .header-nav a:hover,
+        .header-nav a.active {
+            color: var(--navy);
+            background: rgba(26, 35, 50, 0.04);
+        }
+
+        .header-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-actions .btn-search {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-500);
+            transition: background var(--transition), color var(--transition);
+            font-size: 18px;
+        }
+
+        .header-actions .btn-search:hover {
+            background: rgba(26, 35, 50, 0.06);
+            color: var(--navy);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 24px;
+            overflow-y: auto;
+            z-index: 999;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            padding: 14px 16px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--neutral-700);
+            border-radius: var(--radius-sm);
+            transition: background var(--transition);
+        }
+
+        .mobile-nav a:hover {
+            background: rgba(26, 35, 50, 0.04);
+        }
+
+        /* ============================================
+           PAGE HERO
+           ============================================ */
+        .page-hero {
+            padding: calc(var(--header-height) + 48px) 0 32px;
+            background: var(--navy);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 50%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(184, 148, 60, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .page-hero p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .page-hero .breadcrumb {
+            font-size: 14px;
+            opacity: 0.6;
+            margin-bottom: 12px;
+        }
+
+        .page-hero .breadcrumb a {
+            opacity: 0.6;
+            transition: opacity var(--transition);
+        }
+
+        .page-hero .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        /* ============================================
+           SEARCH
+           ============================================ */
+        .section-search {
+            padding: 32px 0 64px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 2px solid var(--neutral-200);
+            padding: 4px;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .search-box:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(184, 148, 60, 0.10);
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-family: var(--font-arabic);
+            color: var(--neutral-800);
+            outline: none;
+            min-width: 0;
+        }
+
+        .search-box input::placeholder {
+            color: var(--neutral-400);
+        }
+
+        .search-box button {
+            padding: 12px 28px;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition);
+            white-space: nowrap;
+            font-family: var(--font-arabic);
+        }
+
+        .search-box button:hover {
+            background: var(--navy-light);
+        }
+
+        .search-hint {
+            font-size: 14px;
+            color: var(--neutral-400);
+            margin-bottom: 24px;
+        }
+
+        .search-hint strong {
+            color: var(--neutral-600);
+        }
+
+        /* ============================================
+           SEARCH SUGGESTIONS
+           ============================================ */
+        .search-suggestions {
+            display: none;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .search-suggestions.visible {
+            display: flex;
+        }
+
+        .search-suggestions .suggestion-tag {
+            padding: 6px 16px;
+            background: var(--ivory);
+            border: 1px solid var(--neutral-200);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--neutral-600);
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+
+        .search-suggestions .suggestion-tag:hover {
+            border-color: var(--gold);
+            color: var(--navy);
+            background: #fff;
+        }
+
+        /* ============================================
+           SEARCH RESULTS
+           ============================================ */
+        .search-results {
+            display: none;
+        }
+
+        .search-results.visible {
+            display: block;
+        }
+
+        .search-results .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--neutral-200);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .search-results .results-header .count {
+            font-size: 15px;
+            color: var(--neutral-500);
+        }
+
+        .search-results .results-header .count strong {
+            color: var(--navy);
+        }
+
+        .search-results .results-header .filter-buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .search-results .results-header .filter-buttons button {
+            padding: 4px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--neutral-500);
+            border-radius: 16px;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition);
+            background: #fff;
+        }
+
+        .search-results .results-header .filter-buttons button:hover {
+            border-color: var(--gold);
+            color: var(--navy);
+        }
+
+        .search-results .results-header .filter-buttons button.active {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy);
+        }
+
+        /* Result Item */
+        .result-item {
+            display: block;
+            padding: 16px 20px;
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--neutral-200);
+            margin-bottom: 12px;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+
+        .result-item:hover {
+            border-color: var(--neutral-300);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .result-item .result-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold-dark);
+            background: rgba(184, 148, 60, 0.08);
+            padding: 0 12px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .result-item h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .result-item h3 .highlight {
+            color: var(--gold-dark);
+            background: rgba(184, 148, 60, 0.15);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .result-item .result-snippet {
+            font-size: 14px;
+            color: var(--neutral-500);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-clamp: 2;
+            overflow: hidden;
+        }
+
+        .result-item .result-snippet .highlight {
+            color: var(--gold-dark);
+            background: rgba(184, 148, 60, 0.12);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .result-item .result-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: var(--neutral-400);
+            flex-wrap: wrap;
+        }
+
+        .result-item .result-meta .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .result-item .result-meta .meta-item svg {
+            width: 14px;
+            height: 14px;
+            color: var(--neutral-400);
+        }
+
+        .result-item .result-link {
+            color: var(--gold-dark);
+            font-weight: 500;
+            font-size: 13px;
+            margin-top: 6px;
+            display: inline-block;
+            transition: color var(--transition);
+        }
+
+        .result-item .result-link:hover {
+            color: var(--gold);
+        }
+
+        /* ============================================
+           EMPTY STATE
+           ============================================ */
+        .search-empty {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--neutral-400);
+            background: var(--ivory-light);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--neutral-300);
+        }
+
+        .search-empty.visible {
+            display: block;
+        }
+
+        .search-empty .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.3;
+        }
+
+        .search-empty h4 {
+            font-size: 18px;
+            color: var(--neutral-500);
+            margin-bottom: 4px;
+        }
+
+        .search-empty p {
+            font-size: 14px;
+        }
+
+        /* ============================================
+           LOADING
+           ============================================ */
+        .search-loading {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--neutral-400);
+        }
+
+        .search-loading.visible {
+            display: block;
+        }
+
+        .search-loading .spinner {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--neutral-200);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .site-footer {
+            background: var(--navy-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 48px 0 24px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 24px;
+        }
+
+        .footer-brand h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 14px;
+            padding: 4px 0;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-bottom .footer-lang a {
+            color: rgba(255, 255, 255, 0.5);
+            padding: 0 8px;
+            font-size: 13px;
+            transition: color var(--transition);
+        }
+
+        .footer-bottom .footer-lang a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom .footer-lang .active {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .header-nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .page-hero h1 {
+                font-size: 28px;
+            }
+
+            .search-box input {
+                padding: 12px 16px;
+                font-size: 15px;
+            }
+
+            .search-box button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-hero {
+                padding: calc(var(--header-height) + 24px) 0 24px;
+            }
+
+            .page-hero h1 {
+                font-size: 22px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .section-search {
+                padding: 24px 0 48px;
+            }
+
+            .search-box {
+                flex-direction: column;
+                gap: 8px;
+                padding: 8px;
+            }
+
+            .search-box input {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
+            .search-box button {
+                padding: 10px;
+                font-size: 14px;
+                width: 100%;
+            }
+
+            .search-results .results-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-results .results-header .filter-buttons {
+                width: 100%;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 4px;
+            }
+
+            .search-results .results-header .filter-buttons button {
+                white-space: nowrap;
+                font-size: 12px;
+                padding: 3px 12px;
+            }
+
+            .result-item {
+                padding: 14px 16px;
+            }
+
+            .result-item h3 {
+                font-size: 16px;
+            }
+
+            .result-item .result-snippet {
+                font-size: 13px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-logo-text {
+                font-size: 13px;
+                max-width: 120px;
+            }
+
+            .header-logo img {
+                height: 36px;
+                width: 36px;
+            }
+
+            .search-hint {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .page-hero h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+    HEADER
+    ============================================ -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <a href="/" class="header-logo">
+                <img src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="شعار كنيسة العذراء مريم وأبانوب" />
+                <div class="header-logo-text">
+                    كنيسة العذراء مريم<br />والشهيد أبانوب
+                    <span>إمبابة – الجيزة</span>
+                </div>
+            </a>
+
+            <nav class="header-nav" id="mainNav">
+                <a href="/">الرئيسية</a>
+                <a href="/church">عن الكنيسة</a>
+                <a href="/masses">القداسات</a>
+                <a href="/services">الخدمات</a>
+                <a href="/events">الفعاليات</a>
+                <a href="/news">الأخبار</a>
+                <a href="/sermons">العظات</a>
+                <a href="/gallery">المعرض</a>
+                <a href="/contact">اتصل بنا</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="/search" class="btn-search" aria-label="بحث" style="background:rgba(26,35,50,0.06); color:var(--navy);">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                </a>
+                <div class="menu-toggle" id="menuToggle" aria-label="القائمة">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-nav" id="mobileNav">
+            <a href="/">الرئيسية</a>
+            <a href="/church">عن الكنيسة</a>
+            <a href="/masses">القداسات</a>
+            <a href="/services">الخدمات</a>
+            <a href="/events">الفعاليات</a>
+            <a href="/news">الأخبار</a>
+            <a href="/sermons">العظات</a>
+            <a href="/gallery">المعرض</a>
+            <a href="/priests">الآباء الكهنة</a>
+            <a href="/saints">الشفيعان</a>
+            <a href="/faq">الأسئلة الشائعة</a>
+            <a href="/prayer-request">طلب صلاة</a>
+            <a href="/contact">اتصل بنا</a>
+        </div>
+    </header>
+
+    <!-- ============================================
+    PAGE HERO
+    ============================================ -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">الرئيسية</a> / البحث
+            </div>
+            <h1>البحث في <span style="color: var(--gold-light);">الموقع</span></h1>
+            <p>ابحث عن القداسات، الخدمات، الفعاليات، الأخبار، العظات والمزيد</p>
+        </div>
+    </section>
+
+    <!-- ============================================
+    SEARCH
+    ============================================ -->
+    <section class="section-search">
+        <div class="container">
+
+            <!-- Search Box -->
+            <form class="search-box" id="searchForm" role="search">
+                <input
+                type="text"
+                id="searchInput"
+                placeholder="ابحث عن... القداسات، الشباب، العذراء مريم..."
+                aria-label="بحث"
+                autocomplete="off"
+                dir="auto"
+                />
+                <button type="submit" id="searchButton">بحث</button>
+            </form>
+
+            <div class="search-hint">
+                يمكنك البحث عن: <strong>القداسات</strong>، <strong>الخدمات</strong>، <strong>الفعاليات</strong>، <strong>الأخبار</strong>، <strong>العظات</strong>، <strong>الآباء الكهنة</strong>، <strong>الشفيعان</strong>
+            </div>
+
+            <!-- Suggestions -->
+            <div class="search-suggestions" id="suggestions">
+                <span class="suggestion-tag" data-query="القداسات">القداسات</span>
+                <span class="suggestion-tag" data-query="الشباب">الشباب</span>
+                <span class="suggestion-tag" data-query="العذراء مريم">العذراء مريم</span>
+                <span class="suggestion-tag" data-query="أبانوب">أبانوب</span>
+                <span class="suggestion-tag" data-query="الأطفال">الأطفال</span>
+                <span class="suggestion-tag" data-query="عيد الميلاد">عيد الميلاد</span>
+                <span class="suggestion-tag" data-query="أبونا">أبونا</span>
+            </div>
+
+            <!-- Loading -->
+            <div class="search-loading" id="searchLoading">
+                <div class="spinner"></div>
+                <p style="margin-top:12px;">جاري البحث...</p>
+            </div>
+
+            <!-- Results -->
+            <div class="search-results" id="searchResults">
+                <div class="results-header">
+                    <span class="count" id="resultsCount">نتائج <strong>٠</strong></span>
+                    <div class="filter-buttons" id="filterButtons">
+                        <button class="active" data-filter="all">الكل</button>
+                        <button data-filter="masses">القداسات</button>
+                        <button data-filter="services">الخدمات</button>
+                        <button data-filter="events">الفعاليات</button>
+                        <button data-filter="news">الأخبار</button>
+                        <button data-filter="sermons">العظات</button>
+                        <button data-filter="priests">الآباء</button>
+                        <button data-filter="saints">الشفيعان</button>
+                        <button data-filter="faq">الأسئلة</button>
+                    </div>
+                </div>
+                <div id="resultsContainer">
+                    <!-- Results will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="search-empty" id="searchEmpty">
+                <div class="empty-icon">&#128269;</div>
+                <h4>لا توجد نتائج</h4>
+                <p>لم نعثر على أي محتوى مطابق. حاول استخدام كلمات بحث مختلفة.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================
+    FOOTER
+    ============================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>كنيسة العذراء مريم والشهيد أبانوب</h3>
+                    <p>
+                        كنيسة قبطية أرثوذكسية بإيبارشية شمال الجيزة،
+                        تخدم مجتمع إمبابة بروح المحبة والإيمان.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <a href="/church">عن الكنيسة</a>
+                    <a href="/masses">القداسات</a>
+                    <a href="/services">الخدمات</a>
+                    <a href="/events">الفعاليات</a>
+                </div>
+                <div class="footer-col">
+                    <h4>المحتوى</h4>
+                    <a href="/news">الأخبار</a>
+                    <a href="/sermons">العظات</a>
+                    <a href="/gallery">المعرض</a>
+                    <a href="/saints">الشفيعان</a>
+                </div>
+                <div class="footer-col">
+                    <h4>تواصل</h4>
+                    <a href="/prayer-request">طلب صلاة</a>
+                    <a href="/faq">الأسئلة الشائعة</a>
+                    <a href="/contact">اتصل بنا</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>
+                    &copy; 2026 كنيسة السيدة العذراء مريم والشهيد أبانوب القبطية الأرثوذكسية
+                </span>
+                <div class="footer-lang">
+                    <a href="#" class="active">العربية</a>
+                    <a href="/en">English</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+    SCRIPTS
+    ============================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================
+            // Mobile Menu Toggle
+            // ============================================
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileNav = document.getElementById('mobileNav');
+
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('open');
+                document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+            });
+
+            mobileNav.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    mobileNav.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // ============================================
+            // Header Scroll Effect
+            // ============================================
+            const header = document.getElementById('siteHeader');
+
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ============================================
+            // Keyboard Accessibility
+            // ============================================
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (mobileNav.classList.contains('open')) {
+                        menuToggle.classList.remove('active');
+                        mobileNav.classList.remove('open');
+                        document.body.style.overflow = '';
+                    }
+                }
+            });
+
+            // ============================================
+            // Language Switcher
+            // ============================================
+            document.querySelectorAll('.footer-lang a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.footer-lang a').forEach(function(l) {
+                        l.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+
+            // ============================================
+            // SEARCH DATA (Simulated)
+            // ============================================
+            // In production, this would be fetched from the server
+            const searchData = {
+                masses: [
+                    { title: 'قداس الأحد', category: 'القداسات', snippet: 'قداس الأحد في الكنيسة الرئيسية الساعة ٨:٠٠ ص.', url: '/masses', date: 'كل أحد' },
+                    { title: 'قداس الثلاثاء', category: 'القداسات', snippet: 'قداس الثلاثاء في كنيسة السيدة العذراء الساعة ٧:٠٠ ص.', url: '/masses', date: 'كل ثلاثاء' },
+                    { title: 'قداس الخميس', category: 'القداسات', snippet: 'قداس الخميس في الكنيسة الرئيسية الساعة ٧:٣٠ ص.', url: '/masses', date: 'كل خميس' },
+                    { title: 'قداس السبت', category: 'القداسات', snippet: 'قداس السبت في كنيسة الشهيد أبانوب الساعة ٨:٠٠ ص.', url: '/masses', date: 'كل سبت' },
+                ],
+                services: [
+                    { title: 'خدمة الشباب', category: 'الخدمات', snippet: 'لقاءات روحية واجتماعية للشباب كل يوم جمعة الساعة ٧:٠٠ م.', url: '/services', date: 'جمعة' },
+                    { title: 'خدمة الأطفال', category: 'الخدمات', snippet: 'تعليم مسيحي وأنشطة للأطفال كل يوم سبت الساعة ١٠:٠٠ ص.', url: '/services', date: 'سبت' },
+                    { title: 'اجتماعات روحية', category: 'الخدمات', snippet: 'اجتماعات روحية أسبوعية كل أربعاء الساعة ٧:٠٠ م.', url: '/services', date: 'أربعاء' },
+                ],
+                events: [
+                    { title: 'مؤتمر الشباب السنوي', category: 'الفعاليات', snippet: 'مؤتمر شبابي روحي يهدف إلى تقوية الإيمان وبناء العلاقات.', url: '/events', date: '١٥-١٧ مايو ٢٠٢٦' },
+                    { title: 'رحلة العائلة المقدسة', category: 'الفعاليات', snippet: 'رحلة روحانية تتبع مسار العائلة المقدسة في مصر.', url: '/events', date: '٢٤-٢٦ يونيو ٢٠٢٦' },
+                    { title: 'أيام روحية للأطفال', category: 'الفعاليات', snippet: 'أيام روحية للأطفال تشمل قصصاً كتابية وأنشطة.', url: '/events', date: '١٠-١٢ يوليو ٢٠٢٦' },
+                ],
+                news: [
+                    { title: 'احتفال عيد الميلاد المجيد', category: 'الأخبار', snippet: 'تقيم الكنيسة احتفالاً كبيراً بمناسبة عيد الميلاد المجيد.', url: '/news', date: '٧ يناير ٢٠٢٦' },
+                    { title: 'زيارة نيافة الأنبا ثيؤدورس', category: 'الأخبار', snippet: 'يستقبل الآباء الكهنة وشعب الكنيسة نيافة الأنبا ثيؤدورس.', url: '/news', date: '٢٢ فبراير ٢٠٢٦' },
+                    { title: 'مبادرة خدمة المجتمع', category: 'الأخبار', snippet: 'أطلقت الكنيسة مبادرة جديدة لخدمة المجتمع المحلي.', url: '/news', date: '١ مارس ٢٠٢٦' },
+                ],
+                sermons: [
+                    { title: 'عظة عن المحبة المسيحية', category: 'العظات', snippet: 'عظة روحية عن المحبة المسيحية الحقيقية وأهميتها.', url: '/sermons', date: '١٠ مارس ٢٠٢٦' },
+                    { title: 'ترنيمة والدة الإله', category: 'العظات', snippet: 'ترنيمة روحية للسيدة العذراء مريم والدة الإله.', url: '/sermons', date: '٢٥ فبراير ٢٠٢٦' },
+                    { title: 'قداس عيد الميلاد المجيد', category: 'العظات', snippet: 'تغطية كاملة لقداس عيد الميلاد المجيد من الكنيسة.', url: '/sermons', date: '٧ يناير ٢٠٢٦' },
+                ],
+                priests: [
+                    { title: 'أبونا القس تيموثاؤس عزيز', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ١٩٩٨' },
+                    { title: 'أبونا القس أثناسيوس ونيس', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠٠٢' },
+                    { title: 'أبونا القس أرساني عبد المسيح', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠٠٥' },
+                    { title: 'أبونا القس أنسطاسي ثابت', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠٠٨' },
+                    { title: 'أبونا القس بضابا سمير', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠١٠' },
+                    { title: 'أبونا القس جوارجيوس عبد الملاك', category: 'الآباء الكهنة', snippet: 'كاهن كنيسة السيدة العذراء مريم والشهيد أبانوب.', url: '/priests', date: 'سيامة: ٢٠١٢' },
+                ],
+                saints: [
+                    { title: 'السيدة العذراء مريم', category: 'الشفيعان', snippet: 'والدة الإله، شفيعة الكنيسة الأولى، لها أعياد متعددة.', url: '/saints', date: 'عيدها: ٢١ طوبة' },
+                    { title: 'الشهيد أبانوب النهيسي', category: 'الشفيعان', snippet: 'أحد شهداء الكنيسة القبطية الأرثوذكسية.', url: '/saints', date: 'عيده: ٢٤ أبيب' },
+                ],
+                faq: [
+                    { title: 'مواعيد القداسات', category: 'الأسئلة الشائعة', snippet: 'تقام القداسات الإلهية يومياً في الكنيسة.', url: '/faq', date: '' },
+                    { title: 'التواصل مع الكنيسة', category: 'الأسئلة الشائعة', snippet: 'يمكنك التواصل من خلال صفحة اتصل بنا.', url: '/faq', date: '' },
+                    { title: 'خدمات الشباب والأطفال', category: 'الأسئلة الشائعة', snippet: 'توجد خدمات متنوعة للشباب والأطفال في الكنيسة.', url: '/faq', date: '' },
+                    { title: 'تقديم طلب صلاة', category: 'الأسئلة الشائعة', snippet: 'يمكنك تقديم طلب صلاة من خلال صفحة طلب صلاة.', url: '/faq', date: '' },
+                    { title: 'موقع الكنيسة', category: 'الأسئلة الشائعة', snippet: 'المنيرة، إمبابة، محافظة الجيزة، Plus Code: 36P3+974', url: '/faq', date: '' },
+                ]
+            };
+
+            // ============================================
+            // SEARCH ENGINE
+            // ============================================
+            const searchInput = document.getElementById('searchInput');
+            const searchForm = document.getElementById('searchForm');
+            const searchButton = document.getElementById('searchButton');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const resultsCount = document.getElementById('resultsCount');
+            const searchResults = document.getElementById('searchResults');
+            const searchEmpty = document.getElementById('searchEmpty');
+            const searchLoading = document.getElementById('searchLoading');
+            const suggestions = document.getElementById('suggestions');
+            const filterButtons = document.querySelectorAll('#filterButtons button');
+
+            let currentFilter = 'all';
+            let currentResults = [];
+
+            // Normalize text for search (remove diacritics, etc.)
+            function normalizeText(text) {
+                if (!text) return '';
+                return text
+                    .replace(/[\u064B-\u0652]/g, '') // Remove Arabic diacritics
+                    .replace(/ة/g, 'ه') // Normalize ta marbuta
+                    .replace(/ى/g, 'ي') // Normalize alif maqsura
+                    .replace(/أ/g, 'ا') // Normalize hamza
+                    .replace(/إ/g, 'ا')
+                    .replace(/آ/g, 'ا')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .toLowerCase();
+            }
+
+            function performSearch(query) {
+                if (!query || query.trim().length < 2) {
+                    searchResults.classList.remove('visible');
+                    searchEmpty.classList.remove('visible');
+                    return;
+                }
+
+                const normalizedQuery = normalizeText(query);
+                const results = [];
+
+                // Search through all data
+                for (const [category, items] of Object.entries(searchData)) {
+                    items.forEach(function(item) {
+                        const searchableText = normalizeText(item.title + ' ' + item.snippet + ' ' + item.category);
+                        if (searchableText.includes(normalizedQuery)) {
+                            results.push({
+                                ...item,
+                                categoryKey: category,
+                                matchScore: searchableText.indexOf(normalizedQuery)
+                            });
+                        }
+                    });
+                }
+
+                // Sort by match score (earlier match is better)
+                results.sort(function(a, b) {
+                    return (a.matchScore || 999) - (b.matchScore || 999);
+                });
+
+                currentResults = results;
+                renderResults(results, currentFilter);
+            }
+
+            function renderResults(results, filter) {
+                // Apply filter
+                let filteredResults = results;
+                if (filter !== 'all') {
+                    filteredResults = results.filter(function(item) {
+                        return item.categoryKey === filter;
+                    });
+                }
+
+                // Update count
+                resultsCount.innerHTML = 'نتائج <strong>' + filteredResults.length + '</strong>';
+
+                if (filteredResults.length === 0) {
+                    searchResults.classList.add('visible');
+                    resultsContainer.innerHTML = '';
+                    searchEmpty.classList.add('visible');
+                    return;
+                }
+
+                searchEmpty.classList.remove('visible');
+                searchResults.classList.add('visible');
+
+                // Build results HTML
+                let html = '';
+                filteredResults.forEach(function(item) {
+                    const highlightQuery = normalizeText(searchInput.value.trim());
+                    let titleHtml = item.title;
+                    let snippetHtml = item.snippet;
+
+                    // Highlight matches in title
+                    if (highlightQuery && highlightQuery.length > 1) {
+                        const titleNormalized = normalizeText(item.title);
+                        if (titleNormalized.includes(highlightQuery)) {
+                            const index = titleNormalized.indexOf(highlightQuery);
+                            // Find original text position
+                            let charCount = 0;
+                            let foundIndex = -1;
+                            for (let i = 0; i < item.title.length; i++) {
+                                const char = item.title[i];
+                                if (char.match(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/)) {
+                                    charCount++;
+                                }
+                                if (charCount > index) {
+                                    foundIndex = i;
+                                    break;
+                                }
+                            }
+                            if (foundIndex > -1) {
+                                const endIndex = Math.min(foundIndex + 10, item.title.length);
+                                titleHtml = item.title.substring(0, foundIndex) +
+                                    '<span class="highlight">' + item.title.substring(foundIndex, endIndex) + '</span>' +
+                                    item.title.substring(endIndex);
+                            }
+                        }
+                    }
+
+                    html += `
+                        <a href="${item.url}" class="result-item">
+                            <span class="result-category">${item.category}</span>
+                            <h3>${titleHtml}</h3>
+                            <p class="result-snippet">${snippetHtml}</p>
+                            <div class="result-meta">
+                                ${item.date ? `<span class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                    ${item.date}
+                                </span>` : ''}
+                                <span class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                    ${item.url}
+                                </span>
+                            </div>
+                            <span class="result-link">عرض التفاصيل</span>
+                        </a>
+                    `;
+                });
+
+                resultsContainer.innerHTML = html;
+            }
+
+            // ============================================
+            // SEARCH EVENT HANDLERS
+            // ============================================
+            function handleSearch(e) {
+                if (e) e.preventDefault();
+                const query = searchInput.value.trim();
+                if (!query || query.length < 2) {
+                    searchResults.classList.remove('visible');
+                    searchEmpty.classList.remove('visible');
+                    return;
+                }
+
+                // Show loading
+                searchLoading.classList.add('visible');
+                searchResults.classList.remove('visible');
+                searchEmpty.classList.remove('visible');
+
+                // Simulate network delay
+                setTimeout(function() {
+                    searchLoading.classList.remove('visible');
+                    performSearch(query);
+                }, 300);
+            }
+
+            searchForm.addEventListener('submit', handleSearch);
+
+            searchButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleSearch(e);
+            });
+
+            // Search on input with debounce
+            let searchTimeout;
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                const query = this.value.trim();
+                if (query.length < 2) {
+                    searchResults.classList.remove('visible');
+                    searchEmpty.classList.remove('visible');
+                    return;
+                }
+                searchTimeout = setTimeout(function() {
+                    handleSearch();
+                }, 400);
+            });
+
+            // ============================================
+            // SUGGESTIONS
+            // ============================================
+            document.querySelectorAll('.suggestion-tag').forEach(function(tag) {
+                tag.addEventListener('click', function() {
+                    const query = this.dataset.query;
+                    searchInput.value = query;
+                    handleSearch();
+                });
+            });
+
+            // ============================================
+            // FILTER BUTTONS
+            // ============================================
+            filterButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    filterButtons.forEach(function(b) {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    renderResults(currentResults, currentFilter);
+                });
+            });
+
+            // ============================================
+            // KEYBOARD SHORTCUT: Ctrl+K or / to focus search
+            // ============================================
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && !e.ctrlKey && !e.metaKey && !e.altKey)) {
+                    // Check if not in input/textarea
+                    if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                        e.preventDefault();
+                        searchInput.focus();
+                        searchInput.select();
+                    }
+                }
+            });
+
+            // Focus search on page load if query param exists
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryParam = urlParams.get('q');
+            if (queryParam) {
+                searchInput.value = queryParam;
+                handleSearch();
+            }
+
+            console.log('🔍 Search page loaded');
+            console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
+
+        })();
+    </script>
+
+</body>
+</html>

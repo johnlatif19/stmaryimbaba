@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الدفع – كنيسة العذراء مريم والشهيد أبانوب</title>
+    <meta name="description" content="صفحة الدفع للفعاليات في كنيسة السيدة العذراء مريم والشهيد أبانوب القبطية الأرثوذكسية – إمبابة" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1a2332;
+            --navy-light: #2a3a4a;
+            --navy-dark: #0f1621;
+            --gold: #b8943c;
+            --gold-light: #d4af4a;
+            --gold-dark: #9a7a2e;
+            --ivory: #f5f0e8;
+            --ivory-light: #faf8f5;
+            --neutral-100: #f8f6f3;
+            --neutral-200: #e8e4de;
+            --neutral-300: #d0cac2;
+            --neutral-400: #a89f94;
+            --neutral-500: #7a7268;
+            --neutral-600: #5a5248;
+            --neutral-700: #3a3430;
+            --shadow-sm: 0 1px 3px rgba(26, 35, 50, 0.06);
+            --shadow-md: 0 4px 16px rgba(26, 35, 50, 0.08);
+            --shadow-lg: 0 8px 32px rgba(26, 35, 50, 0.12);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --transition: 0.25s ease;
+            --font-arabic: 'Noto Naskh Arabic', serif;
+            --font-english: 'Inter', sans-serif;
+            --header-height: 72px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-arabic);
+            background: var(--ivory-light);
+            color: #25201c;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(26, 35, 50, 0.06);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-height);
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .header-logo-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.3;
+        }
+
+        .header-logo-text span {
+            font-weight: 400;
+            font-size: 11px;
+            color: var(--neutral-500);
+            display: block;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--neutral-500);
+            font-size: 14px;
+            transition: color var(--transition);
+        }
+
+        .back-btn:hover {
+            color: var(--navy);
+        }
+
+        /* ============================================
+           PAY PAGE
+           ============================================ */
+        .pay-content {
+            flex: 1;
+            padding: 40px 0 48px;
+        }
+
+        .pay-card {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--neutral-200);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pay-card .pay-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--neutral-100);
+            margin-bottom: 24px;
+        }
+
+        .pay-card .pay-header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .pay-card .pay-header p {
+            font-size: 14px;
+            color: var(--neutral-500);
+        }
+
+        .pay-card .pay-header .event-name-display {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gold-dark);
+            margin-top: 4px;
+        }
+
+        /* Token Expiry Warning */
+        .token-warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: var(--radius-sm);
+            padding: 10px 16px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #856404;
+            display: none;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .token-warning.visible {
+            display: flex;
+        }
+
+        .token-warning .timer {
+            font-weight: 700;
+            color: #dc3545;
+            direction: ltr;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .payment-method {
+            padding: 20px 16px;
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: all var(--transition);
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .payment-method:hover {
+            border-color: var(--neutral-300);
+        }
+
+        .payment-method.active {
+            border-color: var(--gold);
+            background: rgba(184, 148, 60, 0.04);
+        }
+
+        .payment-method .method-icon {
+            font-size: 32px;
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+
+        .payment-method .method-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .payment-method .method-sub {
+            font-size: 12px;
+            color: var(--neutral-400);
+        }
+
+        /* Amount Display */
+        .amount-display {
+            background: var(--ivory-light);
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--neutral-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .amount-display .label {
+            font-size: 14px;
+            color: var(--neutral-500);
+        }
+
+        .amount-display .value {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold-dark);
+        }
+
+        /* Payment Details */
+        .payment-details {
+            display: none;
+            padding: 16px 20px;
+            background: var(--ivory-light);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--neutral-200);
+            margin-bottom: 20px;
+        }
+
+        .payment-details.visible {
+            display: block;
+        }
+
+        .payment-details .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 14px;
+        }
+
+        .payment-details .detail-row .label {
+            color: var(--neutral-500);
+        }
+
+        .payment-details .detail-row .value {
+            font-weight: 600;
+            color: var(--navy);
+            direction: ltr;
+            font-family: var(--font-english);
+            letter-spacing: 0.5px;
+        }
+
+        .payment-details .copy-btn {
+            margin-top: 8px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--navy);
+            border: 1px solid var(--neutral-300);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .payment-details .copy-btn:hover {
+            border-color: var(--navy);
+            background: rgba(26, 35, 50, 0.04);
+        }
+
+        .payment-details .copy-btn.copied {
+            border-color: #2e7d32;
+            color: #2e7d32;
+        }
+
+        /* Screenshot Section */
+        .screenshot-section {
+            margin-bottom: 16px;
+            padding: 16px;
+            border: 2px dashed var(--neutral-300);
+            border-radius: var(--radius-md);
+            text-align: center;
+            transition: border-color var(--transition);
+        }
+
+        .screenshot-section:hover {
+            border-color: var(--neutral-400);
+        }
+
+        .screenshot-section .upload-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--ivory-light);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--neutral-200);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-600);
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+
+        .screenshot-section .upload-label:hover {
+            border-color: var(--gold);
+            color: var(--navy);
+        }
+
+        .screenshot-section .upload-label input {
+            display: none;
+        }
+
+        .screenshot-section .file-name {
+            font-size: 13px;
+            color: var(--neutral-400);
+            margin-top: 8px;
+        }
+
+        .screenshot-section .file-preview {
+            margin-top: 12px;
+            max-width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--neutral-200);
+            overflow: hidden;
+            display: none;
+        }
+
+        .screenshot-section .file-preview img {
+            width: 100%;
+            height: auto;
+        }
+
+        .screenshot-section .file-preview.visible {
+            display: block;
+        }
+
+        /* Note */
+        .pay-note {
+            font-size: 13px;
+            color: var(--neutral-400);
+            text-align: center;
+            padding: 12px 0 4px;
+            border-top: 1px solid var(--neutral-100);
+            margin-top: 4px;
+        }
+
+        .pay-note strong {
+            color: var(--neutral-600);
+        }
+
+        /* Confirm Button */
+        .btn-confirm {
+            width: 100%;
+            padding: 14px;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition);
+            margin-top: 8px;
+        }
+
+        .btn-confirm:hover {
+            background: var(--navy-light);
+        }
+
+        .btn-confirm:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Expired State */
+        .expired-state {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .expired-state.visible {
+            display: block;
+        }
+
+        .expired-state .expired-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .expired-state h2 {
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .expired-state p {
+            color: var(--neutral-500);
+            font-size: 14px;
+        }
+
+        .expired-state .btn-retry {
+            margin-top: 16px;
+            padding: 10px 32px;
+            background: var(--navy);
+            color: #fff;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            transition: background var(--transition);
+        }
+
+        .expired-state .btn-retry:hover {
+            background: var(--navy-light);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 600px) {
+            .pay-card {
+                padding: 24px 16px;
+            }
+
+            .pay-card .pay-header h1 {
+                font-size: 20px;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .payment-method {
+                padding: 14px 10px;
+            }
+
+            .payment-method .method-icon {
+                font-size: 26px;
+            }
+
+            .amount-display .value {
+                font-size: 18px;
+            }
+
+            .header-logo-text {
+                font-size: 12px;
+            }
+
+            .header-logo img {
+                height: 34px;
+                width: 34px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .pay-content {
+                padding: 24px 0 32px;
+            }
+
+            .payment-details {
+                padding: 12px 14px;
+            }
+
+            .payment-details .detail-row {
+                font-size: 13px;
+                flex-wrap: wrap;
+            }
+
+            .screenshot-section .upload-label {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           TOAST MESSAGE
+           ============================================ */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: var(--navy-dark);
+            color: #fff;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3000;
+            pointer-events: none;
+        }
+
+        .toast.visible {
+            opacity: 1;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+    HEADER
+    ============================================ -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="/" class="header-logo">
+                <img src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="شعار الكنيسة" />
+                <div class="header-logo-text">
+                    كنيسة العذراء مريم<br />والشهيد أبانوب
+                    <span>إمبابة – الجيزة</span>
+                </div>
+            </a>
+            <a href="/events" class="back-btn" id="backBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5" />
+                    <path d="M12 19l-7-7 7-7" />
+                </svg>
+                العودة
+            </a>
+        </div>
+    </header>
+
+    <!-- ============================================
+    PAY CONTENT
+    ============================================ -->
+    <main class="pay-content">
+        <div class="container">
+
+            <!-- Expired State -->
+            <div class="expired-state" id="expiredState">
+                <div class="expired-icon">&#9888;</div>
+                <h2>انتهت صلاحية الجلسة</h2>
+                <p>انتهت صلاحية جلسة الدفع. يرجى العودة والتسجيل مرة أخرى.</p>
+                <a href="/events" class="btn-retry">العودة للفعاليات</a>
+            </div>
+
+            <!-- Pay Card -->
+            <div class="pay-card" id="payCard">
+                <div class="pay-header">
+                    <h1>إتمام الدفع</h1>
+                    <p>اختر طريقة الدفع المناسبة</p>
+                    <div class="event-name-display" id="eventNameDisplay">مؤتمر الشباب السنوي</div>
+                </div>
+
+                <!-- Token Expiry Warning -->
+                <div class="token-warning" id="tokenWarning">
+                    <span>&#9888;</span>
+                    <span>تنتهي صلاحية الجلسة خلال: <span class="timer" id="timerDisplay">05:00</span></span>
+                </div>
+
+                <!-- Amount -->
+                <div class="amount-display">
+                    <span class="label">المبلغ المطلوب</span>
+                    <span class="value" id="amountDisplay">٠ ج.م</span>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="instapay" id="methodInstapay">
+                        <div class="method-icon">&#128179;</div>
+                        <div class="method-name">إنستا باي</div>
+                        <div class="method-sub">InstaPay</div>
+                    </div>
+                    <div class="payment-method" data-method="wallet" id="methodWallet">
+                        <div class="method-icon">&#128176;</div>
+                        <div class="method-name">محفظة إلكترونية</div>
+                        <div class="method-sub">Mobile Wallet</div>
+                    </div>
+                </div>
+
+                <!-- Payment Details -->
+                <div class="payment-details visible" id="paymentDetails">
+                    <div class="detail-row">
+                        <span class="label">رقم إنستا باي:</span>
+                        <span class="value" id="instapayNumber">01012345678</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">الاسم:</span>
+                        <span class="value" id="instapayName">كنيسة العذراء مريم</span>
+                    </div>
+                    <button class="copy-btn" id="copyInstapay">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                        </svg>
+                        نسخ الرقم
+                    </button>
+                </div>
+
+                <!-- Screenshot Upload -->
+                <div class="screenshot-section">
+                    <label class="upload-label" id="uploadLabel">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <circle cx="8.5" cy="8.5" r="1.5" />
+                            <polyline points="21 15 16 10 5 21" />
+                        </svg>
+                        رفع إثبات الدفع (سكرين شوت)
+                        <input type="file" id="screenshotInput" accept="image/*" />
+                    </label>
+                    <div class="file-name" id="fileName">لم يتم رفع ملف</div>
+                    <div class="file-preview" id="filePreview">
+                        <img id="previewImage" src="" alt="معاينة إثبات الدفع" />
+                    </div>
+                </div>
+
+                <!-- Note -->
+                <div class="pay-note">
+                    <strong>ملاحظة:</strong> يرجى إرسال المبلغ مع ذكر <strong>الاسم والفعالية</strong> في رسالة التحويل
+                </div>
+
+                <!-- Confirm Button -->
+                <button class="btn-confirm" id="confirmPayment">تم الدفع</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ============================================
+    SCRIPTS
+    ============================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================
+            // DOM Elements
+            // ============================================
+            const eventNameDisplay = document.getElementById('eventNameDisplay');
+            const amountDisplay = document.getElementById('amountDisplay');
+            const methodInstapay = document.getElementById('methodInstapay');
+            const methodWallet = document.getElementById('methodWallet');
+            const paymentDetails = document.getElementById('paymentDetails');
+            const instapayNumber = document.getElementById('instapayNumber');
+            const instapayName = document.getElementById('instapayName');
+            const copyBtn = document.getElementById('copyInstapay');
+            const confirmBtn = document.getElementById('confirmPayment');
+            const toast = document.getElementById('toast');
+            const backBtn = document.getElementById('backBtn');
+            const payCard = document.getElementById('payCard');
+            const expiredState = document.getElementById('expiredState');
+
+            // Token elements
+            const tokenWarning = document.getElementById('tokenWarning');
+            const timerDisplay = document.getElementById('timerDisplay');
+
+            // Screenshot elements
+            const screenshotInput = document.getElementById('screenshotInput');
+            const fileName = document.getElementById('fileName');
+            const filePreview = document.getElementById('filePreview');
+            const previewImage = document.getElementById('previewImage');
+
+            // ============================================
+            // TOKEN SYSTEM
+            // ============================================
+            const TOKEN_EXPIRY = 5 * 60; // 5 minutes in seconds
+            let token = null;
+            let tokenExpiry = null;
+            let timerInterval = null;
+            let isExpired = false;
+
+            function generateToken() {
+                return Math.random().toString(36).substring(2, 15) +
+                    Math.random().toString(36).substring(2, 15);
+            }
+
+            function startSession() {
+                token = generateToken();
+                tokenExpiry = Date.now() + (TOKEN_EXPIRY * 1000);
+                sessionStorage.setItem('payToken', token);
+                sessionStorage.setItem('payTokenExpiry', tokenExpiry);
+                sessionStorage.setItem('payEventData', localStorage.getItem('payEventData') || '');
+                startTimer();
+                tokenWarning.classList.add('visible');
+            }
+
+            function validateSession() {
+                const storedToken = sessionStorage.getItem('payToken');
+                const storedExpiry = parseInt(sessionStorage.getItem('payTokenExpiry') || '0');
+
+                if (!storedToken || !storedExpiry) {
+                    showExpired();
+                    return false;
+                }
+
+                if (Date.now() > storedExpiry) {
+                    showExpired();
+                    return false;
+                }
+
+                token = storedToken;
+                tokenExpiry = storedExpiry;
+                startTimer();
+                tokenWarning.classList.add('visible');
+                return true;
+            }
+
+            function startTimer() {
+                if (timerInterval) clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    const now = Date.now();
+                    const remaining = Math.max(0, Math.floor((tokenExpiry - now) / 1000));
+
+                    if (remaining <= 0) {
+                        clearInterval(timerInterval);
+                        showExpired();
+                        return;
+                    }
+
+                    const mins = String(Math.floor(remaining / 60)).padStart(2, '0');
+                    const secs = String(remaining % 60).padStart(2, '0');
+                    timerDisplay.textContent = mins + ':' + secs;
+                }, 1000);
+            }
+
+            function showExpired() {
+                isExpired = true;
+                if (timerInterval) clearInterval(timerInterval);
+                payCard.style.display = 'none';
+                expiredState.classList.add('visible');
+                tokenWarning.classList.remove('visible');
+                sessionStorage.removeItem('payToken');
+                sessionStorage.removeItem('payTokenExpiry');
+            }
+
+            // ============================================
+            // INIT - Check session
+            // ============================================
+            const hasValidSession = validateSession();
+
+            if (!hasValidSession) {
+                // Try to start a new session if we have event data
+                const eventData = localStorage.getItem('payEventData');
+                if (eventData) {
+                    startSession();
+                } else {
+                    showExpired();
+                }
+            }
+
+            // ============================================
+            // Handle page close/refresh
+            // ============================================
+            window.addEventListener('beforeunload', function() {
+                // Session will expire naturally
+                // We keep it so if user refreshes within 5 mins it still works
+            });
+
+            // ============================================
+            // Payment Method Data (Editable from Dashboard)
+            // ============================================
+            const PAYMENT_CONFIG = {
+                instapay: {
+                    number: '01012345678',
+                    name: 'كنيسة العذراء مريم',
+                    label: 'رقم إنستا باي:'
+                },
+                wallet: {
+                    number: '01098765432',
+                    name: 'كنيسة العذراء مريم',
+                    label: 'رقم المحفظة:'
+                }
+            };
+
+            // ============================================
+            // Load Event Data
+            // ============================================
+            let eventData = null;
+
+            try {
+                const saved = sessionStorage.getItem('payEventData') || localStorage.getItem('payEventData');
+                if (saved) {
+                    eventData = JSON.parse(saved);
+                    if (eventData) {
+                        eventNameDisplay.textContent = eventData.eventName || 'فعالية الكنيسة';
+                        amountDisplay.textContent = (eventData.amount || 0) + ' ج.م';
+                    }
+                }
+            } catch (e) {}
+
+            if (!eventData) {
+                eventNameDisplay.textContent = 'فعالية الكنيسة';
+                amountDisplay.textContent = '٠ ج.م';
+            }
+
+            // ============================================
+            // Payment Method Selection
+            // ============================================
+            let selectedMethod = 'instapay';
+
+            methodInstapay.addEventListener('click', function() {
+                if (isExpired) return;
+                selectMethod('instapay');
+            });
+
+            methodWallet.addEventListener('click', function() {
+                if (isExpired) return;
+                selectMethod('wallet');
+            });
+
+            function selectMethod(method) {
+                selectedMethod = method;
+                [methodInstapay, methodWallet].forEach(el => el.classList.remove('active'));
+                if (method === 'instapay') {
+                    methodInstapay.classList.add('active');
+                } else {
+                    methodWallet.classList.add('active');
+                }
+
+                const config = PAYMENT_CONFIG[method];
+                if (config) {
+                    instapayNumber.textContent = config.number;
+                    instapayName.textContent = config.name;
+                    const labelEl = paymentDetails.querySelector('.detail-row:first-child .label');
+                    if (labelEl) labelEl.textContent = config.label;
+                }
+                paymentDetails.classList.add('visible');
+            }
+
+            // ============================================
+            // Copy Number
+            // ============================================
+            copyBtn.addEventListener('click', function() {
+                if (isExpired) return;
+                const number = instapayNumber.textContent;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(number).then(() => {
+                        showToast('تم نسخ الرقم بنجاح');
+                        this.classList.add('copied');
+                        setTimeout(() => this.classList.remove('copied'), 2000);
+                    }).catch(() => {
+                        fallbackCopy(number);
+                    });
+                } else {
+                    fallbackCopy(number);
+                }
+            });
+
+            function fallbackCopy(text) {
+                const input = document.createElement('input');
+                input.value = text;
+                document.body.appendChild(input);
+                input.select();
+                try {
+                    document.execCommand('copy');
+                    showToast('تم نسخ الرقم بنجاح');
+                } catch (e) {
+                    showToast('تعذر نسخ الرقم، يرجى نسخه يدوياً');
+                }
+                document.body.removeChild(input);
+            }
+
+            // ============================================
+            // Screenshot Upload
+            // ============================================
+            let screenshotData = null;
+
+            screenshotInput.addEventListener('change', function(e) {
+                if (isExpired) {
+                    showToast('انتهت صلاحية الجلسة');
+                    this.value = '';
+                    return;
+                }
+
+                const file = this.files[0];
+                if (!file) return;
+
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    showToast('يرجى رفع ملف صورة فقط');
+                    this.value = '';
+                    return;
+                }
+
+                // Validate file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    showToast('حجم الملف كبير جداً (الحد الأقصى 5 ميجابايت)');
+                    this.value = '';
+                    return;
+                }
+
+                fileName.textContent = file.name;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    screenshotData = e.target.result;
+                    previewImage.src = screenshotData;
+                    filePreview.classList.add('visible');
+                    showToast('تم رفع إثبات الدفع بنجاح');
+                };
+                reader.readAsDataURL(file);
+            });
+
+            // ============================================
+            // Toast
+            // ============================================
+            let toastTimeout = null;
+
+            function showToast(message) {
+                toast.textContent = message;
+                toast.classList.add('visible');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('visible');
+                }, 2500);
+            }
+
+            // ============================================
+            // Confirm Payment
+            // ============================================
+            confirmBtn.addEventListener('click', function() {
+                if (this.disabled || isExpired) return;
+
+                const number = instapayNumber.textContent;
+                const methodName = selectedMethod === 'instapay' ? 'إنستا باي' : 'محفظة إلكترونية';
+
+                // Check if screenshot uploaded
+                if (!screenshotData) {
+                    showToast('يرجى رفع إثبات الدفع (سكرين شوت)');
+                    return;
+                }
+
+                const confirmMsg =
+                    `تأكيد الدفع\n\n` +
+                    `الفعالية: ${eventNameDisplay.textContent}\n` +
+                    `المبلغ: ${amountDisplay.textContent}\n` +
+                    `طريقة الدفع: ${methodName}\n` +
+                    `رقم التحويل: ${number}\n\n` +
+                    `هل قمت بإرسال المبلغ؟`;
+
+                if (confirm(confirmMsg)) {
+                    this.disabled = true;
+                    this.innerHTML = 'جاري التأكيد... <span class="spinner"></span>';
+
+                    // Prepare payment data with screenshot
+                    const paymentData = {
+                        eventName: eventNameDisplay.textContent,
+                        amount: amountDisplay.textContent,
+                        method: methodName,
+                        number: number,
+                        date: new Date().toISOString(),
+                        status: 'confirmed',
+                        fullName: eventData?.fullName || 'غير معروف',
+                        phone: eventData?.phone || 'غير معروف',
+                        email: eventData?.email || 'غير معروف',
+                        screenshot: screenshotData // Base64 image
+                    };
+
+                    // Save to localStorage
+                    let payments = JSON.parse(localStorage.getItem('payments') || '[]');
+                    payments.push(paymentData);
+                    localStorage.setItem('payments', JSON.stringify(payments));
+
+                    // Also save screenshot separately for dashboard
+                    let screenshots = JSON.parse(localStorage.getItem('paymentScreenshots') || '[]');
+                    screenshots.push({
+                        id: Date.now(),
+                        eventName: paymentData.eventName,
+                        fullName: paymentData.fullName,
+                        date: paymentData.date,
+                        image: screenshotData
+                    });
+                    localStorage.setItem('paymentScreenshots', JSON.stringify(screenshots));
+
+                    // Send to server if available
+                    try {
+                        fetch('/api/payments/confirm', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                ...paymentData,
+                                screenshot: screenshotData.substring(0, 100) + '...' // truncated for log
+                            })
+                        }).catch(() => {});
+                    } catch (e) {}
+
+                    showToast('تم تأكيد الدفع بنجاح! شكراً لك.');
+
+                    // Clear session
+                    sessionStorage.removeItem('payToken');
+                    sessionStorage.removeItem('payTokenExpiry');
+
+                    setTimeout(() => {
+                        localStorage.removeItem('payEventData');
+                        window.location.href = '/events';
+                    }, 1800);
+                }
+            });
+
+            // ============================================
+            // Back button - clear session on navigate away
+            // ============================================
+            backBtn.addEventListener('click', function(e) {
+                if (!isExpired) {
+                    // Clear session on intentional navigation away
+                    sessionStorage.removeItem('payToken');
+                    sessionStorage.removeItem('payTokenExpiry');
+                }
+            });
+
+            // ============================================
+            // Prevent going back with expired session
+            // ============================================
+            window.addEventListener('pageshow', function(e) {
+                if (e.persisted) {
+                    // Page loaded from bfcache, revalidate
+                    if (!validateSession()) {
+                        if (!isExpired) {
+                            showExpired();
+                        }
+                    }
+                }
+            });
+
+            console.log('💳 Payment page loaded with token system');
+            console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
+
+        })();
+    </script>
+
+</body>
+</html>
