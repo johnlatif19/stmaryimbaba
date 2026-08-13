@@ -931,164 +931,20 @@
             <p class="section-subtitle">عظات وفيديوهات روحية من كنيسة العذراء مريم والشهيد أبانوب</p>
 
             <!-- Filter -->
-            <div class="sermon-filter">
-                <button class="active">الكل</button>
-                <button>عظات</button>
-                <button>فيديوهات</button>
-                <button>ترانيم</button>
-                <button>مناسبات</button>
+            <div class="sermon-filter" id="sermonFilter">
+                <button class="active" data-filter="all">الكل</button>
+                <button data-filter="عظات">عظات</button>
+                <button data-filter="فيديوهات">فيديوهات</button>
+                <button data-filter="ترانيم">ترانيم</button>
+                <button data-filter="مناسبات">مناسبات</button>
             </div>
 
             <div class="sermons-grid" id="sermonsContainer">
-
-                <!-- Sermon Card 1 -->
-                <div class="sermon-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                    <div class="sermon-image">
-                        <img src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="عظة عن المحبة" />
-                        <div class="play-overlay">
-                            <div class="play-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--navy)" stroke="none">
-                                    <polygon points="5 3 19 12 5 21 5 3" />
-                                </svg>
-                            </div>
-                        </div>
-                        <span class="duration-badge">٢٤:٣٥</span>
-                    </div>
-                    <div class="sermon-body">
-                        <span class="sermon-tag">عظة</span>
-                        <h3>عظة عن المحبة المسيحية</h3>
-                        <p class="sermon-description">
-                            عظة روحية عن المحبة المسيحية الحقيقية، وأهمية المحبة
-                            في حياة المؤمن والكنيسة، مستندة إلى تعاليم الكتاب المقدس.
-                        </p>
-                        <div class="sermon-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ١٠ مارس ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                أبونا تيموثاؤس عزيز
-                            </span>
-                        </div>
-                        <button class="watch-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3" />
-                            </svg>
-                            مشاهدة
-                        </button>
-                    </div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل العظات...</p>
                 </div>
-
-                <!-- Sermon Card 2 -->
-                <div class="sermon-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                    <div class="sermon-image">
-                        <img src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="ترنيمة للعذراء مريم" />
-                        <div class="play-overlay">
-                            <div class="play-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--navy)" stroke="none">
-                                    <polygon points="5 3 19 12 5 21 5 3" />
-                                </svg>
-                            </div>
-                        </div>
-                        <span class="duration-badge">١٠:١٥</span>
-                    </div>
-                    <div class="sermon-body">
-                        <span class="sermon-tag">ترنيمة</span>
-                        <h3>ترنيمة والدة الإله</h3>
-                        <p class="sermon-description">
-                            ترنيمة روحية للسيدة العذراء مريم والدة الإله،
-                            من تراث الكنيسة القبطية الأرثوذكسية.
-                        </p>
-                        <div class="sermon-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ٢٥ فبراير ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                فريق التسبيح
-                            </span>
-                        </div>
-                        <button class="watch-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3" />
-                            </svg>
-                            مشاهدة
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Sermon Card 3 -->
-                <div class="sermon-card" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                    <div class="sermon-image">
-                        <img src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="قداس عيد الميلاد" />
-                        <div class="play-overlay">
-                            <div class="play-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--navy)" stroke="none">
-                                    <polygon points="5 3 19 12 5 21 5 3" />
-                                </svg>
-                            </div>
-                        </div>
-                        <span class="duration-badge">١٥:٤٢</span>
-                    </div>
-                    <div class="sermon-body">
-                        <span class="sermon-tag">فيديو</span>
-                        <h3>قداس عيد الميلاد المجيد ٢٠٢٦</h3>
-                        <p class="sermon-description">
-                            تغطية كاملة لقداس عيد الميلاد المجيد من كنيسة
-                            السيدة العذراء مريم والشهيد أبانوب.
-                        </p>
-                        <div class="sermon-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ٧ يناير ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                إدارة الكنيسة
-                            </span>
-                        </div>
-                        <button class="watch-btn" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3" />
-                            </svg>
-                            مشاهدة
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Sermon Empty State (Hidden by default) -->
-                <!--
-                <div class="sermon-empty">
-                    <h4>لا توجد عظات متاحة حالياً</h4>
-                    <p>سيتم إضافة العظات والفيديوهات قريباً</p>
-                </div>
-                -->
             </div>
         </div>
     </section>
@@ -1099,7 +955,7 @@
     <div class="video-modal" id="videoModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modalVideoTitle">عظة عن المحبة</h3>
+                <h3 id="modalVideoTitle">عظة</h3>
                 <button class="modal-close" id="modalClose">&#10005;</button>
             </div>
             <div class="modal-body">
@@ -1107,7 +963,7 @@
                     <iframe id="videoIframe" src="" allowfullscreen loading="lazy" title="فيديو عظة"></iframe>
                 </div>
                 <div class="video-info" id="modalVideoInfo">
-                    <p id="modalVideoDescription">وصف العظة</p>
+                    <p id="modalVideoDescription">عظة روحية</p>
                 </div>
             </div>
         </div>
@@ -1166,6 +1022,14 @@
     <script>
         (function() {
             'use strict';
+
+            // ============================================
+            // DOM Elements
+            // ============================================
+            const container = document.getElementById('sermonsContainer');
+            const filterButtons = document.querySelectorAll('#sermonFilter button');
+            let allSermons = [];
+            let currentFilter = 'all';
 
             // ============================================
             // Mobile Menu Toggle
@@ -1229,46 +1093,108 @@
             });
 
             // ============================================
-            // Sermon Filter
+            // LOAD SERMONS FROM API
             // ============================================
-            const filterButtons = document.querySelectorAll('.sermon-filter button');
-            const sermonCards = document.querySelectorAll('.sermon-card');
-
-            if (filterButtons.length > 0 && sermonCards.length > 0) {
-                filterButtons.forEach(function(btn) {
-                    btn.addEventListener('click', function() {
-                        filterButtons.forEach(function(b) {
-                            b.classList.remove('active');
-                        });
-                        this.classList.add('active');
-
-                        const filter = this.textContent.trim();
-
-                        sermonCards.forEach(function(card) {
-                            const tag = card.querySelector('.sermon-tag');
-                            let match = true;
-
-                            if (filter !== 'الكل') {
-                                match = false;
-                                if (tag && tag.textContent.includes(filter)) match = true;
-                            }
-
-                            card.style.display = match ? '' : 'none';
-                        });
-
-                        const visibleCards = document.querySelectorAll('.sermon-card[style*="display: none"]');
-                        const emptyState = document.querySelector('.sermon-empty');
-                        if (visibleCards.length === sermonCards.length) {
-                            if (emptyState) emptyState.style.display = '';
-                        } else {
-                            if (emptyState) emptyState.style.display = 'none';
-                        }
-                    });
-                });
+            async function loadSermons() {
+                try {
+                    const response = await fetch('/api/sermons');
+                    if (!response.ok) throw new Error('Failed to fetch sermons');
+                    allSermons = await response.json();
+                    renderSermons(allSermons);
+                } catch (error) {
+                    console.error('Error loading sermons:', error);
+                    container.innerHTML = `
+                        <div class="sermon-empty">
+                            <h4>حدث خطأ في تحميل البيانات</h4>
+                            <p>يرجى تحديث الصفحة والمحاولة مرة أخرى</p>
+                            <button onclick="loadSermons()" style="margin-top:12px;padding:8px 24px;background:var(--navy);color:#fff;border-radius:var(--radius-sm);font-size:14px;font-weight:500;">
+                                إعادة المحاولة
+                            </button>
+                        </div>
+                    `;
+                }
             }
 
             // ============================================
-            // Video Modal
+            // RENDER SERMONS
+            // ============================================
+            function renderSermons(sermons) {
+                // Apply filter
+                let filtered = sermons;
+                if (currentFilter !== 'all') {
+                    filtered = sermons.filter(s => {
+                        const tags = [s.title, s.description || '', s.category || '', s.tag || ''];
+                        return tags.some(tag => tag.includes(currentFilter));
+                    });
+                }
+
+                if (!filtered || filtered.length === 0) {
+                    container.innerHTML = `
+                        <div class="sermon-empty">
+                            <h4>${sermons.length === 0 ? 'لا توجد عظات مضافة حالياً' : 'لا توجد عظات تطابق الفلتر'}</h4>
+                            <p>${sermons.length === 0 ? 'سيتم إضافة العظات قريباً' : 'جرب اختيار فلتر آخر'}</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = filtered.map(sermon => `
+                    <div class="sermon-card" data-video="${sermon.video || ''}">
+                        <div class="sermon-image">
+                            <img src="${sermon.image || 'https://i.postimg.cc/BbDyR0CR/lwjw.jpg'}" alt="${sermon.title}" />
+                            <div class="play-overlay">
+                                <div class="play-btn">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--navy)" stroke="none">
+                                        <polygon points="5 3 19 12 5 21 5 3" />
+                                    </svg>
+                                </div>
+                            </div>
+                            ${sermon.duration ? `<span class="duration-badge">${sermon.duration}</span>` : ''}
+                        </div>
+                        <div class="sermon-body">
+                            <span class="sermon-tag">${sermon.tag || 'عظة'}</span>
+                            <h3>${sermon.title}</h3>
+                            <p class="sermon-description">${sermon.description || ''}</p>
+                            <div class="sermon-meta">
+                                ${sermon.date ? `
+                                    <span class="meta-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                            <line x1="16" y1="2" x2="16" y2="6" />
+                                            <line x1="8" y1="2" x2="8" y2="6" />
+                                            <line x1="3" y1="10" x2="21" y2="10" />
+                                        </svg>
+                                        ${sermon.date}
+                                    </span>
+                                ` : ''}
+                                ${sermon.speaker ? `
+                                    <span class="meta-item">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                                            <circle cx="12" cy="7" r="4" />
+                                        </svg>
+                                        ${sermon.speaker}
+                                    </span>
+                                ` : ''}
+                            </div>
+                            ${sermon.video ? `
+                                <button class="watch-btn" data-video="${sermon.video}">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="5 3 19 12 5 21 5 3" />
+                                    </svg>
+                                    مشاهدة
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+
+                // Attach video modal events to new buttons
+                attachVideoEvents();
+            }
+
+            // ============================================
+            // VIDEO MODAL
             // ============================================
             const videoModal = document.getElementById('videoModal');
             const modalClose = document.getElementById('modalClose');
@@ -1296,44 +1222,66 @@
                 if (e.target === this) closeVideoModal();
             });
 
-            // Watch buttons
-            document.querySelectorAll('.watch-btn').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const videoUrl = this.dataset.video;
-                    const card = this.closest('.sermon-card');
-                    const title = card.querySelector('h3')?.textContent || 'عظة';
-                    const description = card.querySelector('.sermon-description')?.textContent || '';
-                    openVideoModal(videoUrl, title, description);
+            // ============================================
+            // ATTACH VIDEO EVENTS
+            // ============================================
+            function attachVideoEvents() {
+                // Watch buttons
+                document.querySelectorAll('.watch-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const videoUrl = this.dataset.video;
+                        if (!videoUrl) return;
+                        const card = this.closest('.sermon-card');
+                        const title = card.querySelector('h3')?.textContent || 'عظة';
+                        const description = card.querySelector('.sermon-description')?.textContent || '';
+                        openVideoModal(videoUrl, title, description);
+                    });
                 });
-            });
 
-            // Click on card image also opens video
-            document.querySelectorAll('.sermon-image').forEach(function(img) {
-                img.addEventListener('click', function() {
-                    const card = this.closest('.sermon-card');
-                    const watchBtn = card.querySelector('.watch-btn');
-                    if (watchBtn) {
-                        watchBtn.click();
-                    }
+                // Click on card image opens video
+                document.querySelectorAll('.sermon-image').forEach(function(img) {
+                    img.addEventListener('click', function() {
+                        const card = this.closest('.sermon-card');
+                        const watchBtn = card.querySelector('.watch-btn');
+                        if (watchBtn) {
+                            watchBtn.click();
+                        }
+                    });
+                });
+            }
+
+            // ============================================
+            // FILTER BUTTONS
+            // ============================================
+            filterButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    filterButtons.forEach(function(b) {
+                        b.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter || 'all';
+                    renderSermons(allSermons);
                 });
             });
 
             // ============================================
-            // API - Fetch Sermons (placeholder)
+            // SPINNER ANIMATION
             // ============================================
-            // async function fetchSermons() {
-            //   try {
-            //     const response = await fetch('/api/sermons');
-            //     const data = await response.json();
-            //     // Render sermons...
-            //   } catch (error) {
-            //     console.error('Error fetching sermons:', error);
-            //   }
-            // }
-            // fetchSermons();
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
 
-            console.log('📖 Sermons page loaded');
+            // ============================================
+            // INIT - Load sermons on page load
+            // ============================================
+            loadSermons();
+
+            console.log('📖 Sermons page loaded with API');
             console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
         })();
