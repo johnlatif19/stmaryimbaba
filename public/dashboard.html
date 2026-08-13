@@ -2552,8 +2552,7 @@
                 document.body.style.overflow = '';
                 modalAlert.className = 'alert-modal';
                 modalAlert.textContent = '';
-                currentAction = null;
-                currentConfig = null;
+                // Don't clear currentConfig immediately - keep it for potential retry
             }
 
             modalClose.addEventListener('click', closeModal);
@@ -2610,15 +2609,15 @@
                 .then(result => {
                     if (result.success) {
                         modalAlert.className = 'alert-modal success';
-                        modalAlert.textContent = 'تم الحفظ بنجاح!';
-                        setTimeout(function() {
-                            closeModal();
-                            const activeTab = document.querySelector('.tab-content.active');
-                            if (activeTab) {
-                                const tabId = activeTab.id.replace('tab-', '');
-                                loadTabData(tabId);
-                            }
-                            // Also reload stats
+                        modalAlert.textContent = '✅ تم الحفظ بنجاح!';
+                        
+                        // Update the table immediately with the new data
+                        const activeTab = document.querySelector('.tab-content.active');
+                        if (activeTab) {
+                            const tabId = activeTab.id.replace('tab-', '');
+                            // Reload the specific tab data
+                            loadTabData(tabId);
+                            // Also reload all stats
                             loadMasses();
                             loadServices();
                             loadEvents();
@@ -2628,10 +2627,18 @@
                             loadPriests();
                             loadFAQ();
                             loadPrayerRequests();
-                        }, 1500);
+                        }
+                        
+                        // Close modal after short delay
+                        setTimeout(function() {
+                            closeModal();
+                            // Reset form state
+                            modalSubmit.disabled = false;
+                            modalSubmit.textContent = 'حفظ';
+                        }, 1000);
                     } else {
                         modalAlert.className = 'alert-modal error';
-                        modalAlert.textContent = result.message || 'حدث خطأ أثناء الحفظ';
+                        modalAlert.textContent = result.message || '❌ حدث خطأ أثناء الحفظ';
                         modalSubmit.disabled = false;
                         modalSubmit.textContent = 'حفظ';
                     }
@@ -2639,7 +2646,7 @@
                 .catch(function(err) {
                     console.error('Fetch error:', err);
                     modalAlert.className = 'alert-modal error';
-                    modalAlert.textContent = 'حدث خطأ في الاتصال بالخادم';
+                    modalAlert.textContent = '❌ حدث خطأ في الاتصال بالخادم';
                     modalSubmit.disabled = false;
                     modalSubmit.textContent = 'حفظ';
                 });
