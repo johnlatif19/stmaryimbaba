@@ -1004,172 +1004,20 @@
             <p class="section-subtitle">تعرف على الفعاليات والأنشطة القادمة في الكنيسة</p>
 
             <!-- Filter -->
-            <div class="event-filter">
-                <button class="active">الكل</button>
-                <button>روحيات</button>
-                <button>اجتماعية</button>
-                <button>شباب</button>
-                <button>أطفال</button>
+            <div class="event-filter" id="eventFilter">
+                <button class="active" data-filter="all">الكل</button>
+                <button data-filter="روحيات">روحيات</button>
+                <button data-filter="اجتماعية">اجتماعية</button>
+                <button data-filter="شباب">شباب</button>
+                <button data-filter="أطفال">أطفال</button>
             </div>
 
             <div class="events-grid" id="eventsContainer">
-                <!-- Event Card 1 -->
-                <div class="event-card" data-event-id="1" data-event-name="مؤتمر الشباب السنوي" data-amount="100">
-                    <img class="event-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="مؤتمر الشباب" />
-                    <div class="event-body">
-                        <span class="event-tag">مؤتمر</span>
-                        <h3>مؤتمر الشباب السنوي</h3>
-                        <p class="event-description">
-                            مؤتمر شبابي روحي يهدف إلى تقوية الإيمان وبناء العلاقات
-                            بين شباب الكنيسة، يتضمن محاضرات، تسابيح، وأنشطة تفاعلية.
-                        </p>
-                        <div class="event-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ١٥ – ١٧ مايو ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
-                                كنيسة السيدة العذراء
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                    <path d="M2 17l10 5 10-5" />
-                                    <path d="M2 12l10 5 10-5" />
-                                </svg>
-                                فعالية سنوية
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                الفئة: شباب
-                            </span>
-                        </div>
-                        <div class="event-register">
-                            <span class="capacity">السعة: <strong>١٠٠</strong> شخص</span>
-                            <button class="btn-register" data-event-id="1" data-event-name="مؤتمر الشباب السنوي" data-amount="100">تسجيل</button>
-                        </div>
-                    </div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل الفعاليات...</p>
                 </div>
-
-                <!-- Event Card 2 -->
-                <div class="event-card" data-event-id="2" data-event-name="رحلة على خطى العائلة المقدسة" data-amount="250">
-                    <img class="event-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="رحلة العائلة المقدسة" />
-                    <div class="event-body">
-                        <span class="event-tag">رحلة روحية</span>
-                        <h3>رحلة على خطى العائلة المقدسة</h3>
-                        <p class="event-description">
-                            رحلة روحانية تتبع مسار العائلة المقدسة في مصر،
-                            تشمل زيارة الأديرة والكنائس التاريخية المرتبطة بالسيدة العذراء.
-                        </p>
-                        <div class="event-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ٢٤ – ٢٦ يونيو ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
-                                محافظات مصر
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                    <path d="M2 17l10 5 10-5" />
-                                    <path d="M2 12l10 5 10-5" />
-                                </svg>
-                                فعالية سنوية
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                الفئة: جميع الأعمار
-                            </span>
-                        </div>
-                        <div class="event-register">
-                            <span class="capacity">السعة: <strong>٥٠</strong> شخص</span>
-                            <button class="btn-register" data-event-id="2" data-event-name="رحلة على خطى العائلة المقدسة" data-amount="250">تسجيل</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Event Card 3 -->
-                <div class="event-card" data-event-id="3" data-event-name="أيام روحية للأطفال" data-amount="50">
-                    <img class="event-image" src="https://i.postimg.cc/BbDyR0CR/lwjw.jpg" alt="أيام روحية للأطفال" />
-                    <div class="event-body">
-                        <span class="event-tag">فعالية أطفال</span>
-                        <h3>أيام روحية للأطفال</h3>
-                        <p class="event-description">
-                            أيام روحية للأطفال تشمل قصصاً كتابية، تسابيح،
-                            رسومات، وأنشطة ترفيهية هادفة.
-                        </p>
-                        <div class="event-meta">
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                    <line x1="16" y1="2" x2="16" y2="6" />
-                                    <line x1="8" y1="2" x2="8" y2="6" />
-                                    <line x1="3" y1="10" x2="21" y2="10" />
-                                </svg>
-                                ١٠ – ١٢ يوليو ٢٠٢٦
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
-                                قاعة الأطفال
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                                    <path d="M2 17l10 5 10-5" />
-                                    <path d="M2 12l10 5 10-5" />
-                                </svg>
-                                فعالية موسمية
-                            </span>
-                            <span class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                الفئة: أطفال
-                            </span>
-                        </div>
-                        <div class="event-register">
-                            <span class="capacity">السعة: <strong>٣٠</strong> طفل</span>
-                            <button class="btn-register" data-event-id="3" data-event-name="أيام روحية للأطفال" data-amount="50">تسجيل</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Event Empty State -->
-                <!--
-                <div class="event-empty">
-                    <h4>لا توجد فعاليات قادمة حالياً</h4>
-                    <p>سيتم إضافة الفعاليات قريباً</p>
-                </div>
-                -->
             </div>
         </div>
     </section>
@@ -1276,6 +1124,14 @@
             'use strict';
 
             // ============================================
+            // DOM Elements
+            // ============================================
+            const container = document.getElementById('eventsContainer');
+            const filterButtons = document.querySelectorAll('#eventFilter button');
+            let allEvents = [];
+            let currentFilter = 'all';
+
+            // ============================================
             // Mobile Menu Toggle
             // ============================================
             const menuToggle = document.getElementById('menuToggle');
@@ -1337,43 +1193,134 @@
             });
 
             // ============================================
-            // Event Filter
+            // SPINNER ANIMATION
             // ============================================
-            const filterButtons = document.querySelectorAll('.event-filter button');
-            const eventCards = document.querySelectorAll('.event-card');
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
 
-            if (filterButtons.length > 0 && eventCards.length > 0) {
-                filterButtons.forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        filterButtons.forEach(b => b.classList.remove('active'));
-                        this.classList.add('active');
+            // ============================================
+            // LOAD EVENTS FROM API
+            // ============================================
+            async function loadEvents() {
+                try {
+                    const response = await fetch('/api/events');
+                    if (!response.ok) throw new Error('Failed to fetch events');
+                    allEvents = await response.json();
+                    renderEvents(allEvents);
+                } catch (error) {
+                    console.error('Error loading events:', error);
+                    container.innerHTML = `
+                        <div class="event-empty">
+                            <h4>حدث خطأ في تحميل البيانات</h4>
+                            <p>يرجى تحديث الصفحة والمحاولة مرة أخرى</p>
+                            <button onclick="loadEvents()" style="margin-top:12px;padding:8px 24px;background:var(--navy);color:#fff;border-radius:var(--radius-sm);font-size:14px;font-weight:500;">
+                                إعادة المحاولة
+                            </button>
+                        </div>
+                    `;
+                }
+            }
 
-                        const filter = this.textContent.trim();
+            // ============================================
+            // RENDER EVENTS
+            // ============================================
+            function renderEvents(events) {
+                // Apply filter
+                let filtered = events;
+                if (currentFilter !== 'all') {
+                    filtered = events.filter(event => {
+                        const tags = [event.tag || '', event.category || '', event.title || ''];
+                        return tags.some(tag => tag.includes(currentFilter));
+                    });
+                }
 
-                        eventCards.forEach(card => {
-                            const tag = card.querySelector('.event-tag');
-                            const category = card.querySelector('.meta-item:last-child');
-                            let match = true;
+                if (!filtered || filtered.length === 0) {
+                    container.innerHTML = `
+                        <div class="event-empty">
+                            <h4>${events.length === 0 ? 'لا توجد فعاليات قادمة حالياً' : 'لا توجد فعاليات تطابق الفلتر'}</h4>
+                            <p>${events.length === 0 ? 'سيتم إضافة الفعاليات قريباً' : 'جرب اختيار فلتر آخر'}</p>
+                        </div>
+                    `;
+                    return;
+                }
 
-                            if (filter !== 'الكل') {
-                                match = false;
-                                if (tag && tag.textContent.includes(filter)) match = true;
-                                if (category && category.textContent.includes(filter)) match = true;
-                            }
+                container.innerHTML = filtered.map(event => `
+                    <div class="event-card" data-event-id="${event.id}" data-event-name="${event.title}" data-amount="${event.amount || 0}">
+                        <img class="event-image" src="${event.image || 'https://i.postimg.cc/BbDyR0CR/lwjw.jpg'}" alt="${event.title}" />
+                        <div class="event-body">
+                            <span class="event-tag">${event.tag || 'فعالية'}</span>
+                            <h3>${event.title}</h3>
+                            <p class="event-description">${event.description || ''}</p>
+                            <div class="event-meta">
+                                <span class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                    ${event.date || 'تاريخ غير محدد'}
+                                </span>
+                                <span class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    ${event.location || 'الكنيسة'}
+                                </span>
+                                <span class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                        <path d="M2 17l10 5 10-5" />
+                                        <path d="M2 12l10 5 10-5" />
+                                    </svg>
+                                    ${event.frequency || 'فعالية'}
+                                </span>
+                                <span class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                                        <circle cx="12" cy="7" r="4" />
+                                    </svg>
+                                    ${event.category || 'جميع الأعمار'}
+                                </span>
+                            </div>
+                            <div class="event-register">
+                                <span class="capacity">السعة: <strong>${event.capacity || 'غير محدود'}</strong> شخص</span>
+                                <button class="btn-register" data-event-id="${event.id}" data-event-name="${event.title}" data-amount="${event.amount || 0}">تسجيل</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
 
-                            card.style.display = match ? '' : 'none';
-                        });
-
-                        const visibleCards = document.querySelectorAll('.event-card[style*="display: none"]');
-                        const emptyState = document.querySelector('.event-empty');
-                        if (visibleCards.length === eventCards.length) {
-                            if (emptyState) emptyState.style.display = '';
-                        } else {
-                            if (emptyState) emptyState.style.display = 'none';
-                        }
+                // Re-attach register button events
+                document.querySelectorAll('.btn-register').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        if (this.classList.contains('disabled')) return;
+                        const eventId = this.dataset.eventId;
+                        const eventName = this.dataset.eventName;
+                        const amount = this.dataset.amount;
+                        openModal(eventId, eventName, amount);
                     });
                 });
             }
+
+            // ============================================
+            // FILTER BUTTONS
+            // ============================================
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter || 'all';
+                    renderEvents(allEvents);
+                });
+            });
 
             // ============================================
             // Registration Modal
@@ -1415,18 +1362,6 @@
 
             modal.addEventListener('click', function(e) {
                 if (e.target === this) closeModal();
-            });
-
-            // Register buttons
-            document.querySelectorAll('.btn-register').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (this.classList.contains('disabled')) return;
-                    const eventId = this.dataset.eventId;
-                    const eventName = this.dataset.eventName;
-                    const amount = this.dataset.amount;
-                    openModal(eventId, eventName, amount);
-                });
             });
 
             // ============================================
@@ -1474,7 +1409,7 @@
                     date: new Date().toISOString()
                 };
 
-                // Save to localStorage (will be synced to dashboard)
+                // Save to localStorage
                 saveRegistration(registrationData);
 
                 // Show success
@@ -1482,7 +1417,6 @@
 
                 // Redirect to pay page after short delay
                 setTimeout(function() {
-                    // Save event data for pay page
                     localStorage.setItem('payEventData', JSON.stringify({
                         eventName: eventName,
                         amount: currentEvent.amount || 0,
@@ -1509,19 +1443,19 @@
             }
 
             // ============================================
-            // Save Registration to LocalStorage
+            // Save Registration
             // ============================================
             function saveRegistration(data) {
-                let registrations = JSON.parse(localStorage.getItem('eventRegistrations') || '[]');
-                registrations.push({
-                    id: Date.now(),
-                    ...data,
-                    status: 'pending'
-                });
-                localStorage.setItem('eventRegistrations', JSON.stringify(registrations));
-
-                // Also send to server if API available
                 try {
+                    let registrations = JSON.parse(localStorage.getItem('eventRegistrations') || '[]');
+                    registrations.push({
+                        id: Date.now(),
+                        ...data,
+                        status: 'pending'
+                    });
+                    localStorage.setItem('eventRegistrations', JSON.stringify(registrations));
+
+                    // Also send to server if API available
                     fetch('/api/events/register', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -1531,9 +1465,11 @@
             }
 
             // ============================================
-            // Check if user is already registered (optional)
+            // INIT - Load events on page load
             // ============================================
-            console.log('📅 Events page loaded with registration modal');
+            loadEvents();
+
+            console.log('📅 Events page loaded with API');
             console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
         })();
