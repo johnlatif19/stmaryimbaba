@@ -421,6 +421,7 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
+            width: 100%;
         }
 
         .quick-action-btn:hover {
@@ -540,6 +541,171 @@
         }
 
         /* ============================================
+           MODAL
+           ============================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            max-width: 520px;
+            width: 100%;
+            padding: 28px 28px 32px;
+            box-shadow: var(--shadow-xl);
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalFadeIn 0.25s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96) translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+
+        .modal-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .modal-header .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neutral-400);
+            font-size: 22px;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .modal-header .modal-close:hover {
+            background: var(--neutral-100);
+            color: var(--neutral-700);
+        }
+
+        .modal .form-group {
+            margin-bottom: 14px;
+        }
+
+        .modal .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--neutral-700);
+            margin-bottom: 4px;
+        }
+
+        .modal .form-group label .required {
+            color: #c0392b;
+            margin-right: 2px;
+        }
+
+        .modal .form-group input,
+        .modal .form-group textarea,
+        .modal .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1.5px solid var(--neutral-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-arabic);
+            font-size: 15px;
+            color: var(--neutral-800);
+            background: var(--ivory-light);
+            transition: border-color var(--transition), box-shadow var(--transition);
+            outline: none;
+        }
+
+        .modal .form-group input:focus,
+        .modal .form-group textarea:focus,
+        .modal .form-group select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(184, 148, 60, 0.10);
+        }
+
+        .modal .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .modal .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition);
+            margin-top: 4px;
+        }
+
+        .modal .btn-submit:hover {
+            background: var(--navy-light);
+        }
+
+        .modal .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .modal .alert-modal {
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            display: none;
+            margin-bottom: 12px;
+        }
+
+        .modal .alert-modal.error {
+            display: block;
+            background: #fde8e8;
+            color: #c0392b;
+            border: 1px solid #f5c6c6;
+        }
+
+        .modal .alert-modal.success {
+            display: block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        /* ============================================
            MOBILE OVERLAY
            ============================================ */
         .sidebar-overlay {
@@ -645,6 +811,11 @@
             .quick-action-btn {
                 padding: 12px;
                 font-size: 12px;
+            }
+
+            .modal {
+                padding: 20px 16px 24px;
+                border-radius: var(--radius-md);
             }
         }
 
@@ -887,23 +1058,23 @@
 
             <!-- Quick Actions -->
             <div class="quick-actions">
-                <a href="#" class="quick-action-btn">
+                <button class="quick-action-btn" data-action="add-mass">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10" />
                         <line x1="12" y1="8" x2="12" y2="16" />
                         <line x1="8" y1="12" x2="16" y2="12" />
                     </svg>
                     إضافة قداس
-                </a>
-                <a href="#" class="quick-action-btn">
+                </button>
+                <button class="quick-action-btn" data-action="add-service">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 2L2 7l10 5 10-5-10-5z" />
                         <path d="M2 17l10 5 10-5" />
                         <path d="M2 12l10 5 10-5" />
                     </svg>
                     إضافة خدمة
-                </a>
-                <a href="#" class="quick-action-btn">
+                </button>
+                <button class="quick-action-btn" data-action="add-event">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                         <line x1="16" y1="2" x2="16" y2="6" />
@@ -911,29 +1082,29 @@
                         <line x1="3" y1="10" x2="21" y2="10" />
                     </svg>
                     إضافة فعالية
-                </a>
-                <a href="#" class="quick-action-btn">
+                </button>
+                <button class="quick-action-btn" data-action="add-news">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
                         <circle cx="12" cy="7" r="4" />
                     </svg>
                     إضافة خبر
-                </a>
-                <a href="#" class="quick-action-btn">
+                </button>
+                <button class="quick-action-btn" data-action="add-sermon">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="23 7 16 12 23 17 23 7" />
                         <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
                     </svg>
                     إضافة عظة
-                </a>
-                <a href="#" class="quick-action-btn">
+                </button>
+                <button class="quick-action-btn" data-action="upload-images">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                         <circle cx="8.5" cy="8.5" r="1.5" />
                         <polyline points="21 15 16 10 5 21" />
                     </svg>
                     رفع صور
-                </a>
+                </button>
             </div>
 
             <!-- Recent Activity -->
@@ -1018,6 +1189,25 @@
     </main>
 
     <!-- ============================================
+    MODAL
+    ============================================ -->
+    <div class="modal-overlay" id="actionModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">إضافة جديد</h2>
+                <button class="modal-close" id="modalClose">&#10005;</button>
+            </div>
+            <div id="modalAlert" class="alert-modal"></div>
+            <form id="actionForm" novalidate>
+                <div id="modalFields">
+                    <!-- Dynamic fields will be inserted here -->
+                </div>
+                <button type="submit" class="btn-submit" id="modalSubmit">حفظ</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================
     SCRIPTS
     ============================================ -->
     <script>
@@ -1031,6 +1221,14 @@
             const sidebarOverlay = document.getElementById('sidebarOverlay');
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const logoutBtn = document.getElementById('logoutBtn');
+
+            const modal = document.getElementById('actionModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalFields = document.getElementById('modalFields');
+            const modalSubmit = document.getElementById('modalSubmit');
+            const modalAlert = document.getElementById('modalAlert');
+            const actionForm = document.getElementById('actionForm');
 
             // ============================================
             // Mobile Menu Toggle
@@ -1058,14 +1256,15 @@
 
             sidebarOverlay.addEventListener('click', closeSidebar);
 
-            // Close sidebar on Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && sidebar.classList.contains('open')) {
                     closeSidebar();
                 }
+                if (e.key === 'Escape' && modal.classList.contains('open')) {
+                    closeModal();
+                }
             });
 
-            // Close sidebar on window resize (if open and screen becomes large)
             window.addEventListener('resize', function() {
                 if (window.innerWidth > 820 && sidebar.classList.contains('open')) {
                     closeSidebar();
@@ -1077,22 +1276,10 @@
             // ============================================
             logoutBtn.addEventListener('click', async function() {
                 if (!confirm('هل أنت متأكد من تسجيل الخروج؟')) return;
-
                 try {
-                    const response = await fetch('/api/auth/logout', {
-                        method: 'POST',
-                        credentials: 'same-origin',
-                    });
-
-                    if (response.ok) {
-                        window.location.href = '/login';
-                    } else {
-                        // Fallback: redirect to login anyway
-                        window.location.href = '/login';
-                    }
+                    await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' });
+                    window.location.href = '/login';
                 } catch (error) {
-                    console.error('Logout error:', error);
-                    // Fallback: redirect to login
                     window.location.href = '/login';
                 }
             });
@@ -1102,38 +1289,230 @@
             // ============================================
             async function checkAuth() {
                 try {
-                    const response = await fetch('/api/auth/verify', {
-                        credentials: 'same-origin',
-                    });
-
-                    // In development, we allow access even if verification fails
-                    // In production, this should redirect to login on failure
+                    const response = await fetch('/api/auth/verify', { credentials: 'same-origin' });
                     if (!response.ok) {
                         console.log('⚠️ Auth verification failed, but continuing in development mode');
                         return;
                     }
-                    
                     const data = await response.json();
                     if (data.success) {
                         console.log('✅ Authenticated as:', data.user?.username || 'admin');
-                    } else {
-                        console.log('⚠️ Not authenticated, but continuing in development mode');
                     }
                 } catch (error) {
                     console.error('Auth verification error:', error);
-                    // For development, don't redirect
-                    // window.location.href = '/login';
                 }
             }
-
-            // Verify authentication on load
             checkAuth();
+
+            // ============================================
+            // MODAL SYSTEM
+            // ============================================
+            const actionMap = {
+                'add-mass': {
+                    title: 'إضافة قداس جديد',
+                    fields: `
+                        <div class="form-group">
+                            <label>اليوم <span class="required">*</span></label>
+                            <select id="massDay" required>
+                                <option value="">اختر اليوم</option>
+                                <option value="الأحد">الأحد</option>
+                                <option value="الإثنين">الإثنين</option>
+                                <option value="الثلاثاء">الثلاثاء</option>
+                                <option value="الأربعاء">الأربعاء</option>
+                                <option value="الخميس">الخميس</option>
+                                <option value="الجمعة">الجمعة</option>
+                                <option value="السبت">السبت</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>الوقت <span class="required">*</span></label>
+                            <input type="text" id="massTime" placeholder="مثال: ٨:٠٠ ص – ١٠:٣٠ ص" required />
+                        </div>
+                        <div class="form-group">
+                            <label>المكان</label>
+                            <input type="text" id="massLocation" placeholder="الكنيسة الرئيسية" />
+                        </div>
+                        <div class="form-group">
+                            <label>الكاهن</label>
+                            <input type="text" id="massPriest" placeholder="اسم الكاهن" />
+                        </div>
+                    `
+                },
+                'add-service': {
+                    title: 'إضافة خدمة جديدة',
+                    fields: `
+                        <div class="form-group">
+                            <label>اسم الخدمة <span class="required">*</span></label>
+                            <input type="text" id="serviceName" placeholder="مثال: خدمة الشباب" required />
+                        </div>
+                        <div class="form-group">
+                            <label>الوصف</label>
+                            <textarea id="serviceDesc" placeholder="وصف الخدمة"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>اليوم</label>
+                            <input type="text" id="serviceDay" placeholder="مثال: الجمعة" />
+                        </div>
+                        <div class="form-group">
+                            <label>الوقت</label>
+                            <input type="text" id="serviceTime" placeholder="مثال: ٧:٠٠ م" />
+                        </div>
+                    `
+                },
+                'add-event': {
+                    title: 'إضافة فعالية جديدة',
+                    fields: `
+                        <div class="form-group">
+                            <label>عنوان الفعالية <span class="required">*</span></label>
+                            <input type="text" id="eventTitle" placeholder="مثال: مؤتمر الشباب" required />
+                        </div>
+                        <div class="form-group">
+                            <label>الوصف</label>
+                            <textarea id="eventDesc" placeholder="وصف الفعالية"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>التاريخ</label>
+                            <input type="text" id="eventDate" placeholder="مثال: ١٥ مايو ٢٠٢٦" />
+                        </div>
+                    `
+                },
+                'add-news': {
+                    title: 'إضافة خبر جديد',
+                    fields: `
+                        <div class="form-group">
+                            <label>عنوان الخبر <span class="required">*</span></label>
+                            <input type="text" id="newsTitle" placeholder="عنوان الخبر" required />
+                        </div>
+                        <div class="form-group">
+                            <label>المحتوى</label>
+                            <textarea id="newsContent" placeholder="محتوى الخبر"></textarea>
+                        </div>
+                    `
+                },
+                'add-sermon': {
+                    title: 'إضافة عظة جديدة',
+                    fields: `
+                        <div class="form-group">
+                            <label>عنوان العظة <span class="required">*</span></label>
+                            <input type="text" id="sermonTitle" placeholder="عنوان العظة" required />
+                        </div>
+                        <div class="form-group">
+                            <label>الوصف</label>
+                            <textarea id="sermonDesc" placeholder="وصف العظة"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>رابط الفيديو (YouTube)</label>
+                            <input type="text" id="sermonVideo" placeholder="https://www.youtube.com/embed/..." />
+                        </div>
+                    `
+                },
+                'upload-images': {
+                    title: 'رفع صور إلى المعرض',
+                    fields: `
+                        <div class="form-group">
+                            <label>عنوان الألبوم <span class="required">*</span></label>
+                            <input type="text" id="albumTitle" placeholder="عنوان الألبوم" required />
+                        </div>
+                        <div class="form-group">
+                            <label>رفع الصور</label>
+                            <input type="file" id="albumImages" accept="image/*" multiple />
+                        </div>
+                    `
+                }
+            };
+
+            function openModal(action) {
+                const config = actionMap[action];
+                if (!config) return;
+
+                modalTitle.textContent = config.title;
+                modalFields.innerHTML = config.fields;
+                modalAlert.className = 'alert-modal';
+                modalAlert.textContent = '';
+                modalSubmit.textContent = 'حفظ';
+                modalSubmit.disabled = false;
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+                modalAlert.className = 'alert-modal';
+                modalAlert.textContent = '';
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+
+            // Quick action buttons
+            document.querySelectorAll('.quick-action-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const action = this.dataset.action;
+                    if (action && actionMap[action]) {
+                        openModal(action);
+                    } else {
+                        // Fallback: show coming soon message
+                        alert('هذه الميزة قيد التطوير وسيتم إضافتها قريباً.');
+                    }
+                });
+            });
+
+            // ============================================
+            // Modal Form Submission
+            // ============================================
+            actionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Gather form data
+                const formData = new FormData(this);
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+
+                // Check for required fields (simple validation)
+                let hasError = false;
+                let errorMessage = '';
+                const requiredInputs = this.querySelectorAll('[required]');
+                requiredInputs.forEach(function(input) {
+                    if (!input.value.trim()) {
+                        hasError = true;
+                        const label = input.closest('.form-group')?.querySelector('label')?.textContent?.trim() || 'حقل';
+                        errorMessage = 'يرجى ملء جميع الحقول المطلوبة';
+                    }
+                });
+
+                if (hasError) {
+                    modalAlert.className = 'alert-modal error';
+                    modalAlert.textContent = errorMessage;
+                    return;
+                }
+
+                // Show loading
+                modalSubmit.disabled = true;
+                modalSubmit.textContent = 'جاري الحفظ...';
+
+                // Simulate save
+                setTimeout(function() {
+                    modalAlert.className = 'alert-modal success';
+                    modalAlert.textContent = 'تم الحفظ بنجاح!';
+
+                    // Show success for 1.5 seconds then close
+                    setTimeout(function() {
+                        closeModal();
+                        // Refresh page to show new data (in production, we'd update the UI dynamically)
+                        location.reload();
+                    }, 1500);
+                }, 1000);
+            });
 
             // ============================================
             // Keyboard Shortcuts
             // ============================================
             document.addEventListener('keydown', function(e) {
-                // Ctrl + / to toggle sidebar on desktop
                 if (e.ctrlKey && e.key === '/') {
                     e.preventDefault();
                     if (window.innerWidth <= 820) {
@@ -1146,7 +1525,7 @@
                 }
             });
 
-            console.log('📊 Dashboard loaded');
+            console.log('📊 Dashboard loaded with interactive actions');
             console.log('📍 Church: Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
         })();
