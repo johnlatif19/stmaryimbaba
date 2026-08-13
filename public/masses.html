@@ -45,11 +45,9 @@
             --shadow-sm: 0 1px 3px rgba(26, 35, 50, 0.06);
             --shadow-md: 0 4px 16px rgba(26, 35, 50, 0.08);
             --shadow-lg: 0 8px 32px rgba(26, 35, 50, 0.12);
-            --shadow-xl: 0 16px 48px rgba(26, 35, 50, 0.16);
             --radius-sm: 6px;
             --radius-md: 10px;
             --radius-lg: 16px;
-            --radius-xl: 24px;
             --transition: 0.25s ease;
             --font-arabic: 'Noto Naskh Arabic', serif;
             --font-english: 'Inter', sans-serif;
@@ -698,71 +696,11 @@
             <p class="section-subtitle">مواعيد القداسات الإلهية في الكنيسة</p>
 
             <div class="masses-grid" id="massesContainer">
-                <!-- Data will be loaded dynamically from API -->
-                <!-- Static fallback content -->
-                <div class="mass-card">
-                    <div class="day">الأحد</div>
-                    <div class="day-ar">يوم الرب</div>
-                    <div class="time">٨:٠٠ ص – ١٠:٣٠ ص</div>
-                    <div class="location">الكنيسة الرئيسية</div>
-                    <div class="priest">أبونا القس تيموثاؤس عزيز</div>
+                <!-- سيتم تحميل البيانات من API -->
+                <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--neutral-400);">
+                    <div class="spinner" style="display:inline-block;width:32px;height:32px;border:3px solid var(--neutral-200);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px;"></div>
+                    <p>جاري تحميل مواعيد القداسات...</p>
                 </div>
-
-                <div class="mass-card">
-                    <div class="day">الإثنين</div>
-                    <div class="day-ar">بداية الأسبوع</div>
-                    <div class="time">٧:٠٠ ص – ٨:٣٠ ص</div>
-                    <div class="location">كنيسة السيدة العذراء</div>
-                    <div class="priest">أبونا القس أثناسيوس ونيس</div>
-                </div>
-
-                <div class="mass-card">
-                    <div class="day">الثلاثاء</div>
-                    <div class="day-ar">يوم البركة</div>
-                    <div class="time">٧:٠٠ ص – ٩:٠٠ ص</div>
-                    <div class="location">كنيسة السيدة العذراء</div>
-                    <div class="priest">أبونا القس أثناسيوس ونيس</div>
-                </div>
-
-                <div class="mass-card">
-                    <div class="day">الأربعاء</div>
-                    <div class="day-ar">منتصف الأسبوع</div>
-                    <div class="time">٧:٣٠ ص – ٩:٠٠ ص</div>
-                    <div class="location">الكنيسة الرئيسية</div>
-                    <div class="priest">أبونا القس أرساني عبد المسيح</div>
-                </div>
-
-                <div class="mass-card">
-                    <div class="day">الخميس</div>
-                    <div class="day-ar">يوم الشكر</div>
-                    <div class="time">٧:٣٠ ص – ٩:٣٠ ص</div>
-                    <div class="location">الكنيسة الرئيسية</div>
-                    <div class="priest">أبونا القس أرساني عبد المسيح</div>
-                </div>
-
-                <div class="mass-card">
-                    <div class="day">الجمعة</div>
-                    <div class="day-ar">يوم الاستعداد</div>
-                    <div class="time">٦:٠٠ ص – ٨:٠٠ ص</div>
-                    <div class="location">كنيسة الشهيد أبانوب</div>
-                    <div class="priest">أبونا القس يونان نعيم</div>
-                </div>
-
-                <div class="mass-card">
-                    <div class="day">السبت</div>
-                    <div class="day-ar">يوم الراحة</div>
-                    <div class="time">٨:٠٠ ص – ١٠:٠٠ ص</div>
-                    <div class="location">كنيسة الشهيد أبانوب</div>
-                    <div class="priest">أبونا القس يونان نعيم</div>
-                </div>
-
-                <!-- Empty state example - hidden by default -->
-                <!--
-                <div class="mass-empty">
-                    <h4>لا توجد قداسات مضافة حالياً</h4>
-                    <p>سيتم إضافة مواعيد القداسات قريباً</p>
-                </div>
-                -->
             </div>
 
             <div class="schedule-note">
@@ -827,6 +765,11 @@
             'use strict';
 
             // ============================================
+            // DOM Elements
+            // ============================================
+            const container = document.getElementById('massesContainer');
+
+            // ============================================
             // Mobile Menu Toggle
             // ============================================
             const menuToggle = document.getElementById('menuToggle');
@@ -885,21 +828,83 @@
             });
 
             // ============================================
-            // API - Fetch Masses (placeholder)
+            // LOAD MASSES FROM API
             // ============================================
-            // This will be replaced with actual API calls when backend is ready
-            // async function fetchMasses() {
-            //   try {
-            //     const response = await fetch('/api/masses');
-            //     const data = await response.json();
-            //     // Render masses...
-            //   } catch (error) {
-            //     console.error('Error fetching masses:', error);
-            //   }
-            // }
-            // fetchMasses();
+            async function loadMasses() {
+                try {
+                    const response = await fetch('/api/masses');
+                    if (!response.ok) throw new Error('Failed to fetch masses');
+                    const masses = await response.json();
+                    
+                    if (!masses || masses.length === 0) {
+                        container.innerHTML = `
+                            <div class="mass-empty">
+                                <h4>لا توجد قداسات مضافة حالياً</h4>
+                                <p>سيتم إضافة مواعيد القداسات قريباً</p>
+                            </div>
+                        `;
+                        return;
+                    }
 
-            console.log('🕊️ Masses page loaded');
+                    renderMasses(masses);
+                } catch (error) {
+                    console.error('Error loading masses:', error);
+                    container.innerHTML = `
+                        <div class="mass-empty">
+                            <h4>حدث خطأ في تحميل البيانات</h4>
+                            <p>يرجى تحديث الصفحة والمحاولة مرة أخرى</p>
+                            <button onclick="loadMasses()" style="margin-top:12px;padding:8px 24px;background:var(--navy);color:#fff;border-radius:var(--radius-sm);font-size:14px;font-weight:500;">
+                                إعادة المحاولة
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+
+            // ============================================
+            // RENDER MASSES
+            // ============================================
+            function renderMasses(masses) {
+                // Days in Arabic with their meanings
+                const dayMap = {
+                    'الأحد': 'يوم الرب',
+                    'الإثنين': 'بداية الأسبوع',
+                    'الثلاثاء': 'يوم البركة',
+                    'الأربعاء': 'منتصف الأسبوع',
+                    'الخميس': 'يوم الشكر',
+                    'الجمعة': 'يوم الاستعداد',
+                    'السبت': 'يوم الراحة'
+                };
+
+                container.innerHTML = masses.map(mass => `
+                    <div class="mass-card">
+                        <div class="day">${mass.day || ''}</div>
+                        <div class="day-ar">${dayMap[mass.day] || ''}</div>
+                        <div class="time">${mass.time || ''}</div>
+                        <div class="location">${mass.location || 'الكنيسة الرئيسية'}</div>
+                        <div class="priest">${mass.priest || 'أبونا القس'}</div>
+                        ${mass.notes ? `<div class="notes">${mass.notes}</div>` : ''}
+                    </div>
+                `).join('');
+            }
+
+            // ============================================
+            // SPINNER ANIMATION
+            // ============================================
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // ============================================
+            // INIT - Load masses on page load
+            // ============================================
+            loadMasses();
+
+            console.log('🕊️ Masses page loaded with API');
             console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
         })();
