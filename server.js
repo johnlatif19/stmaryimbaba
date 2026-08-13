@@ -49,12 +49,51 @@ app.get('/logo', (req, res) => {
 });
 
 // ==================================================
-// API Routes (will be added later)
+// API Routes
 // ==================================================
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// ==================================================
+// AUTH API Routes
+// ==================================================
+
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'ChangeMe123!';
+
+app.post('/api/auth/login', (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({
+      success: false,
+      message: 'يرجى إدخال اسم المستخدم وكلمة المرور'
+    });
+  }
+
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    return res.json({
+      success: true,
+      message: 'تم تسجيل الدخول بنجاح',
+      user: { username: ADMIN_USERNAME, role: 'admin' }
+    });
+  } else {
+    return res.status(401).json({
+      success: false,
+      message: 'اسم المستخدم أو كلمة المرور غير صحيحة'
+    });
+  }
+});
+
+app.post('/api/auth/logout', (req, res) => {
+  res.json({ success: true, message: 'تم تسجيل الخروج' });
+});
+
+app.get('/api/auth/verify', (req, res) => {
+  res.status(401).json({ success: false, message: 'غير مصرح' });
 });
 
 // ==================================================
@@ -88,10 +127,10 @@ app.get('*', (req, res) => {
 
   // Remove trailing slash if present
   let cleanPath = req.path.replace(/\/+$/, '');
-  
+
   // If path is empty or just '/', serve index
   if (cleanPath === '') cleanPath = '/';
-  
+
   const file = routeMap[cleanPath];
   if (file) {
     res.sendFile(path.join(__dirname, 'public', file));
