@@ -1044,46 +1044,125 @@
                         screenshot: screenshotData // Base64 image
                     };
 
-                    // Save to localStorage
+                    // Try to send to server first
+                    fetch('/api/payments/confirm', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            ...paymentData,
+                            screenshot: screenshotData // send full image
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            // Save to localStorage as backup
+                            saveToLocalStorage(paymentData);
+                            showToast('✅ تم تأكيد الدفع بنجاح! شكراً لك.');
+                            clearSessionAndRedirect();
+                        } else {
+                            // If server fails, save to localStorage
+                            saveToLocalStorage(paymentData);
+                            showToast('✅ تم حفظ الدفع محلياً. سيتم مزامنته مع الخادم.');
+                            clearSessionAndRedirect();
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Error sending payment:', error);
+                        // Save to localStorage as fallback
+                        saveToLocalStorage(paymentData);
+                        showToast('✅ تم حفظ الدفع محلياً. سيتم مزامنته مع الخادم.');
+                        clearSessionAndRedirect();
+                    });
+                }
+            });
+
+            // ============================================
+            // Save to LocalStorage
+            // ============================================
+            function saveToLocalStorage(paymentData) {
+                try {
+                    // Save payment
                     let payments = JSON.parse(localStorage.getItem('payments') || '[]');
-                    payments.push(paymentData);
+                    payments.push({
+                        id: Date.now(),
+                        ...paymentData,
+                        synced: false
+                    });
                     localStorage.setItem('payments', JSON.stringify(payments));
 
-                    // Also save screenshot separately for dashboard
+                    // Save screenshot separately
                     let screenshots = JSON.parse(localStorage.getItem('paymentScreenshots') || '[]');
                     screenshots.push({
                         id: Date.now(),
                         eventName: paymentData.eventName,
                         fullName: paymentData.fullName,
                         date: paymentData.date,
-                        image: screenshotData
+                        image: paymentData.screenshot,
+                        synced: false
                     });
                     localStorage.setItem('paymentScreenshots', JSON.stringify(screenshots));
 
-                    // Send to server if available
-                    try {
+                    console.log('💾 Payment saved to localStorage');
+                } catch (e) {
+                    console.error('Error saving to localStorage:', e);
+                }
+            }
+
+            // ============================================
+            // Clear Session and Redirect
+            // ============================================
+            function clearSessionAndRedirect() {
+                // Clear session
+                sessionStorage.removeItem('payToken');
+                sessionStorage.removeItem('payTokenExpiry');
+
+                setTimeout(() => {
+                    localStorage.removeItem('payEventData');
+                    window.location.href = '/events';
+                }, 1500);
+            }
+
+            // ============================================
+            // Sync pending payments on page load
+            // ============================================
+            function syncPendingPayments() {
+                try {
+                    let payments = JSON.parse(localStorage.getItem('payments') || '[]');
+                    const pending = payments.filter(p => p.synced === false);
+                    if (pending.length === 0) return;
+
+                    console.log('🔄 Syncing ' + pending.length + ' pending payments...');
+
+                    pending.forEach(function(payment) {
+                        const data = { ...payment };
+                        delete data.id;
+                        delete data.synced;
+
                         fetch('/api/payments/confirm', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                ...paymentData,
-                                screenshot: screenshotData.substring(0, 100) + '...' // truncated for log
-                            })
-                        }).catch(() => {});
-                    } catch (e) {}
-
-                    showToast('تم تأكيد الدفع بنجاح! شكراً لك.');
-
-                    // Clear session
-                    sessionStorage.removeItem('payToken');
-                    sessionStorage.removeItem('payTokenExpiry');
-
-                    setTimeout(() => {
-                        localStorage.removeItem('payEventData');
-                        window.location.href = '/events';
-                    }, 1800);
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => response.json())
+                        .then(result => {
+                            if (result.success) {
+                                // Mark as synced
+                                const updated = JSON.parse(localStorage.getItem('payments') || '[]');
+                                const index = updated.findIndex(p => p.id === payment.id);
+                                if (index !== -1) {
+                                    updated[index].synced = true;
+                                    localStorage.setItem('payments', JSON.stringify(updated));
+                                }
+                                console.log('✅ Synced payment:', payment.id);
+                            }
+                        })
+                        .catch(() => {});
+                    });
+                } catch (e) {
+                    console.error('Error syncing pending payments:', e);
                 }
-            });
+            }
 
             // ============================================
             // Back button - clear session on navigate away
@@ -1110,7 +1189,12 @@
                 }
             });
 
-            console.log('💳 Payment page loaded with token system');
+            // ============================================
+            // Sync pending payments on page load
+            // ============================================
+            syncPendingPayments();
+
+            console.log('💳 Payment page loaded with token system and API');
             console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
         })();
