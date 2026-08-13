@@ -1167,44 +1167,103 @@ SCRIPTS
             // Show loading
             setLoading(true);
 
-            // Save to localStorage
+            // Try to send to server first
+            fetch('/api/prayer-requests', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(prayerData)
+            })
+            .then(response => response.json())
+            .then(result => {
+                setLoading(false);
+                if (result.success) {
+                    showAlert('تم إرسال طلب الصلاة بنجاح! سيتم تذكره في الصلوات.', 'success');
+                    form.reset();
+                    charCount.textContent = '٠ / ١٠٠٠';
+                    charCount.style.color = 'var(--neutral-400)';
+                    document.querySelector('.prayer-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(hideAlert, 6000);
+                } else {
+                    // If server fails, save to localStorage as fallback
+                    saveToLocalStorage(prayerData);
+                    showAlert('تم حفظ طلب الصلاة محلياً. سيتم إرساله عند الاتصال بالخادم.', 'success');
+                    form.reset();
+                    charCount.textContent = '٠ / ١٠٠٠';
+                    charCount.style.color = 'var(--neutral-400)';
+                    setTimeout(hideAlert, 6000);
+                }
+            })
+            .catch(function(error) {
+                console.error('Error sending prayer request:', error);
+                // Save to localStorage as fallback
+                saveToLocalStorage(prayerData);
+                setLoading(false);
+                showAlert('تم حفظ طلب الصلاة محلياً. سيتم إرساله عند الاتصال بالخادم.', 'success');
+                form.reset();
+                charCount.textContent = '٠ / ١٠٠٠';
+                charCount.style.color = 'var(--neutral-400)';
+                setTimeout(hideAlert, 6000);
+            });
+        });
+
+        // ============================================
+        // Save to LocalStorage (Fallback)
+        // ============================================
+        function saveToLocalStorage(prayerData) {
             try {
                 let prayers = JSON.parse(localStorage.getItem('prayerRequests') || '[]');
                 prayers.push({
                     id: Date.now(),
-                    ...prayerData
+                    ...prayerData,
+                    synced: false
                 });
                 localStorage.setItem('prayerRequests', JSON.stringify(prayers));
-            } catch (e) {}
+                console.log('💾 Prayer request saved to localStorage');
+            } catch (e) {
+                console.error('Error saving to localStorage:', e);
+            }
+        }
 
-            // Send to server if available
+        // ============================================
+        // Sync pending requests on page load
+        // ============================================
+        function syncPendingRequests() {
             try {
-                fetch('/api/prayer-requests', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(prayerData)
-                }).catch(function() {});
-            } catch (e) {}
+                let prayers = JSON.parse(localStorage.getItem('prayerRequests') || '[]');
+                const pending = prayers.filter(p => p.synced === false);
+                if (pending.length === 0) return;
 
-            // Simulate network delay
-            setTimeout(function() {
-                setLoading(false);
-                showAlert('تم إرسال طلب الصلاة بنجاح! سيتم تذكره في الصلوات.', 'success');
+                console.log('🔄 Syncing ' + pending.length + ' pending prayer requests...');
 
-                // Reset form
-                form.reset();
-                charCount.textContent = '٠ / ١٠٠٠';
-                charCount.style.color = 'var(--neutral-400)';
+                pending.forEach(function(prayer) {
+                    const data = { ...prayer };
+                    delete data.id;
+                    delete data.synced;
 
-                // Scroll to top of card
-                document.querySelector('.prayer-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-                // Hide success after 6 seconds
-                setTimeout(function() {
-                    hideAlert();
-                }, 6000);
-            }, 1200);
-        });
+                    fetch('/api/prayer-requests', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            // Mark as synced
+                            const updated = JSON.parse(localStorage.getItem('prayerRequests') || '[]');
+                            const index = updated.findIndex(p => p.id === prayer.id);
+                            if (index !== -1) {
+                                updated[index].synced = true;
+                                localStorage.setItem('prayerRequests', JSON.stringify(updated));
+                            }
+                            console.log('✅ Synced prayer request:', prayer.id);
+                        }
+                    })
+                    .catch(() => {});
+                });
+            } catch (e) {
+                console.error('Error syncing pending requests:', e);
+            }
+        }
 
         // ============================================
         // Clear alert on input
@@ -1219,7 +1278,12 @@ SCRIPTS
         // ============================================
         fullName.focus();
 
-        console.log('🙏 Prayer Request page loaded');
+        // ============================================
+        // Sync pending requests on page load
+        // ============================================
+        syncPendingRequests();
+
+        console.log('🙏 Prayer Request page loaded with API');
         console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
     })();
