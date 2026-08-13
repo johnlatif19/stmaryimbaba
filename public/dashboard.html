@@ -2521,6 +2521,10 @@
                 }
             };
 
+            // Store the current action and config globally
+            let currentAction = null;
+            let currentConfig = null;
+
             function openModal(action) {
                 const config = actionMap[action];
                 if (!config) {
@@ -2528,16 +2532,16 @@
                     return;
                 }
 
+                // Store current action
+                currentAction = action;
+                currentConfig = config;
+
                 modalTitle.textContent = config.title;
                 modalFields.innerHTML = config.fields;
                 modalAlert.className = 'alert-modal';
                 modalAlert.textContent = '';
                 modalSubmit.textContent = 'حفظ';
                 modalSubmit.disabled = false;
-
-                modal.dataset.action = action;
-                modal.dataset.endpoint = config.endpoint;
-                modal.dataset.getData = config.getData;
 
                 modal.classList.add('open');
                 document.body.style.overflow = 'hidden';
@@ -2548,6 +2552,8 @@
                 document.body.style.overflow = '';
                 modalAlert.className = 'alert-modal';
                 modalAlert.textContent = '';
+                currentAction = null;
+                currentConfig = null;
             }
 
             modalClose.addEventListener('click', closeModal);
@@ -2568,10 +2574,17 @@
             actionForm.addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                const endpoint = this.closest('.modal').dataset.endpoint;
-                const getDataFunc = this.closest('.modal').dataset.getData;
-                const data = window[getDataFunc] ? window[getDataFunc]() : {};
+                if (!currentConfig) {
+                    modalAlert.className = 'alert-modal error';
+                    modalAlert.textContent = 'حدث خطأ في التهيئة';
+                    return;
+                }
 
+                const endpoint = currentConfig.endpoint;
+                const getDataFunc = currentConfig.getData;
+                const data = getDataFunc();
+
+                // Check required fields
                 let hasError = false;
                 this.querySelectorAll('[required]').forEach(function(input) {
                     if (!input.value.trim()) {
@@ -2605,16 +2618,26 @@
                                 const tabId = activeTab.id.replace('tab-', '');
                                 loadTabData(tabId);
                             }
-                            location.reload();
+                            // Also reload stats
+                            loadMasses();
+                            loadServices();
+                            loadEvents();
+                            loadNews();
+                            loadSermons();
+                            loadGallery();
+                            loadPriests();
+                            loadFAQ();
+                            loadPrayerRequests();
                         }, 1500);
                     } else {
                         modalAlert.className = 'alert-modal error';
-                        modalAlert.textContent = 'حدث خطأ أثناء الحفظ';
+                        modalAlert.textContent = result.message || 'حدث خطأ أثناء الحفظ';
                         modalSubmit.disabled = false;
                         modalSubmit.textContent = 'حفظ';
                     }
                 })
-                .catch(function() {
+                .catch(function(err) {
+                    console.error('Fetch error:', err);
                     modalAlert.className = 'alert-modal error';
                     modalAlert.textContent = 'حدث خطأ في الاتصال بالخادم';
                     modalSubmit.disabled = false;
