@@ -1160,11 +1160,10 @@ SCRIPTS
         // ============================================
         // Contact Methods - Load from config
         // ============================================
-        // This would be loaded from the server in production
         const contactConfig = {
-            phone: '', // Empty = not configured
-            whatsapp: '', // Empty = not configured
-            email: '', // Empty = not configured
+            phone: '',
+            whatsapp: '',
+            email: '',
             social: {
                 facebook: '',
                 instagram: '',
@@ -1293,6 +1292,9 @@ SCRIPTS
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
         }
 
+        // ============================================
+        // Form Submission
+        // ============================================
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             hideAlert();
@@ -1336,45 +1338,120 @@ SCRIPTS
 
             setLoading(true);
 
-            // Save to localStorage
+            // Try to send to server first
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(contactData)
+            })
+            .then(response => response.json())
+            .then(result => {
+                setLoading(false);
+                if (result.success) {
+                    // Save to localStorage as backup
+                    saveToLocalStorage(contactData);
+                    showAlert('✅ تم إرسال الرسالة بنجاح! سنرد عليك قريباً.', 'success');
+                    form.reset();
+                    charCount.textContent = '٠ / ٢٠٠٠';
+                    charCount.style.color = 'var(--neutral-400)';
+                    setTimeout(hideAlert, 6000);
+                } else {
+                    // If server fails, save to localStorage
+                    saveToLocalStorage(contactData);
+                    showAlert('✅ تم حفظ الرسالة محلياً. سيتم إرسالها عند الاتصال بالخادم.', 'success');
+                    form.reset();
+                    charCount.textContent = '٠ / ٢٠٠٠';
+                    charCount.style.color = 'var(--neutral-400)';
+                    setTimeout(hideAlert, 6000);
+                }
+            })
+            .catch(function(error) {
+                console.error('Error sending contact message:', error);
+                // Save to localStorage as fallback
+                saveToLocalStorage(contactData);
+                setLoading(false);
+                showAlert('✅ تم حفظ الرسالة محلياً. سيتم إرسالها عند الاتصال بالخادم.', 'success');
+                form.reset();
+                charCount.textContent = '٠ / ٢٠٠٠';
+                charCount.style.color = 'var(--neutral-400)';
+                setTimeout(hideAlert, 6000);
+            });
+        });
+
+        // ============================================
+        // Save to LocalStorage (Fallback)
+        // ============================================
+        function saveToLocalStorage(contactData) {
             try {
                 let messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
                 messages.push({
                     id: Date.now(),
                     ...contactData,
-                    status: 'unread'
+                    status: 'unread',
+                    synced: false
                 });
                 localStorage.setItem('contactMessages', JSON.stringify(messages));
-            } catch (e) {}
+                console.log('💾 Contact message saved to localStorage');
+            } catch (e) {
+                console.error('Error saving to localStorage:', e);
+            }
+        }
 
-            // Send to server
+        // ============================================
+        // Sync pending messages on page load
+        // ============================================
+        function syncPendingMessages() {
             try {
-                fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(contactData)
-                }).catch(function() {});
-            } catch (e) {}
+                let messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+                const pending = messages.filter(m => m.synced === false);
+                if (pending.length === 0) return;
 
-            setTimeout(function() {
-                setLoading(false);
-                showAlert('تم إرسال الرسالة بنجاح! سنرد عليك قريباً.', 'success');
-                form.reset();
-                charCount.textContent = '٠ / ٢٠٠٠';
-                charCount.style.color = 'var(--neutral-400)';
+                console.log('🔄 Syncing ' + pending.length + ' pending contact messages...');
 
-                setTimeout(function() {
-                    hideAlert();
-                }, 6000);
-            }, 1200);
-        });
+                pending.forEach(function(message) {
+                    const data = { ...message };
+                    delete data.id;
+                    delete data.synced;
+                    delete data.status;
 
+                    fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            // Mark as synced
+                            const updated = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+                            const index = updated.findIndex(m => m.id === message.id);
+                            if (index !== -1) {
+                                updated[index].synced = true;
+                                localStorage.setItem('contactMessages', JSON.stringify(updated));
+                            }
+                            console.log('✅ Synced contact message:', message.id);
+                        }
+                    })
+                    .catch(() => {});
+                });
+            } catch (e) {
+                console.error('Error syncing pending messages:', e);
+            }
+        }
+
+        // ============================================
         // Clear alert on input
+        // ============================================
         form.querySelectorAll('input, textarea').forEach(function(input) {
             input.addEventListener('input', hideAlert);
         });
 
-        console.log('📧 Contact page loaded');
+        // ============================================
+        // Sync pending messages on page load
+        // ============================================
+        syncPendingMessages();
+
+        console.log('📧 Contact page loaded with API');
         console.log('📍 Saint Mary and St. Abanoub Coptic Orthodox Church - Embaba');
 
     })();
